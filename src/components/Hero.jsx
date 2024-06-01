@@ -1,6 +1,6 @@
 function Hero() {
   return (
-    <div className="bg-warm max-h-screen md:h-screen md:p-20 p-6m d:pt-20 pt-0 flex md:flex-row flex-col-reverse md:items-center items-start">
+    <div className="bg-warm max-h-screen md:mt-0 md:h-screen md:p-20 p-6 d:pt-20 pt-0 flex md:flex-row flex-col-reverse md:items-center items-start">
       <div className="md:p-4 pb-12">
         <h1 className="font-bold md:text-5xl text-4xl text-lightblack ">
           CodeShack Summer of Code 2024
@@ -11,7 +11,7 @@ function Hero() {
         </p>
       </div>
 
-      <div className="md:pl-10 pl-0">
+      <div className="md:pl-10 pl-0 mt-14 ">
         <img
           src="/hero-img.svg"
           alt="Hero Image"

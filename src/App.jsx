@@ -8,6 +8,7 @@ function App() {
       <NavBar />
       <main>
         <Hero/>
+        
       </main>
     </>
   )
