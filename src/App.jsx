@@ -1,3 +1,4 @@
+import Hero from "./components/Hero"
 
 
 function App() {
@@ -5,8 +6,9 @@ function App() {
 
   return (
     <>
-      <div className='bg-green-500'> Start your code here
-      </div>
+      <main>
+        <Hero/>
+      </main>
     </>
   )
 }
