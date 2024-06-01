@@ -1,3 +1,4 @@
+import ContactUs from "./components/ContactUs"
 import FAQ from "./components/FAQ"
 import Footer from "./components/Footer"
 import Hero from "./components/Hero"
@@ -12,6 +13,7 @@ function App() {
         <Hero />
         <Timeline />
         <FAQ />
+        <ContactUs />
       </main>
       <Footer />
     </>

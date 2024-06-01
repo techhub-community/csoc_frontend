@@ -63,7 +63,7 @@ export default function FAQ() {
 
   return (
     <div className="faq-container mx-auto my-6 px-6 py-12 max-w-4xl">
-      <h1 class="text-4xl font-bold py-10" style={{ textAlign: 'center' }}>FAQ</h1>
+      <h1 className="text-4xl font-bold py-10" style={{ textAlign: 'center' }}>FAQ</h1>
       {
         faqs.map((faq, index) => (
           <FAQItem
