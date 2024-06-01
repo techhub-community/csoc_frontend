@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { FaAngleDoubleLeft } from "react-icons/fa";
 import { testimonials } from "../data/Testimonial";
@@ -7,7 +7,7 @@ const TestimonialCard = ({ image, qualification, name, message, isActive }) => {
   return (
     <div
       className={`testimonial-card bg-white shadow-lg rounded-lg p-6 m-4 flex-shrink-0 w-80 transform hover:rotate-1 hover:scale-105 transition-transform duration-200 ${
-        isActive ? 'scale-105 rotate-2' : ''
+        isActive ? "scale-105 rotate-2" : ""
       }`}
     >
       <img
@@ -27,7 +27,7 @@ const Testimonial = () => {
   const scrollRef = useRef(null);
 
   const scroll = (scrollOffset) => {
-    scrollRef.current.scrollBy({ left: scrollOffset, behavior: 'smooth' });
+    scrollRef.current.scrollBy({ left: scrollOffset, behavior: "smooth" });
   };
 
   return (
@@ -54,12 +54,10 @@ const Testimonial = () => {
             {
               <TestimonialCard
                 key={index}
-                {
-                  ...{
-                    ...testimonial,
-                    isActive: false
-                  }
-                }
+                {...{
+                  ...testimonial,
+                  isActive: false,
+                }}
               />
             }
           </div>
