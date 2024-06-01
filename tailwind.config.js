@@ -9,6 +9,7 @@ export default {
         lightblack: "#4E4039",
         lightbrown:"#A08F86",
         darkwarm:"#FCE8DF",
+        semidark: "#796960",
       },
       keyframes: {
         "bounce-slow-low": {

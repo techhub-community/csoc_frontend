@@ -1,3 +1,4 @@
+import Aboutus from "./components/Aboutus"
 import ContactUs from "./components/ContactUs"
 import FAQ from "./components/FAQ"
 import Footer from "./components/Footer"
@@ -12,6 +13,7 @@ function App() {
       <NavBar />
       <main>
         <Hero />
+        <Aboutus/>
         <Timeline />
         <Testimonial />
         <FAQ />
