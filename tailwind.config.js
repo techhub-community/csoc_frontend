@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         warm: "#FEF8F4",
+        coral: "#FF7F50",
         lightblack: "#4E4039",
         lightbrown:"#A08F86",
       },
