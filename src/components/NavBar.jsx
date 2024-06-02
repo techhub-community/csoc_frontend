@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,10 +10,9 @@ const NavBar = () => {
     <nav className="bg-white shadow-lg sticky top-0 w-full z-50">
       <div className="container mx-auto px-2">
         <div className="flex justify-between items-center py-4">
-          <a href="#">
+          <Link to="/">
             <div className="text-2xl font-bold">{"<CODESHACK>"}</div>
-          </a>
-
+          </Link>
           <div
             className="hidden md:flex space-x-8"
             style={{ alignItems: "center" }}
@@ -29,12 +29,12 @@ const NavBar = () => {
             <a href="#contact" className="text-gray-600 hover:text-gray-800">
               Contact Us
             </a>
-            <a
-              href="#"
+            <Link
+              to="/auth"
               className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
             >
               Login
-            </a>
+            </Link>
           </div>
 
           <div className="md:hidden">
@@ -73,13 +73,12 @@ const NavBar = () => {
             >
               Contact Us
             </a>
-            <a
-              href="#"
-              className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
-              style={{ position: "relative", top: "10px", left: "10px" }}
+            <Link
+              to="/auth"
+              className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded relative top-2 left-2"
             >
               Login
-            </a>
+            </Link>
           </div>
         )}
       </div>
