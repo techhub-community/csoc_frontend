@@ -3,7 +3,7 @@ import { RiFileList3Line } from "react-icons/ri";
 
 function Aboutus() {
   return (
-    <div className="flex md:flex-row flex-col md:p-20 p-6 md:items-center items-start">
+    <div id="about" className="flex md:flex-row flex-col md:p-20 p-6 md:items-center items-start">
       <img
         src="about-img.svg"
         alt="Hero Image"
