@@ -3,14 +3,13 @@ import { RiFileList3Line } from "react-icons/ri";
 
 function Aboutus() {
   return (
-    <div id="about" className="flex md:flex-row flex-col md:p-20 p-6 md:items-center items-start">
+    <div id="about" className="flex flex-wrap md:flex-row gap-8 flex-col md:p-20 p-6 md:items-center items-center justify-center">
       <img
         src="about-img.svg"
         alt="Hero Image"
-        className="h-[500px] w-[500px] "
+        className="md:w-[45%]"
       />
-
-      <div className="pl-0 md:pl-16">
+      <div className="pl-0 md:pl-2 md:max-w-[45%] md:min-w-[500px]">
         <h1 className="text-4xl font-semibold mb-4">
           What is Codeshack Summer of Code ?
         </h1>
