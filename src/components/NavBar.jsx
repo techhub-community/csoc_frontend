@@ -9,7 +9,9 @@ const NavBar = () => {
     <nav className="bg-white shadow-lg sticky top-0 w-full z-50">
       <div className="container mx-auto px-2">
         <div className="flex justify-between items-center py-4">
-          <div className="text-2xl font-bold">{"<CODESHACK>"}</div>
+          <a href="#">
+            <div className="text-2xl font-bold">{"<CODESHACK>"}</div>
+          </a>
 
           <div
             className="hidden md:flex space-x-8"
@@ -18,13 +20,13 @@ const NavBar = () => {
             <a href="#" className="text-gray-600 hover:text-gray-800">
               Home
             </a>
-            <a href="#" className="text-gray-600 hover:text-gray-800">
+            <a href="#about" className="text-gray-600 hover:text-gray-800">
               About Us
             </a>
-            <a href="#" className="text-gray-600 hover:text-gray-800">
+            <a href="#timeline" className="text-gray-600 hover:text-gray-800">
               Timeline
             </a>
-            <a href="#" className="text-gray-600 hover:text-gray-800">
+            <a href="#contact" className="text-gray-600 hover:text-gray-800">
               Contact Us
             </a>
             <a

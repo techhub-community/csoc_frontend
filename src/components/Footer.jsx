@@ -3,6 +3,7 @@ import { FaTwitter } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
+import { FaDiscord } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -24,7 +25,7 @@ const Footer = () => {
               <h2 className="text-xl font-bold mb-2">Useful Links</h2>
               <ul className="">
                 <li className="mb-1">
-                  <a href="#home" className="hover:text-orange-400">
+                  <a href="#" className="hover:text-orange-400">
                     <b className="text-orange-500">{"> "}</b>Home
                   </a>
                 </li>
@@ -34,8 +35,8 @@ const Footer = () => {
                   </a>
                 </li>
                 <li className="mb-1">
-                  <a href="#services" className="hover:text-orange-400">
-                    <b className="text-orange-500">{"> "}</b>Services
+                  <a href="#faq" className="hover:text-orange-400">
+                    <b className="text-orange-500">{"> "}</b>FAQ
                   </a>
                 </li>
                 <li className="mb-1">
@@ -51,7 +52,7 @@ const Footer = () => {
             <ul>
               <li className="mb-1">
                 <a
-                  href="#twitter"
+                  href="https://x.com/_techhub?t=KZgthBRrNt7t0nzc-swPmw&s=08"
                   className="hover:text-orange-400 flex items-center gap-1"
                 >
                   <FaTwitter /> Twitter
@@ -59,7 +60,7 @@ const Footer = () => {
               </li>
               <li className="mb-1">
                 <a
-                  href="#instagram"
+                  href="https://www.instagram.com/techhub_community?igshid=MzRlODBiNWFlZA%3D%3D"
                   className="hover:text-orange-400 flex items-center gap-1"
                 >
                   <RiInstagramFill /> Instagram
@@ -67,7 +68,7 @@ const Footer = () => {
               </li>
               <li className="mb-1">
                 <a
-                  href="#linkedin"
+                  href="https://www.linkedin.com/company/techhub-community/"
                   className="hover:text-orange-400 flex items-center gap-1"
                 >
                   <FaLinkedin /> LinkedIn
@@ -75,10 +76,18 @@ const Footer = () => {
               </li>
               <li className="mb-1">
                 <a
-                  href="#linkedin"
+                  href="https://github.com/techhub-community"
                   className="hover:text-orange-400 flex items-center gap-1"
                 >
                   <FaGithub /> GitHub
+                </a>
+              </li>
+              <li className="mb-1">
+                <a
+                  href="https://discord.com/channels/814219041614594078/820179791293841430"
+                  className="hover:text-orange-400 flex items-center gap-1"
+                >
+                  <FaDiscord /> Discord
                 </a>
               </li>
             </ul>

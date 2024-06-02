@@ -3,7 +3,7 @@ import { timelineData } from "../data/Timeline";
 export default function Timeline() {
   return (
     <>
-      <div className="bg-warm">
+      <div id="timeline" className="bg-warm">
         <div className="container px-10 py-10 mx-auto z-1 relative">
           <h1 className="text-4xl font-bold py-10 text-center">Timeline</h1>
           <ol className="relative border-s border-gray-200 dark:border-gray-700">

@@ -4,7 +4,7 @@ import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 
 const FAQItem = ({ question, answer, isActive, onClick }) => {
   return (
-    <div className={`faq-item border-b border-gray-200 p-5 cursor-pointer transition-transform duration-300 ${
+    <div id='faq' className={`faq-item border-b border-gray-200 p-5 cursor-pointer transition-transform duration-300 ${
         isActive && 'transform scale-105 bg-gray-100 transition-transform'
       }`}
       onClick={onClick}
