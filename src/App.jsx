@@ -1,3 +1,4 @@
+import AuthPage from "./AuthPage";
 import Aboutus from "./components/Aboutus";
 import ContactUs from "./components/ContactUs";
 import FAQ from "./components/FAQ";
@@ -13,13 +14,14 @@ function App() {
     <>
       <NavBar />
       <main>
-        <Hero />
+        {/* <Hero />
         <Aboutus />
         <Timeline />
         <Programs />
         <Testimonial />
         <FAQ />
-        <ContactUs />
+        <ContactUs /> */}
+        <AuthPage />
       </main>
       <Footer />
     </>
