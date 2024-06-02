@@ -42,7 +42,7 @@ function Aboutus() {
             <h1 className="text-2xl font-semibold text-semidark">Hackathon</h1>
             <p>
               {" "}
-              <span className="font-bold">Phase 2:</span> KProject Creation and
+              <span className="font-bold">Phase 2:</span> Project Creation and
               Network Building
             </p>
           </div>
