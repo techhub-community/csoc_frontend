@@ -1,11 +1,12 @@
-import Aboutus from "./components/Aboutus"
-import ContactUs from "./components/ContactUs"
-import FAQ from "./components/FAQ"
-import Footer from "./components/Footer"
-import Hero from "./components/Hero"
-import NavBar from "./components/NavBar"
-import Testimonial from "./components/Testimonial"
-import Timeline from "./components/Timeline"
+import Aboutus from "./components/Aboutus";
+import ContactUs from "./components/ContactUs";
+import FAQ from "./components/FAQ";
+import Footer from "./components/Footer";
+import Hero from "./components/Hero";
+import NavBar from "./components/NavBar";
+import Programs from "./components/Programs";
+import Testimonial from "./components/Testimonial";
+import Timeline from "./components/Timeline";
 
 function App() {
   return (
@@ -13,15 +14,16 @@ function App() {
       <NavBar />
       <main>
         <Hero />
-        <Aboutus/>
+        <Aboutus />
         <Timeline />
+        <Programs />
         <Testimonial />
         <FAQ />
         <ContactUs />
       </main>
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
