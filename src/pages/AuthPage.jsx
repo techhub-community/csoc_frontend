@@ -6,6 +6,7 @@ import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { Transition, TransitionChild } from '@headlessui/react';
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import { Link } from 'react-router-dom';
 
 const AuthPage = () => {
   const [loginRole, setLoginRole] = useState('mentee');
@@ -84,12 +85,14 @@ const AuthPage = () => {
                     />
                   </div>
                 </div>
-                <button
-                  type="button"
-                  className="w-full py-2 px-4 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none"
-                >
-                  Login
-                </button>
+                <Link to="/profile">
+                  <button
+                    type="button"
+                    className="w-full py-2 px-4 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none"
+                  >
+                    Login
+                  </button>
+                </Link>
                 <div className="mt-4 text-center">
                   <button
                     type="button"
