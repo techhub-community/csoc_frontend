@@ -14,9 +14,16 @@ export const testimonials = [
       "My journey in the tech team has been transformative, and I am grateful for the opportunities I have had to learn, grow, and collaborate with exceptional professionals.",
   },
   {
+    image: "./image/Pooja.jpeg",
+    qualification: "Web Development",
+    name: "Pooja Rai",
+    message:
+      "It was a great experience attending the CSOC 2023.Our mentors were very supporting, helping us throughout the journey. It helped us to push ourselves forward in journey of coding. ",
+  },
+  {
     image: "./image/Raghavendra Hande.jpg",
     qualification: "App Development",
-    name: "Om Singh",
+    name: "Raghavendra Hande",
     message:
       "CSOC 2023 was an amazing experience. Got amazing mentors who gave my coding journey the boost that it needed.",
   },
@@ -34,6 +41,15 @@ export const testimonials = [
     message:
       "This CSOC sparked a significant interest in technology. The supportive environment fostered by the instructors and peers provided invaluable guidance, which equipped me to begin my tech journey on a strong foundation.  It undoubtedly enhanced my overall development in the field.",
   },
+  
+  {
+    image: "./image/Saurav.jpg",
+    qualification: "Web Development",
+    name: "Saurabh Singh",
+    message:
+      "It was really a amazing experience in csoc and i learn so many new things and i explore the web dev but i quit at the end but really i lie this experience and after the csoc and i believed in myself and started once again web dev in frontend part and i completed upto js ",
+  },
+  
   {
     image: "./image/Prajna Hegde.jpg",
     qualification: "Ui Ux",
