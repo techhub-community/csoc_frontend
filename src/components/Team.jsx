@@ -1,16 +1,8 @@
 import React, { useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import {teamMembers} from '../data/Teams'
 
-// Sample team members
-const teamMembers = [
-  {
-    name: "Tom",
-    image: "./image/HD-wallpaper-tom-cartoon-ezpz-ezpzworld.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  },
-  
-];
+
 
 const ITEMS_PER_PAGE = 6;
 
