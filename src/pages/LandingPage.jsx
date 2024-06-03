@@ -8,6 +8,7 @@ import Testimonial from "../components/Testimonial";
 import FAQ from "../components/FAQ";
 import ContactUs from "../components/ContactUs";
 import Footer from "../components/Footer";
+import Team from '../components/Team';
 
 export default function LandingPage() {
   return (  
@@ -18,6 +19,7 @@ export default function LandingPage() {
       <Timeline />
       <Programs />
       <Testimonial />
+      <Team/>
       <FAQ />
       <ContactUs />
       <Footer />
