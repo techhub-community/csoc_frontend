@@ -6,13 +6,86 @@ import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { Transition, TransitionChild } from '@headlessui/react';
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import useAuthStore from "../hooks/useAuthStore";
+import useLocalStorage from "../hooks/useLocalStorage";
+import { baseUrl } from '../data/consts';
+import { useRef } from 'react';
 
 const AuthPage = () => {
+  const loginTab = useRef(null);
+  const [confPass, setConfPass] = useState('');
   const [loginRole, setLoginRole] = useState('mentee');
   const [selectedForm, setSelectedForm] = useState('login');
   const [isOpen, setIsForgotPasswordOpen] = useState(false);
   const [registerRole, setRegisterRole] = useState('mentee');
+  
+  const navigate = useNavigate();
+  const [, setToken] = useLocalStorage("token", null);
+  const { setRole, setIsAuthenticated, setData } = useAuthStore();
+
+  const [loginData, setLoginData] = useState({
+    password: '',
+    email: ''
+  });
+
+  const [registerData, setRegisterData] = useState({
+    password: '',
+    email: '',
+    name: '',
+    usn: ''
+  });
+
+  async function handleLoginSubmit() {
+    const res = await fetch(`${baseUrl}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ...loginData, role: loginRole })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert('Login failed: ' + data.error);
+      return;
+    }
+
+    const { name, props, about, role, verified, token } = data;
+    setData(name, loginData.email, about, props, verified);
+    setIsAuthenticated(true);
+    setToken(token);
+    setRole(role);
+
+    navigate('/profile');
+  }
+
+  async function handleRegisterSubmit() {
+    if (registerData.password !== confPass) {
+      alert('Passwords do not match');
+      return;
+    }
+
+    const res = await fetch(`${baseUrl}/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ...registerData, role: registerRole })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert('Registration failed: ' + data.error);
+      return;
+    }
+
+    alert(data.message);
+    loginTab.current?.click();
+  }
 
   function close() {
     setIsForgotPasswordOpen(false);
@@ -26,6 +99,7 @@ const AuthPage = () => {
         <div className="w-full max-w-lg mx-auto p-6">
           <div className="flex justify-center mb-6">
             <button
+              ref={loginTab}
               onClick={() => setSelectedForm('login')}
               className={`py-2 px-4 ${selectedForm === 'login' ? 'bg-orange-500 text-white' : 'bg-white text-gray-700'} rounded-l-lg border border-gray-300 focus:outline-none`}
             >
@@ -70,6 +144,8 @@ const AuthPage = () => {
                     <input
                       type="email"
                       placeholder="Email"
+                      value={loginData.email}
+                      onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
@@ -81,18 +157,19 @@ const AuthPage = () => {
                     <input
                       type="password"
                       placeholder="Password"
+                      value={loginData.password}
+                      onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
-                <Link to="/profile">
-                  <button
-                    type="button"
-                    className="w-full py-2 px-4 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none"
-                  >
-                    Login
-                  </button>
-                </Link>
+                <button
+                  type="button"
+                  onClick={handleLoginSubmit}
+                  className="w-full py-2 px-4 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none"
+                >
+                  Login
+                </button>
                 <div className="mt-4 text-center">
                   <button
                     type="button"
@@ -112,6 +189,8 @@ const AuthPage = () => {
                     <input
                       type="text"
                       placeholder="Name"
+                      value={registerData.name}
+                      onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
@@ -123,6 +202,8 @@ const AuthPage = () => {
                     <input
                       type="email"
                       placeholder="Email"
+                      value={registerData.email}
+                      onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
@@ -134,6 +215,8 @@ const AuthPage = () => {
                     <input
                       type="text"
                       placeholder="USN"
+                      value={registerData.usn}
+                      onChange={(e) => setRegisterData({ ...registerData, usn: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
@@ -145,6 +228,8 @@ const AuthPage = () => {
                     <input
                       type="password"
                       placeholder="Password"
+                      value={registerData.password}
+                      onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
@@ -155,13 +240,16 @@ const AuthPage = () => {
                     <AiOutlineLock className="w-6 h-6 text-gray-500 mr-2" />
                     <input
                       type="password"
+                      value={confPass}
                       placeholder="Confirm Password"
+                      onChange={(e) => setConfPass(e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
                 <button
                   type="button"
+                  onClick={handleRegisterSubmit}
                   className="w-full py-2 px-4 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none"
                 >
                   Register
