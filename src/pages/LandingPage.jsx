@@ -19,7 +19,7 @@ export default function LandingPage() {
       <Timeline />
       <Programs />
       <Testimonial />
-      {/* <Team/> */}
+      <Team/>
       <FAQ />
       <ContactUs />
       <Footer />

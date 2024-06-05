@@ -34,10 +34,10 @@ const Team = () => {
             <h2 className="text-xl font-medium">{member.name}</h2>
             <div className="mt-2 flex justify-center space-x-4">
               <a href={member.github} target="_blank" rel="noopener noreferrer">
-                <FaGithub className="text-2xl" />
+                {/* <FaGithub className="text-2xl" /> */}
               </a>
               <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                <FaLinkedin className="text-2xl" />
+                {/* <FaLinkedin className="text-2xl" /> */}
               </a>
             </div>
           </div>
