@@ -22,7 +22,7 @@ const Team = () => {
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-4xl font-bold text-center">Team</h1>
-      <p className="text-center mt-2 mb-8">Collaboration Is Our Strength!</p>
+      <p className="text-center text-3xl mt-2 mb-8">Collaboration Is Our Strength!</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {paginatedMembers.map((member, index) => (
           <div key={index} className="text-center">
@@ -34,10 +34,10 @@ const Team = () => {
             <h2 className="text-xl font-medium">{member.name}</h2>
             <div className="mt-2 flex justify-center space-x-4">
               <a href={member.github} target="_blank" rel="noopener noreferrer">
-                <FaGithub className="text-2xl" />
+                {/* <FaGithub className="text-2xl" /> */}
               </a>
               <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                <FaLinkedin className="text-2xl" />
+                {/* <FaLinkedin className="text-2xl" /> */}
               </a>
             </div>
           </div>
