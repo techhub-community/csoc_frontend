@@ -83,6 +83,7 @@ const ProfileSection = () => {
       });
 
       const data = await req.json();
+      setCalling(false);
 
       if (!req.ok) {
         alert(data.error);
@@ -100,13 +101,13 @@ const ProfileSection = () => {
 
   async function sendInvitation() {
     if (calling) return;
-    setCalling(true);
     const emails = [];
 
     try {
       for (const email of Object.values(memberTeam)) 
         if (email) emails.push(email);
       if (!emails.length) return;
+      setCalling(true);
 
       const req = await fetch(`${baseUrl}/send-invite`, {
         headers: { 'Content-Type': 'application/json' },
@@ -118,6 +119,7 @@ const ProfileSection = () => {
         })
       });
 
+      setCalling(false);
       const data = await req.json();
 
       if (!req.ok) {
@@ -136,13 +138,15 @@ const ProfileSection = () => {
 
   async function updateName() {
     if (calling) return;
-    setCalling(true);
+
     try {  
       if (!name) {
         alert("Name cannot be empty");
         return;
       }
       
+      setCalling(true);
+
       const req = await fetch(`${baseUrl}/update-name`, {
         headers: { 'Content-Type': 'application/json' },
         method: "POST",
@@ -153,6 +157,7 @@ const ProfileSection = () => {
       });
 
       const data = await req.json();
+      setCalling(false);
 
       if (!req.ok) {
         alert(data.error);
@@ -169,13 +174,14 @@ const ProfileSection = () => {
 
   async function updateAbout() {
     if (calling) return;
-    setCalling(true);
 
     if (!about) {
       alert("About cannot be empty");
       return;
     }
     try {  
+      setCalling(true);
+
       const req = await fetch(`${baseUrl}/update-about`, {
         headers: { 'Content-Type': 'application/json' },
         method: "POST",
@@ -186,6 +192,7 @@ const ProfileSection = () => {
       });
 
       const data = await req.json();
+      setCalling(false);
 
       if (!req.ok) {
         alert(data.error);
@@ -202,7 +209,6 @@ const ProfileSection = () => {
 
   async function updatePass() {
     if (calling) return;
-    setCalling(true);
 
     if (!oldPass || !newPass) {
       alert("Old password and new password cannot be empty");
@@ -210,6 +216,8 @@ const ProfileSection = () => {
     }
      
     try {
+      setCalling(true);
+
       const req = await fetch(`${baseUrl}/update-password`, {
         headers: { 'Content-Type': 'application/json' },
         method: "POST",
@@ -220,6 +228,7 @@ const ProfileSection = () => {
       });
 
       const data = await req.json();
+      setCalling(false);
 
       if (!req.ok) {
         alert(data.error);
