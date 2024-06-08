@@ -20,7 +20,7 @@ const Team = () => {
   );
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="bg-warm mx-auto py-8">
       <h1 className="text-4xl font-bold text-center">Team</h1>
       <p className="text-center text-3xl mt-2 mb-8">Collaboration Is Our Strength!</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">

@@ -2,12 +2,12 @@ export const timelineData = [
     {
       date: "8th June 2024",
       title: "Registration Begins",
-      details: `At 1:00 PM, the registration form will go live. It must be filled completely to be a part of the program.`,
+      details: `At 4:00 PM, the registration form will go live. It must be filled completely to be a part of the program.`,
     },
     {
-      date: "12th June 2024",
+      date: "14th June 2024",
       title: "Registration Ends",
-      details: `At 11:00 PM, the form will become inactive and no more entries will be entertained. Registered Participants will be notified regarding the further events.`,
+      details: `At 11:59 PM, the form will become inactive and no more entries will be entertained. Registered Participants will be notified regarding the further events.`,
     },
     {
       date: "15th June 2024",

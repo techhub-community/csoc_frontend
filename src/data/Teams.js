@@ -31,6 +31,11 @@ export const teamMembers = [
         github: "https://github.com/Tom",
         linkedin: "https://linkedin.com/in/Tom",
       },{
+        name: "Harsh Rai",
+        image: "./image/Harsh-Rai.png",
+        github: "https://github.com/Tom",
+        linkedin: "https://linkedin.com/in/Tom",
+      },{
         name: "Shreya",
         image: "./image/shreyav.png",
         github: "https://github.com/Tom",
