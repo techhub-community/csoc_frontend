@@ -1,7 +1,7 @@
 export const faqs = [
   {
     question: 'What is CodeShack Summer of Code?',
-    answer: 'It is a 2 month long event consisting of two phases - Mentorship Program and Hackathon.',
+    answer: 'It is a two-month-long online program consisting of two phases: the Mentorship Program and the Hackathon.',
   },
   {
     question: 'Who all can enroll for this program?',
@@ -9,18 +9,18 @@ export const faqs = [
   },
   {
     question: 'Which domains will be covered in CSOC?',
-    answer: 'There are three domains - App Dev., Web Dev. and DSA. DSA is compulsory for all the participants registering for this program.',
+    answer: 'There are three domains: App Development, Web Development, and Data Structures and Algorithms (DSA). DSA is compulsory for all participants registering for this program.',
   },
   {
     question: 'What is the fee for this program?',
     answer: 'The program is totally free of cost. The only requirement for the program is your consistency and dedication towards learning new things.',
   },
   {
-    question: 'Will projects be there?',
-    answer: 'Yes, projects will be there and it will be based on your proficiency level.',
+    question: 'Will there be projects?',
+    answer: 'Yes, there will be projects, and they will be based on your proficiency level.',
   },
   {
     question: 'What will be the team composition?',
-    answer: 'Each team will have three members. You can register as a solo, duo or trio. Based upon the registrations, we will group the solo and duo participants to form a team of three members.',
+    answer: 'Each team will have three members. You can register as a solo, duo, or trio. Based on the registrations, we will group the solo and duo participants to form teams of three members.',
   }
 ];

@@ -8,10 +8,12 @@ import { baseUrl } from "./data/consts"
 import useAuthStore from "./hooks/useAuthStore";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { Navigate } from "react-router-dom";
+import ResetPWD from "./pages/ResetPWD";
+import LoadingScreen from "./pages/LoadingPage";
 
 function App() {
   const [token, ] = useLocalStorage("token", null);
-  const { loading, setRole, isAuthenticated, setIsAuthenticated, setData } = useAuthStore();
+  const { loading, setTeam, isAuthenticated, setIsAuthenticated, setPendings, setData, setInvite, setType, setProgram, setSuggestions } = useAuthStore();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,8 +30,19 @@ function App() {
         });
 
         const data = await response.json();
-        setIsAuthenticated(data.valid);
-        setRole(data.role);
+
+        if (!response.ok) {
+          setIsAuthenticated(false);
+          return;
+        }
+
+        setType(data.type);
+        setTeam(data.team);
+        setInvite(data.invite);
+        setProgram(data.program);
+        setIsAuthenticated(true);
+        setPendings(data.pendings);
+        setSuggestions(data.suggestions);
         setData(data.name, data.email, data.about, data.props, data.verified);
       } catch (error) {
         console.error("Error fetching session data:", error);
@@ -44,9 +57,11 @@ function App() {
       <Routes>
         <Route path="/">
           <Route index element={<LandingPage />} />
-          <Route path="/auth" element={loading ? <>Loading...</> : isAuthenticated ? <Navigate to="/profile" /> : <AuthPage />} />
-          <Route path="/profile" element={loading ? <>Loading...</>
+          <Route path="/auth" element={loading ? <LoadingScreen />
+            : isAuthenticated ? <Navigate to="/profile" /> : <AuthPage />} />
+          <Route path="/profile" element={loading ? <LoadingScreen />
             : !isAuthenticated ? <Navigate to="/auth" /> : <ProfileSection />} />
+          <Route path="/reset-password" element={isAuthenticated ? <Navigate to="/" /> : <ResetPWD />} />
         </Route>
       </Routes>
     </BrowserRouter>

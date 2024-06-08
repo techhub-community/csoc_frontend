@@ -26,7 +26,7 @@ const cardData = [
 function Programs() {
   return (
     <section>
-      <div className="min-h-screen p-10 bg-warm">
+      <div className="min-h-[90vh] p-10 bg-white flex flex-col text-center items-center justify-center">
         <div className="flex flex-col items-center justify-center mt-10">
           <h1 className="text-4xl font-bold text text-[#212529] ">
             OUR PROGRAMS
@@ -40,7 +40,7 @@ function Programs() {
           {cardData.map((card, index) => (
             <div
               key={index}
-              className="block max-w-sm p-6 border-2 rounded-lg shadow text-center h-[21rem] w-60 transform transition duration-300 hover:-translate-y-2 hover:shadow-orange-600"
+              className="block bg-warm max-w-sm p-6 border-2 rounded-lg shadow-xl text-center h-[21rem] w-60 transform transition duration-300 hover:-translate-y-2 hover:shadow-orange-200"
             >
               <div className="flex justify-center">{card.icon}</div>
               <h5 className="mb-6 text-xl font-bold tracking-tight text-black">

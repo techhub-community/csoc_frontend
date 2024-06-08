@@ -1,29 +1,33 @@
 import React, { useState } from 'react';
-import { AiOutlineMail, AiOutlineUser, AiOutlineIdcard, AiOutlineLock } from 'react-icons/ai';
-import { FaChalkboardTeacher, FaUserGraduate } from 'react-icons/fa';
-import { RadioGroup, Radio } from '@headlessui/react';
+import { AiOutlineMail, AiOutlineUser, AiOutlineLock } from 'react-icons/ai';
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { Transition, TransitionChild } from '@headlessui/react';
 import NavBar from "../components/NavBar";
+import { CiMobile3 } from "react-icons/ci";
 import Footer from "../components/Footer";
 import { useNavigate } from 'react-router-dom';
+import { CiViewList } from "react-icons/ci";
 
 import useAuthStore from "../hooks/useAuthStore";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { baseUrl } from '../data/consts';
 import { useRef } from 'react';
+import { useEffect } from 'react';
 
 const AuthPage = () => {
   const loginTab = useRef(null);
+  const registerTab = useRef(null);
+  const [opt, setOpt] = useState(undefined);
   const [confPass, setConfPass] = useState('');
-  const [loginRole, setLoginRole] = useState('mentee');
+  const [calling, setCalling] = useState(false);
+  const [fixedEmail, setFixedEmail] = useState("");
+  const [forgotEmail, setForgotEmail] = useState('');
   const [selectedForm, setSelectedForm] = useState('login');
   const [isOpen, setIsForgotPasswordOpen] = useState(false);
-  const [registerRole, setRegisterRole] = useState('mentee');
   
   const navigate = useNavigate();
   const [, setToken] = useLocalStorage("token", null);
-  const { setRole, setIsAuthenticated, setData } = useAuthStore();
+  const { setIsAuthenticated, setData, setInvite, setType, setTeam, setPendings, setProgram, setSuggestions } = useAuthStore();
 
   const [loginData, setLoginData] = useState({
     password: '',
@@ -32,59 +36,171 @@ const AuthPage = () => {
 
   const [registerData, setRegisterData] = useState({
     password: '',
+    program: '',
+    mobile: '',
     email: '',
-    name: '',
-    usn: ''
+    name: ''
   });
 
+  useEffect(() => {
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+    const prg = params.get("program");
+    const optTok = params.get('opt');
+    const em = params.get("email");
+    
+    if (optTok) setOpt(optTok);
+    
+    if (em) {
+      setFixedEmail(em);
+      setRegisterData(prevState => ({
+        ...prevState,
+        email: em
+      }));
+    }
+
+    if (prg) {
+      setRegisterData(prevState => ({
+        ...prevState,
+        program: prg
+      }));
+    }
+
+    if (params.get("register") === "true")
+      registerTab.current?.click();
+  }, []);
+
   async function handleLoginSubmit() {
-    const res = await fetch(`${baseUrl}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ ...loginData, role: loginRole })
-    });
+    if (calling) return;
+    setCalling(true);
 
-    const data = await res.json();
-
-    if (!res.ok) {
-      alert('Login failed: ' + data.error);
+    if (!loginData.email || !loginData.password) {
+      alert('Please enter email and password');
       return;
     }
 
-    const { name, props, about, role, verified, token } = data;
-    setData(name, loginData.email, about, props, verified);
-    setIsAuthenticated(true);
-    setToken(token);
-    setRole(role);
+    try {
+      const res = await fetch(`${baseUrl}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ ...loginData })
+      });
 
-    navigate('/profile');
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert('Login failed: ' + data.error);
+        return;
+      }
+
+      setLoginData({
+        password: '',
+        email: ''
+      });
+
+      const { name, props, about, verified, token, invite, type, team, pendings, program, suggestions } = data;
+      setData(name, loginData.email, about, props, verified);
+      setSuggestions(suggestions);
+      setIsAuthenticated(true);
+      setPendings(pendings);
+      setProgram(program);
+      setInvite(invite);
+      setToken(token);
+      setTeam(team);
+      setType(type);
+
+      navigate('/profile');
+    } catch (error) {
+      console.error("Error logging in:", error);
+    } finally {
+      setCalling(false);
+    }
   }
 
   async function handleRegisterSubmit() {
+    if (calling) return;
+    setCalling(true);
+
     if (registerData.password !== confPass) {
       alert('Passwords do not match');
       return;
     }
 
-    const res = await fetch(`${baseUrl}/register`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ ...registerData, role: registerRole })
-    });
+    try {
+      const res = await fetch(`${baseUrl}/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ...registerData,
+          opt
+        })
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (!res.ok) {
-      alert('Registration failed: ' + data.error);
+      if (!res.ok) {
+        alert(data.error);
+        return;
+      }
+
+      setConfPass('');
+      navigate('/auth');
+      setFixedEmail(null);
+
+      setRegisterData({
+        password: '',
+        program: '',
+        mobile: '',
+        email: '',
+        name: ''
+      });
+
+      alert(data.message);
+      loginTab.current?.click();
+    } catch (error) {
+      console.error("Error registering:", error);
+    } finally {
+      setCalling(false);
+    }
+  }
+
+  async function handleForgotPWD() {
+    if (calling) return;
+    setCalling(true);
+
+    if (!forgotEmail) {
+      alert('Please enter the email address linked to your account');
       return;
     }
 
-    alert(data.message);
-    loginTab.current?.click();
+    try {
+      const res = await fetch(`${baseUrl}/forgot-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: forgotEmail })
+      });
+
+      setForgotEmail("");
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.error);
+        return;
+      }
+
+      alert(data.message);
+      close();
+    } catch (error) {
+      console.error("Error resetting password:", error);
+    } finally {
+      setCalling(false);
+    }
   }
 
   function close() {
@@ -100,41 +216,31 @@ const AuthPage = () => {
           <div className="flex justify-center mb-6">
             <button
               ref={loginTab}
+              disabled={calling}
               onClick={() => setSelectedForm('login')}
               className={`py-2 px-4 ${selectedForm === 'login' ? 'bg-orange-500 text-white' : 'bg-white text-gray-700'} rounded-l-lg border border-gray-300 focus:outline-none`}
             >
               Login
             </button>
             <button
+              ref={registerTab}
+              disabled={calling}
               onClick={() => setSelectedForm('register')}
               className={`py-2 px-4 ${selectedForm === 'register' ? 'bg-orange-500 text-white' : 'bg-white text-gray-700'} rounded-r-lg border border-gray-300 focus:outline-none`}
             >
               Register
             </button>
           </div>
-
-          <div className={`bg-white shadow-lg rounded-lg p-6 transform transition-transform duration-500 ${selectedForm === 'login' ? 'scale-105' : 'scale-95'}`}>
-            <div className="text-center mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">Your Role?</label>
-              <RadioGroup value={selectedForm === 'login' ? loginRole : registerRole} onChange={selectedForm === 'login' ? setLoginRole : setRegisterRole} className="flex justify-center space-x-4">
-                <Radio value="mentor">
-                  {({ checked }) => (
-                    <div className={`py-2 px-4 border ${checked ? 'border-orange-500 bg-orange-100' : 'border-gray-300'} rounded-md cursor-pointer flex items-center space-x-2`}>
-                      <FaChalkboardTeacher className="w-5 h-5" />
-                      <span>Mentor</span>
-                    </div>
-                  )}
-                </Radio>
-                <Radio value="mentee">
-                  {({ checked }) => (
-                    <div className={`py-2 px-4 border ${checked ? 'border-orange-500 bg-orange-100' : 'border-gray-300'} rounded-md cursor-pointer flex items-center space-x-2`}>
-                      <FaUserGraduate className="w-5 h-5" />
-                      <span>Mentee</span>
-                    </div>
-                  )}
-                </Radio>
-              </RadioGroup>
+          {
+            selectedForm === 'register' && <div className="p-4 bg-yellow-200 text-black rounded-lg shadow-lg flex items-center space-x-4 transform transition-transform duration-300 ease-out">
+              <div className="flex-1">
+                <p className="text-sm">
+                  Data Structures and Algorithms (DSA) is included for all participants registering for this program.
+                </p>
+              </div>
             </div>
+          }
+          <div className={`bg-white shadow-lg rounded-lg p-6 transform transition-transform duration-500 ${selectedForm === 'login' ? 'scale-105' : 'scale-95'}`}>
             {selectedForm === 'login' ? (
               <div>
                 <div className="mb-4">
@@ -165,6 +271,7 @@ const AuthPage = () => {
                 </div>
                 <button
                   type="button"
+                  disabled={calling}
                   onClick={handleLoginSubmit}
                   className="w-full py-2 px-4 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none"
                 >
@@ -173,6 +280,7 @@ const AuthPage = () => {
                 <div className="mt-4 text-center">
                   <button
                     type="button"
+                    disabled={calling}
                     onClick={() => setIsForgotPasswordOpen(true)}
                     className="text-sm text-gray-500 hover:underline"
                   >
@@ -202,21 +310,40 @@ const AuthPage = () => {
                     <input
                       type="email"
                       placeholder="Email"
-                      value={registerData.email}
+                      readOnly={Boolean(fixedEmail)}
+                      value={fixedEmail || registerData.email}
                       onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Enter your USN</label>
+                  <label className="block text-gray-700 text-sm font-bold mb-2">Select a program</label>
                   <div className="flex items-center">
-                    <AiOutlineIdcard className="w-6 h-6 text-gray-500 mr-2" />
+                    <CiViewList className="w-6 h-6 text-gray-500 mr-2" />
+                    <select
+                      name="program"
+                      disabled={Boolean(fixedEmail)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      value={registerData.program}
+                      onChange={(e) => setRegisterData({ ...registerData, program: e.target.value })}
+                    >
+                      <option value="" disabled>Select a program</option>
+                      <option value="web">Web Development</option>
+                      <option value="app">App Development</option>
+                      <option value="dsa">Data Structures & Algorithm</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">Enter your WhatsApp contact</label>
+                  <div className="flex items-center">
+                    <CiMobile3 className="w-6 h-6 text-gray-500 mr-2" />
                     <input
-                      type="text"
-                      placeholder="USN"
-                      value={registerData.usn}
-                      onChange={(e) => setRegisterData({ ...registerData, usn: e.target.value })}
+                      type="tel"
+                      value={registerData.mobile}
+                      placeholder="Mobile number"
+                      onChange={(e) => setRegisterData({ ...registerData, mobile: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
@@ -249,6 +376,7 @@ const AuthPage = () => {
                 </div>
                 <button
                   type="button"
+                  disabled={calling}
                   onClick={handleRegisterSubmit}
                   className="w-full py-2 px-4 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none"
                 >
@@ -281,6 +409,8 @@ const AuthPage = () => {
                         <input
                           type="email"
                           placeholder="Email"
+                          value={forgotEmail}
+                          onChange={(e) => setForgotEmail(e.target.value)}
                           className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                       </div>
@@ -288,10 +418,11 @@ const AuthPage = () => {
                     <div className="mt-4">
                       <button
                         type="button"
+                        disabled={calling}
                         className="w-full py-2 px-4 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none"
-                        onClick={() => close() && alert('Password reset instructions will be sent to the provided email address.')}
+                        onClick={handleForgotPWD}
                       >
-                        Send Instructions
+                        Send Reset Instructions
                       </button>
                     </div>
                   </DialogPanel>
