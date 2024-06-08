@@ -12,34 +12,41 @@ const ContactUs = () => {
   const [submitting, setSubmitting] = useState(false);
 
   async function handleContact() {
+    if (submitting) return;
     setSubmitting(true);
 
-    const res = await fetch(`${baseUrl}/send-message`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message,
-        name,
-        email,
-        subject
-      })
-    });
+    try {
+      const res = await fetch(`${baseUrl}/send-message`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message,
+          name,
+          email,
+          subject
+        })
+      });
 
-    setSubmitting(false);
-    const data = await res.json();
+      setSubmitting(false);
+      const data = await res.json();
 
-    if (!res.ok) {
-      alert(data.error);
-      return;
+      if (!res.ok) {
+        alert(data.error);
+        return;
+      }
+
+      setName('');
+      setEmail('');
+      setSubject('');
+      setMessage('');
+      alert(data.message);
+    } catch (error) {
+      console.error("Error sending message:", error);
+    } finally {
+      setSubmitting(false);
     }
-
-    setName('');
-    setEmail('');
-    setSubject('');
-    setMessage('');
-    alert(data.message);
   }
 
   return (

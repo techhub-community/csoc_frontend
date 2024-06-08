@@ -72,7 +72,6 @@ const AuthPage = () => {
 
   async function handleLoginSubmit() {
     if (calling) return;
-    setCalling(true);
 
     if (!loginData.email || !loginData.password) {
       alert('Please enter email and password');
@@ -80,6 +79,8 @@ const AuthPage = () => {
     }
 
     try {
+      setCalling(true);
+      
       const res = await fetch(`${baseUrl}/login`, {
         method: 'POST',
         headers: {
@@ -89,6 +90,7 @@ const AuthPage = () => {
       });
 
       const data = await res.json();
+      setCalling(false);
 
       if (!res.ok) {
         alert('Login failed: ' + data.error);
@@ -121,7 +123,6 @@ const AuthPage = () => {
 
   async function handleRegisterSubmit() {
     if (calling) return;
-    setCalling(true);
 
     if (registerData.password !== confPass) {
       alert('Passwords do not match');
@@ -129,6 +130,8 @@ const AuthPage = () => {
     }
 
     try {
+      setCalling(true);
+
       const res = await fetch(`${baseUrl}/register`, {
         method: 'POST',
         headers: {
@@ -141,6 +144,7 @@ const AuthPage = () => {
       });
 
       const data = await res.json();
+      setCalling(false);
 
       if (!res.ok) {
         alert(data.error);
@@ -170,7 +174,6 @@ const AuthPage = () => {
 
   async function handleForgotPWD() {
     if (calling) return;
-    setCalling(true);
 
     if (!forgotEmail) {
       alert('Please enter the email address linked to your account');
@@ -178,6 +181,8 @@ const AuthPage = () => {
     }
 
     try {
+      setCalling(true);
+
       const res = await fetch(`${baseUrl}/forgot-password`, {
         method: 'POST',
         headers: {
@@ -186,6 +191,7 @@ const AuthPage = () => {
         body: JSON.stringify({ email: forgotEmail })
       });
 
+      setCalling(false);
       setForgotEmail("");
       const data = await res.json();
 
