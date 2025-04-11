@@ -29,7 +29,10 @@ const Gallery = () => {
   ];
 
   return (
-    <section className="flex justify-center align-middle sliders-container h-[80vh]  ">
+    <section
+      id="gallery"
+      className="flex justify-center align-middle sliders-container h-[80vh]  "
+    >
       <h1 className="text-4xl font-bold py-10 text-center">Gallery</h1>{" "}
       {sliders.map((slider) => (
         <Slider
