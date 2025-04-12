@@ -7,14 +7,14 @@ export const testimonials = [
       "CSOC 2024 with DSA mentorship was a transformative experience. The supportive community and insightful guidance from mentors gave my coding journey the boost it needed, strengthening my foundation in tech and deepening my interest in the field.",
   },
   {
-    image: "./image/Deepanshu.jpeg",
+    image: "./image/Deepanshu.jpg",
     qualification: "Web Development",
     name: "Deepanshu Pathak",
     message:
       "My journey in the tech team has been transformative, and I am grateful for the opportunities I have had to learn, grow, and collaborate with exceptional professionals.",
   },
   {
-    image: "./image/Nidhi.jpeg",
+    image: "./image/Nidhi.jpg",
     qualification: "Web Development",
     name: "Nidhi",
     message:
