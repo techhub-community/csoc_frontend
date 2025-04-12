@@ -3,7 +3,6 @@ import LandingPage from "./pages/LandingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProfileSection from "./pages/ProfilePage";
 import { useEffect } from "react";
-
 import { baseUrl } from "./data/consts"
 import useAuthStore from "./hooks/useAuthStore";
 import useLocalStorage from "./hooks/useLocalStorage";
@@ -43,7 +42,7 @@ function App() {
         setIsAuthenticated(true);
         setPendings(data.pendings);
         setSuggestions(data.suggestions);
-        setData(data.name, data.email, data.about, data.props, data.verified);
+        setData(data.name, data.email, data.about, data.props, data.verified, data.usn);
       } catch (error) {
         console.error("Error fetching session data:", error);
       }

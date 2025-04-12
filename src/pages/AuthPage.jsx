@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AiOutlineMail, AiOutlineUser, AiOutlineLock } from 'react-icons/ai';
+import { AiOutlineMail,AiOutlineUser, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { Transition, TransitionChild } from '@headlessui/react';
 import NavBar from "../components/NavBar";
@@ -7,7 +7,6 @@ import { CiMobile3 } from "react-icons/ci";
 import Footer from "../components/Footer";
 import { useNavigate } from 'react-router-dom';
 import { CiViewList } from "react-icons/ci";
-
 import useAuthStore from "../hooks/useAuthStore";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { baseUrl } from '../data/consts';
@@ -24,6 +23,7 @@ const AuthPage = () => {
   const [forgotEmail, setForgotEmail] = useState('');
   const [selectedForm, setSelectedForm] = useState('login');
   const [isOpen, setIsForgotPasswordOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   
   const navigate = useNavigate();
   const [, setToken] = useLocalStorage("token", null);
@@ -39,7 +39,8 @@ const AuthPage = () => {
     program: '',
     mobile: '',
     email: '',
-    name: ''
+    name: '',
+    usn: ''
   });
 
   useEffect(() => {
@@ -102,8 +103,8 @@ const AuthPage = () => {
         email: ''
       });
 
-      const { name, props, about, verified, token, invite, type, team, pendings, program, suggestions } = data;
-      setData(name, loginData.email, about, props, verified);
+      const { name, props, about, verified, token, invite, type, team, pendings, program, suggestions, usn } = data;
+      setData(name, loginData.email, about, props, verified, usn);
       setSuggestions(suggestions);
       setIsAuthenticated(true);
       setPendings(pendings);
@@ -160,7 +161,8 @@ const AuthPage = () => {
         program: '',
         mobile: '',
         email: '',
-        name: ''
+        name: '',
+        usn: ''
       });
 
       alert(data.message);
@@ -251,28 +253,35 @@ const AuthPage = () => {
               <div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Enter your email</label>
-                  <div className="flex items-center">
-                    <AiOutlineMail className="w-6 h-6 text-gray-500 mr-2" />
+                  <div className="relative">
                     <input
                       type="email"
                       placeholder="Email"
                       value={loginData.email}
                       onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
+                    <AiOutlineMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                   </div>
                 </div>
-                <div className="mb-4">
+                <div className="mb-4 relative">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Enter your password</label>
-                  <div className="flex items-center">
-                    <AiOutlineLock className="w-6 h-6 text-gray-500 mr-2" />
+                  <div className="relative">
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       placeholder="Password"
                       value={loginData.password}
                       onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
+                    <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+                    >
+                      {showPassword ? <AiOutlineEyeInvisible className="w-5 h-5" /> : <AiOutlineEye className="w-5 h-5" />}
+                    </button>
                   </div>
                 </div>
                 <button
@@ -319,6 +328,19 @@ const AuthPage = () => {
                       readOnly={Boolean(fixedEmail)}
                       value={fixedEmail || registerData.email}
                       onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    />
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">Enter your USN</label>
+                  <div className="flex items-center">
+                    <AiOutlineUser className="w-6 h-6 text-gray-500 mr-2" />
+                    <input
+                      type="text"
+                      placeholder="1MV2XXXXXX"
+                      value={registerData.usn}
+                      onChange={(e) => setRegisterData({ ...registerData, usn: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
@@ -410,15 +432,15 @@ const AuthPage = () => {
                     </DialogTitle>
                     <div className="mt-2">
                       <label className="block text-gray-700 text-sm font-bold mb-2">Enter your email address</label>
-                      <div className="flex items-center mb-4">
-                        <AiOutlineMail className="w-6 h-6 text-gray-500 mr-2" />
+                      <div className="relative">
                         <input
                           type="email"
                           placeholder="Email"
                           value={forgotEmail}
                           onChange={(e) => setForgotEmail(e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                          className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
+                        <AiOutlineMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                       </div>
                     </div>
                     <div className="mt-4">

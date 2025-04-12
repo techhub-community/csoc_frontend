@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const useAuthStore = create((set) => ({
-  setData: (name, email, about, props, verified) => set({ name, email, about, props, verified }),
+  setData: (name, email, about, props, verified, usn) => set({ name, email, about, props, verified, usn }), 
   setIsAuthenticated: (authStatus) => set({ isAuthenticated: authStatus, loading: false }),
   setSuggestions: (suggestions) => set({ suggestions }),
   setPendings: (pendings) => set({ pendings }),
@@ -11,6 +11,7 @@ const useAuthStore = create((set) => ({
   setProps: (props) => set({ props }),
   setType: (type) => set({ type }),
   setName: (name) => set({ name }),
+  setUsn: (usn) => set({ usn }), 
   setTeam: (team) => set({ team }),
 
   isAuthenticated: false,
@@ -26,7 +27,8 @@ const useAuthStore = create((set) => ({
   email: "",
   about: "",
   props: {},
-  name: ""
+  name: "",
+  usn: ""
 }));
 
 export default useAuthStore;
