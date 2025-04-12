@@ -307,52 +307,51 @@ const AuthPage = () => {
               <div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Enter your name</label>
-                  <div className="flex items-center">
-                    <AiOutlineUser className="w-6 h-6 text-gray-500 mr-2" />
+                  <div className="relative">
                     <input
                       type="text"
                       placeholder="Name"
                       value={registerData.name}
                       onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
+                    <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                   </div>
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Enter your email</label>
-                  <div className="flex items-center">
-                    <AiOutlineMail className="w-6 h-6 text-gray-500 mr-2" />
+                  <div className="relative">
                     <input
                       type="email"
                       placeholder="Email"
                       readOnly={Boolean(fixedEmail)}
                       value={fixedEmail || registerData.email}
                       onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
+                    <AiOutlineMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                   </div>
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Enter your USN</label>
-                  <div className="flex items-center">
-                    <AiOutlineUser className="w-6 h-6 text-gray-500 mr-2" />
+                  <div className="relative">
                     <input
                       type="text"
                       placeholder="1MV2XXXXXX"
                       value={registerData.usn}
                       onChange={(e) => setRegisterData({ ...registerData, usn: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
+                    <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                   </div>
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Select a program</label>
-                  <div className="flex items-center">
-                    <CiViewList className="w-6 h-6 text-gray-500 mr-2" />
+                  <div className="relative">
                     <select
                       name="program"
                       disabled={Boolean(fixedEmail)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                       value={registerData.program}
                       onChange={(e) => setRegisterData({ ...registerData, program: e.target.value })}
                     >
@@ -361,45 +360,46 @@ const AuthPage = () => {
                       <option value="app">App Development</option>
                       <option value="dsa">Data Structures & Algorithm</option>
                     </select>
+                    <CiViewList className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                   </div>
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Enter your WhatsApp contact</label>
-                  <div className="flex items-center">
-                    <CiMobile3 className="w-6 h-6 text-gray-500 mr-2" />
+                  <div className="relative">
                     <input
                       type="tel"
                       value={registerData.mobile}
                       placeholder="Mobile number"
                       onChange={(e) => setRegisterData({ ...registerData, mobile: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
+                    <CiMobile3 className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                   </div>
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Enter your password</label>
-                  <div className="flex items-center">
-                    <AiOutlineLock className="w-6 h-6 text-gray-500 mr-2" />
+                  <div className="relative">
                     <input
                       type="password"
                       placeholder="Password"
                       value={registerData.password}
                       onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
+                    <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                   </div>
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Confirm your password</label>
-                  <div className="flex items-center">
-                    <AiOutlineLock className="w-6 h-6 text-gray-500 mr-2" />
+                  <div className="relative">
                     <input
                       type="password"
                       value={confPass}
                       placeholder="Confirm Password"
                       onChange={(e) => setConfPass(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
+                    <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                   </div>
                 </div>
                 <button
