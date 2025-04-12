@@ -36,6 +36,9 @@ const NavBar = () => {
             <a onClick={() => scroll("/", "timeline")} className="text-gray-600 cursor-pointer hover:text-gray-800">
               Timeline
             </a>
+            <a onClick={() => scroll("/", "resources")} className="text-gray-600 cursor-pointer hover:text-gray-800">
+              Resources
+            </a>
             <a onClick={() => scroll("/", "contact")} className="text-gray-600 cursor-pointer hover:text-gray-800">
               Contact Us
             </a>
@@ -95,6 +98,12 @@ const NavBar = () => {
               className="block w-fit px-4 py-2 text-gray-600 hover:text-gray-800 cursor-pointer"
             >
               Timeline
+            </a>
+            <a
+              onClick={() => scroll("/", "resources")}
+              className="block w-fit px-4 py-2 text-gray-600 hover:text-gray-800 cursor-pointer"
+            >
+              Resources
             </a>
             <a
               onClick={() => scroll("/", "contact")}

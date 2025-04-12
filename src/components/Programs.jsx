@@ -17,7 +17,7 @@ const cardData = [
   },
   {
     icon: <FaLaptopCode className=" text-orange-600 text-5xl mb-2" />,
-    title: "CP / DSA",
+    title: "DSA",
     description:
       "Master algorithms, data structures, and competitive programming to conquer challenges with precision and confidence.",
   },

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
 import Aboutus from "../components/Aboutus";
@@ -8,8 +8,8 @@ import Testimonial from "../components/Testimonial";
 import FAQ from "../components/FAQ";
 import ContactUs from "../components/ContactUs";
 import Footer from "../components/Footer";
-import Team from '../components/Team';
-import { useEffect } from 'react';
+import Team from "../components/Team";
+import Resources from "../components/Resources";
 
 export default function LandingPage() {
   useEffect(() => {
@@ -17,22 +17,23 @@ export default function LandingPage() {
     const scrollEl = document.getElementById(scrollId);
 
     if (scrollEl) {
-      scrollEl.scrollIntoView({ behavior: 'smooth' });
+      scrollEl.scrollIntoView({ behavior: "smooth" });
     }
   }, []);
 
-  return (  
+  return (
     <>
       <NavBar />
       <Hero />
       <Aboutus />
       <Timeline />
       <Programs />
+      <Resources />
       <Testimonial />
-      <Team/>
+      <Team />
       <FAQ />
       <ContactUs />
       <Footer />
     </>
-  )
+  );
 }

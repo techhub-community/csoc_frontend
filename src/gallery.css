@@ -1,0 +1,135 @@
+:root {
+  --slide-count: 5;
+  --slide-height: 28vh;
+  --slide-width: 50vh;
+  --gap: 2vh;
+  --time: 50s;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.sliders-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2vh;
+}
+.sliders-container::before,
+.sliders-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  z-index: 1;
+}
+.sliders-container::before {
+  left: 0;
+  background-image: linear-gradient(to right, #fab07b, transparent);
+}
+.sliders-container::after {
+  right: 0;
+  background-image: linear-gradient(to left, #fab07b, transparent);
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  height: calc(var(--slide-height) + 10px);
+  overflow: hidden;
+}
+.slider-track {
+  position: absolute;
+  top: 0;
+  display: flex;
+}
+.slide {
+  width: var(--slide-width);
+  height: var(--slide-height);
+  /* border: 2px solid #ff9448; */
+  border-radius: 10px;
+  margin: 0 var(--gap);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0, 2px 8px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.11);
+  overflow: hidden;
+}
+.slide img {
+  border-radius: inherit;
+  transition: all 0.5s ease-in;
+  user-select: none;
+}
+
+.slide img:hover {
+  transform: rotate(2deg) scale(1.2);
+}
+.scrollLeft {
+  animation: scrollLeft var(--time) linear infinite;
+}
+.scrollRight {
+  animation: scrollRight var(--time) linear infinite;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(
+      calc(-1 * var(--slide-count) * (var(--slide-width) + var(--gap) * 2))
+    );
+  }
+}
+@keyframes scrollRight {
+  0% {
+    transform: translateX(
+      calc(-1 * var(--slide-count) * (var(--slide-width) + var(--gap) * 2))
+    );
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 1110px) {
+  :root {
+    --slide-height: 110px;
+    --slide-width: 260px;
+  }
+  .sliders-container {
+    row-gap: 15px;
+  }
+}
+
+@media (max-width: 860px) {
+  :root {
+    --slide-width: 200px;
+  }
+}
+
+@media (max-width: 460px) {
+  :root {
+    --slide-height: 90px;
+    --slide-width: 180px;
+  }
+  .sliders-container {
+    row-gap: 10px;
+  }
+}
