@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
 import Aboutus from "../components/Aboutus";
@@ -9,7 +9,7 @@ import FAQ from "../components/FAQ";
 import ContactUs from "../components/ContactUs";
 import Footer from "../components/Footer";
 import Team from "../components/Team";
-import { useEffect } from "react";
+import Resources from "../components/Resources";
 import Gallery from "../components/Gallery";
 
 export default function LandingPage() {
@@ -29,6 +29,7 @@ export default function LandingPage() {
       <Aboutus />
       <Timeline />
       <Programs />
+      <Resources />
       <Testimonial />
       <Gallery />
       <Team />
