@@ -49,6 +49,13 @@ export const testimonials = [
       "It was a great experience learning. The mentors were really good , very supportive throughout the session.",
   },
   {
+    image: "./image/Ankur.jpg",
+    qualification: "Web Development",
+    name: "Ankur Pathak",
+    message:
+      "CSOC (Codeshack summer of code) is one of best event for learning new tech and exploring new features of technology. Mentors were nice and supportive. Overall Great Experience, Great Learning, Great Work.",
+  },
+  {
     image: "./image/Suparn.jpg",
     qualification: "DSA",
     name: "Suparn Nayak",
