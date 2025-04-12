@@ -14,7 +14,7 @@ function Aboutus() {
           What is CodeShack Summer of Code ?
         </h1>
         <p className="text-lg text-balance">
-          CodeShack Summer of Code is an impactful program organized by CodeShack, the parent community of TechHub and Glug Mvit, the technical communities of Sir M. Visvesvaraya Institute of Technology, Bengaluru.
+          CodeShack Summer of Code is an impactful program organized by CodeShack, the parent community of TechHub and Glug MVIT, the technical communities of Sir M. Visvesvaraya Institute of Technology, Bengaluru.
           The program consists of two phases: a mentorship program and a hackathon.
           During the mentorship phase, participants are paired with experienced mentors who guide them across various tech domains, such as Web Development, App Development, and DSA.
           In the hackathon, teams collaborate to create innovative projects.
