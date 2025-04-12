@@ -1,13 +1,29 @@
-import React, { useRef } from 'react';
+import React, { useRef } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { FaAngleDoubleLeft } from "react-icons/fa";
 import { testimonials } from "../data/Testimonial";
+import { useState, useEffect } from "react";
 
 const TestimonialCard = ({ image, qualification, name, message, isActive }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isClipped, setIsClipped] = useState(false);
+  const messageRef = useRef(null);
+
+  useEffect(() => {
+    // Check if the message is clipped
+    if (messageRef.current) {
+      setIsClipped(messageRef.current.scrollHeight > messageRef.current.clientHeight);
+    }
+  }, [message]);
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <div
-      className={`testimonial-card bg-white shadow-lg rounded-lg p-6 m-4 flex-shrink-0 w-80 transform hover:rotate-1 hover:scale-105 transition-transform duration-200 ${
-        isActive ? 'scale-105 rotate-2' : ''
+      className={`testimonial-card bg-white shadow-lg rounded-lg p-6 m-4 flex-shrink-0 w-80 transform hover:scale-105 transition-transform duration-200 ${
+        isActive ? "scale-105 rotate-2" : ""
       }`}
     >
       <img
@@ -17,7 +33,15 @@ const TestimonialCard = ({ image, qualification, name, message, isActive }) => {
       />
       <p className="text-gray-500 italic opacity-75 mb-2">{qualification}</p>
       <h3 className="text-xl font-bold mb-2">{name}</h3>
-      <p className="text-gray-700 line-clamp-4">{message}</p>
+      <p ref={messageRef} className={`text-gray-700 ${isExpanded ? "" : "line-clamp-4"}`}>{message}</p>
+      {isClipped ? (
+        <button
+          onClick={toggleExpand}
+          className="text-blue-500 hover:underline mt-2"
+        >
+          {isExpanded ? "Show less" : "Show more"}
+        </button>
+      ): (<></>)}
       <div className="border-b-4 border-orange-500 mt-4"></div>
     </div>
   );
@@ -27,7 +51,7 @@ const Testimonial = () => {
   const scrollRef = useRef(null);
 
   const scroll = (scrollOffset) => {
-    scrollRef.current.scrollBy({ left: scrollOffset, behavior: 'smooth' });
+    scrollRef.current.scrollBy({ left: scrollOffset, behavior: "smooth" });
   };
 
   return (
@@ -54,12 +78,10 @@ const Testimonial = () => {
             {
               <TestimonialCard
                 key={index}
-                {
-                  ...{
-                    ...testimonial,
-                    isActive: false
-                  }
-                }
+                {...{
+                  ...testimonial,
+                  isActive: false,
+                }}
               />
             }
           </div>
