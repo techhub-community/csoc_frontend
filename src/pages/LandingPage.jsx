@@ -10,6 +10,7 @@ import ContactUs from "../components/ContactUs";
 import Footer from "../components/Footer";
 import Team from "../components/Team";
 import Resources from "../components/Resources";
+import Gallery from "../components/Gallery";
 
 export default function LandingPage() {
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function LandingPage() {
       <Programs />
       <Resources />
       <Testimonial />
+      <Gallery />
       <Team />
       <FAQ />
       <ContactUs />
