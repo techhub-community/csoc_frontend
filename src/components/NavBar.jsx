@@ -27,43 +27,59 @@ const NavBar = () => {
             className="hidden md:flex space-x-6"
             style={{ alignItems: "center" }}
           >
-            <a onClick={() => scroll("/", "hero")} className="text-gray-600 cursor-pointer hover:text-gray-800">
+            <a
+              onClick={() => scroll("/", "hero")}
+              className="text-gray-600 cursor-pointer hover:text-gray-800"
+            >
               Home
             </a>
-            <a onClick={() => scroll("/", "about")} className="text-gray-600 cursor-pointer hover:text-gray-800">
+            <a
+              onClick={() => scroll("/", "about")}
+              className="text-gray-600 cursor-pointer hover:text-gray-800"
+            >
               About Us
             </a>
-            <a onClick={() => scroll("/", "timeline")} className="text-gray-600 cursor-pointer hover:text-gray-800">
+            <a
+              onClick={() => scroll("/", "timeline")}
+              className="text-gray-600 cursor-pointer hover:text-gray-800"
+            >
               Timeline
             </a>
-            <a onClick={() => scroll("/", "contact")} className="text-gray-600 cursor-pointer hover:text-gray-800">
+            <a
+              onClick={() => scroll("/", "gallery")}
+              className="text-gray-600 cursor-pointer hover:text-gray-800"
+            >
+              Gallery
+            </a>
+            <a
+              onClick={() => scroll("/", "contact")}
+              className="text-gray-600 cursor-pointer hover:text-gray-800"
+            >
               Contact Us
             </a>
-            {
-              isAuthenticated ? (
-                <>
-                  <Link
-                    to="/profile"
-                    className="text-gray-600 hover:text-gray-800 cursor-pointer"
-                  >
-                    Profile
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="flex items-center bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded cursor-pointer"
-                  >
-                    <BiLogOut className="mr-2" /> Logout
-                  </button>
-                </>
-              ) : (
+            {isAuthenticated ? (
+              <>
                 <Link
-                  to="/auth"
-                  className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
+                  to="/profile"
+                  className="text-gray-600 hover:text-gray-800 cursor-pointer"
                 >
-                  Login
+                  Profile
                 </Link>
-              )
-            }
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded cursor-pointer"
+                >
+                  <BiLogOut className="mr-2" /> Logout
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/auth"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
+              >
+                Login
+              </Link>
+            )}
           </div>
 
           <div className="md:hidden">
@@ -102,31 +118,29 @@ const NavBar = () => {
             >
               Contact Us
             </a>
-            {
-              isAuthenticated ? (
-                <>
-                  <Link
-                    to="/profile"
-                    className="px-4 text-white py-2 mx-4 my-2 flex items-center w-fit rounded bg-sky-500 font-bold hover:bg-sky-600 cursor-pointer"
-                  >
-                    Profile
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="mx-4 my-2 flex items-center bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded cursor-pointer"
-                  >
-                    <BiLogOut className="mr-2" /> Logout
-                  </button>
-                </>
-              ) : (
+            {isAuthenticated ? (
+              <>
                 <Link
-                  to="/auth"
-                  className="ml-3 block w-fit bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
+                  to="/profile"
+                  className="px-4 text-white py-2 mx-4 my-2 flex items-center w-fit rounded bg-sky-500 font-bold hover:bg-sky-600 cursor-pointer"
                 >
-                  Login
+                  Profile
                 </Link>
-              )
-            }
+                <button
+                  onClick={handleLogout}
+                  className="mx-4 my-2 flex items-center bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded cursor-pointer"
+                >
+                  <BiLogOut className="mr-2" /> Logout
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/auth"
+                className="ml-3 block w-fit bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
+              >
+                Login
+              </Link>
+            )}
           </div>
         )}
       </div>
