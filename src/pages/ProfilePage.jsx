@@ -3,7 +3,6 @@ import NavBar from "../components/NavBar";
 import { FaEnvelope } from 'react-icons/fa';
 import { FaCheckCircle } from 'react-icons/fa';
 import { AiOutlineWarning, AiOutlineLock, AiOutlineCheck, AiOutlineClose, AiOutlineUser, AiOutlineTeam } from 'react-icons/ai';
-
 import useAuthStore from "../hooks/useAuthStore";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { baseUrl } from '../data/consts';
@@ -16,7 +15,7 @@ const ProfileSection = () => {
   const [calling, setCalling] = useState(false);
   const [token, ] = useLocalStorage("token", null);
   const [memberTeam, setMemberTeam] = useState({ a: "", b: "" });
-  const { name, setName, about, setAbout, type, invite, team, pendings, email, verified, program, suggestions } = useAuthStore();
+  const { name, setName, about, setAbout, type, invite, team, pendings, email, verified, program, suggestions, usn, setUsn } = useAuthStore(); // Added usn and setUsn
 
   const progDetailed = program === "web"
     ? "Web Development" : program === "app"
@@ -76,7 +75,6 @@ const ProfileSection = () => {
       const req = await fetch(`${baseUrl}/process-invite`, {
         headers: { 'Content-Type': 'application/json' },
         method: "POST",
-
         body: JSON.stringify({
           token, accepted
         })
@@ -112,7 +110,6 @@ const ProfileSection = () => {
       const req = await fetch(`${baseUrl}/send-invite`, {
         headers: { 'Content-Type': 'application/json' },
         method: "POST",
-
         body: JSON.stringify({
           receiverEmails: emails,
           token
@@ -150,7 +147,6 @@ const ProfileSection = () => {
       const req = await fetch(`${baseUrl}/update-name`, {
         headers: { 'Content-Type': 'application/json' },
         method: "POST",
-
         body: JSON.stringify({
           token, name
         })
@@ -185,7 +181,6 @@ const ProfileSection = () => {
       const req = await fetch(`${baseUrl}/update-about`, {
         headers: { 'Content-Type': 'application/json' },
         method: "POST",
-
         body: JSON.stringify({
           token, about
         })
@@ -207,6 +202,40 @@ const ProfileSection = () => {
     }
   }
 
+  async function updateUsn() { // New function to update USN
+    if (calling) return;
+
+    try {
+      if (!usn) {
+        alert("USN cannot be empty");
+        return;
+      }
+      setCalling(true);
+
+      const req = await fetch(`${baseUrl}/update-usn`, { // New endpoint to be added in backend
+        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        body: JSON.stringify({
+          token, usn
+        })
+      });
+
+      const data = await req.json();
+      setCalling(false);
+
+      if (!req.ok) {
+        alert(data.error);
+        return;
+      }
+
+      alert("USN updated successfully");
+    } catch (error) {
+      console.error("Error updating USN:", error);
+    } finally {
+      setCalling(false);
+    }
+  }
+
   async function updatePass() {
     if (calling) return;
 
@@ -221,7 +250,6 @@ const ProfileSection = () => {
       const req = await fetch(`${baseUrl}/update-password`, {
         headers: { 'Content-Type': 'application/json' },
         method: "POST",
-
         body: JSON.stringify({
           token, oldPass, newPass
         })
@@ -354,6 +382,22 @@ const ProfileSection = () => {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
                 <button disabled={calling} onClick={updateName} className="ml-2 px-3 py-2 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none">
+                  Update
+                </button>
+              </div>
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">Update Your USN</label>
+              <div className="flex items-center">
+                <AiOutlineUser className="w-5 h-5 text-gray-500 mr-2" />
+                <input
+                  type="text"
+                  value={usn}
+                  placeholder="1MV2XXXXXX"
+                  onChange={(e) => setUsn(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                />
+                <button disabled={calling} onClick={updateUsn} className="ml-2 px-3 py-2 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none">
                   Update
                 </button>
               </div>
