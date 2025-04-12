@@ -4,19 +4,19 @@ export const teamMembers = [
     image: "./image/Deepanshu.jpg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
-  }, 
+  },
   {
     name: "Nidhi",
     image: "./image/Nidhi.jpg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
-  }, 
+  },
   {
     name: "Anurag",
     image: "./image/Anurag.jpg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
-  }, 
+  },
   {
     name: "Sanya",
     image: "./image/Sanya.jpg",
@@ -116,7 +116,7 @@ export const teamMembers = [
   },
   {
     name: "Manyata",
-    image: "./image/manyata.jpg",
+    image: "./image/Manyata.jpg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
   }, {
@@ -131,7 +131,7 @@ export const teamMembers = [
     linkedin: "https://linkedin.com/in/Tom",
   }, {
     name: "Pooja",
-    image: "./image/pooja.jpeg",
+    image: "./image/Pooja.jpeg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
   }, {
@@ -159,7 +159,7 @@ export const teamMembers = [
     image: "./image/aishwarya.jpg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
-  }, 
+  },
   // {
   //   name: "Carol",
   //   image: "./image/carol.jpeg",

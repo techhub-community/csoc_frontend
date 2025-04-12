@@ -56,7 +56,7 @@ export const testimonials = [
       "I was the part of CSOC 2024 program it was great experience.Seniors were very helpful in knowing the concepts. it was a good one to start coding journey.",
   },
   {
-    image: "./image/manyata.jpg",
+    image: "./image/Manyata.jpg",
     qualification: "Web Development",
     name: "Manyata",
     message:
@@ -70,7 +70,7 @@ export const testimonials = [
       "My journey in the tech team has been transformative, and I am grateful for the opportunities I have had to learn, grow, and collaborate with exceptional professionals.",
   },
   {
-    image: "./image/pooja.jpeg",
+    image: "./image/Pooja.jpeg",
     qualification: "Web Development",
     name: "Pooja Rai",
     message:
