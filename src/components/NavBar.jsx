@@ -45,6 +45,9 @@ const NavBar = () => {
             >
               Timeline
             </a>
+            <a onClick={() => scroll("/", "resources")} className="text-gray-600 cursor-pointer hover:text-gray-800">
+              Resources
+            </a>
             <a
               onClick={() => scroll("/", "gallery")}
               className="text-gray-600 cursor-pointer hover:text-gray-800"
@@ -111,6 +114,12 @@ const NavBar = () => {
               className="block w-fit px-4 py-2 text-gray-600 hover:text-gray-800 cursor-pointer"
             >
               Timeline
+            </a>
+            <a
+              onClick={() => scroll("/", "resources")}
+              className="block w-fit px-4 py-2 text-gray-600 hover:text-gray-800 cursor-pointer"
+            >
+              Resources
             </a>
             <a
               onClick={() => scroll("/", "contact")}
