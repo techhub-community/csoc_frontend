@@ -1,5 +1,61 @@
 export const testimonials = [
   {
+    image: "./image/Murali.jpeg",
+    qualification: "DSA",
+    name: "Murali Manohar M G A",
+    message:
+      "CSOC 2024 with DSA mentorship was a transformative experience. The supportive community and insightful guidance from mentors gave my coding journey the boost it needed, strengthening my foundation in tech and deepening my interest in the field.",
+  },
+  {
+    image: "./image/Deepanshu.jpeg",
+    qualification: "Web Development",
+    name: "Deepanshu Pathak",
+    message:
+      "My journey in the tech team has been transformative, and I am grateful for the opportunities I have had to learn, grow, and collaborate with exceptional professionals.",
+  },
+  {
+    image: "./image/Nidhi.jpeg",
+    qualification: "Web Development",
+    name: "Nidhi",
+    message:
+      "CSOC gave me the motivation I needed to kickstart my journey into web development.",
+  },
+  {
+    image: "./image/Anurag.jpg",
+    qualification: "App Development",
+    name: "Anurag Mehta",
+    message:
+      "CSOC 2024 was an amazing experience. Got amazing mentors who gave my coding journey the boost that it needed.",
+  },
+  {
+    image: "./image/Supreeth.jpg",
+    qualification: "App Development",
+    name: "L D Supreeth Raj",
+    message:
+      "CSOC 2024 was great got to learn a lot. I was in app development it was great my mentors were friendly, helpful and supportive. This is a GREAT opportunity to learn and connect.",
+  },
+  {
+    image: "./image/Sanya.jpg",
+    qualification: "Web Development",
+    name: "Sanya Sahu",
+    message:
+      "CSOC 2024 was something new and exciting for me. I was part of web dev and our team learnt ways to start our tech journey through our mentors guide and resources.",
+  },
+  {
+    image: "./image/Varsha.jpg",
+    qualification: "Web Development",
+    name: "Varsha K N",
+    message:
+      "It was a great experience learning. The mentors were really good , very supportive throughout the session.",
+  },
+  {
+    image: "./image/Suparn.jpg",
+    qualification: "DSA",
+    name: "Suparn Nayak",
+    message:
+      "I was the part of CSOC 2024 program it was great experience.Seniors were very helpful in knowing the concepts. it was a good one to start coding journey.",
+  },
+  {
     image: "./image/manyata.jpg",
     qualification: "Web Development",
     name: "Manyata",
@@ -27,13 +83,13 @@ export const testimonials = [
     message:
       "CSOC 2023 was an amazing experience. Got amazing mentors who gave my coding journey the boost that it needed.",
   },
-  {
-    image: "./image/carol.jpeg",
-    qualification: "App Development",
-    name: "Carol Dsilva",
-    message:
-      'It was a wonderful experience gaining hands-on knowledge. It made me feel like a "coder" for the first time. I explored the basics of web dev and came to realize that tech is an ever-evolving field; there is always a next step. The mentors allowed me to progress at my own pace and were always ready to address any doubts I had!',
-  },
+  // {
+  //   image: "./image/carol.jpeg",
+  //   qualification: "App Development",
+  //   name: "Carol Dsilva",
+  //   message:
+  //     'It was a wonderful experience gaining hands-on knowledge. It made me feel like a "coder" for the first time. I explored the basics of web dev and came to realize that tech is an ever-evolving field; there is always a next step. The mentors allowed me to progress at my own pace and were always ready to address any doubts I had!',
+  // },
   {
     image: "./image/sufyan.jpg",
     qualification: "DSA",
