@@ -3,16 +3,16 @@ import { timelineData } from "../data/Timeline";
 export default function Timeline() {
   return (
     <>
-      <div id="timeline" className="bg-warm">
+      <div id="timeline" className="bg-black">
         <div className="container px-10 py-10 mx-auto z-1 relative">
-          <h1 className="text-4xl font-bold py-10 text-center">Timeline</h1>
+          <h1 className="text-4xl font-bold py-10 text-center text-white">Timeline</h1>
           <ol className="relative border-s border-gray-200 dark:border-gray-700">
             {timelineData.map((data, index) => {
               return (
                 <li key={`${data.title}-${index}`} className="mb-10 relative">
-                  <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+                  <span className="absolute flex items-center justify-center w-6 h-6 bg-neon rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-neon">
                     <svg
-                      className="w-2.5 h-2.5 text-blue-800 dark:text-blue-300"
+                      className="w-2.5 h-2.5 text-neon dark:text-neon"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
@@ -25,13 +25,13 @@ export default function Timeline() {
                       ></path>
                     </svg>
                   </span>
-                  <h3 className="flex items-center mb-4 ml-8 text-lg font-bold text-gray-900">
+                  <h3 className="flex items-center mb-4 ml-8 text-lg font-bold text-white">
                     {data.title}
                   </h3>
-                  <time className="block ml-10 mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                  <time className="block ml-10 mb-2 text-sm font-normal leading-none text-gray-400 dark:text-zinc-400">
                     {data.date}
                   </time>
-                  <p className="mb-4 text-base ml-10 font-normal text-gray-500 dark:text-gray-400">
+                  <p className="mb-4 text-base ml-10 font-normal text-zinc-400 dark:text-gray-400">
                     {data.details}
                   </p>
                 </li>

@@ -313,25 +313,24 @@ const WeekCard = ({ weekData, color, isOpen, toggleOpen, index }) => {
 
   return (
     <div
-      className="relative bg-white/90 backdrop-blur-md rounded-2xl shadow-lg mb-4 overflow-hidden transition-all duration-500"
-      style={{ animationDelay: `${index * 100}ms` }}
+      className="relative bg-zinc-900/90 backdrop-blur-md rounded-2xl shadow-2xl mb-6 overflow-hidden transform hover:shadow-3xl transition-all duration-700 animate-card-in"
+      style={{ animationDelay: `${index * 150}ms` }}
     >
       {/* Header */}
       <div
         className="flex items-center gap-3 p-5 cursor-pointer group"
         onClick={toggleOpen}
       >
-        <span
-          className="text-xs font-semibold px-3 py-1 rounded-full flex-shrink-0"
-          style={{ backgroundColor: color.bg, color: color.text }}
-        >
-          Week {weekData.week}
-        </span>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-base font-bold text-gray-900 group-hover:text-orange-600 transition-colors duration-200 leading-tight">
-            {weekData.title}
-          </h3>
-          <p className="text-xs text-gray-500 mt-0.5 truncate">{weekData.project}</p>
+        <h3 className="text-2xl font-extrabold text-white group-hover:text-neon transition-colors duration-300">
+          {title}
+        </h3>
+        <div className="flex items-center space-x-2">
+          <span className="text-sm text-zinc-400">Week {week}</span>
+          {isOpen ? (
+            <FaChevronUp className="text-neon transform group-hover:scale-125 transition-transform duration-200" />
+          ) : (
+            <FaChevronDown className="text-neon transform group-hover:scale-125 transition-transform duration-200" />
+          )}
         </div>
         <span
           className="text-gray-400 text-sm transition-transform duration-300"
@@ -346,10 +345,9 @@ const WeekCard = ({ weekData, color, isOpen, toggleOpen, index }) => {
         className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "max-h-[1000px]" : "max-h-0"
           }`}
       >
-        <div className="px-5 pb-5 border-t border-gray-100">
-          {/* Topics */}
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mt-4 mb-2">
-            Topics Covered
+        <div className="border-l-2 border-neon pl-4">
+          <p className="text-lg font-semibold text-white mb-3 tracking-tight">
+            Project: {project}
           </p>
           <ul className="space-y-1.5">
             {weekData.topics.map((topic, i) => (
@@ -367,30 +365,47 @@ const WeekCard = ({ weekData, color, isOpen, toggleOpen, index }) => {
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mt-4 mb-2">
             Task / Outcome
           </p>
-          <div className="bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-700 leading-relaxed">
-            {weekData.task}
-          </div>
-
-          {/* Resources */}
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mt-4 mb-2">
-            Resources
-          </p>
-          {hasLinks ? (
+          <div className="mb-5">
+            <h4 className="text-base font-semibold text-white mb-2 tracking-wide">
+              Topics Covered:
+            </h4>
             <ul className="space-y-2">
-              {weekData.links.map((link, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span
-                    className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: color.dot }}
-                  />
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-orange-500 hover:text-orange-700 hover:underline transition-colors duration-200"
-                  >
-                    {link.name}
-                  </a>
+              {topics.map((topic, index) => (
+                <li key={index} className="flex items-start">
+                  <span className="w-2 h-2 bg-neon rounded-full mt-2 mr-3 transform hover:scale-150 transition-transform"></span>
+                  <span className="text-gray-600">{topic}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-base font-semibold text-white mb-2 tracking-wide">
+              Resources:
+            </h4>
+            <ul className="space-y-3">
+              {links.map((link, index) => (
+                <li key={index} className="flex items-center group">
+                  <span className="w-2 h-2 bg-neon rounded-full mr-3 group-hover:animate-pulse"></span>
+                  <div className="flex items-center space-x-2">
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-neon hover:text-neon font-medium group-hover:underline decoration-orange-300 decoration-2 underline-offset-4 transition-all duration-300"
+                    >
+                      {link.name}
+                    </a>
+                    {link.youtube && (
+                      <a
+                        href={link.youtube}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-red-600 hover:text-red-800 transition-colors duration-300"
+                      >
+                        <FaYoutube className="text-lg transform hover:scale-125 transition-transform" />
+                      </a>
+                    )}
+                  </div>
                 </li>
               ))}
             </ul>
@@ -440,36 +455,56 @@ const Resources = () => {
   };
 
   return (
-    <div id="resources" className="bg-warm py-16 px-4 sm:px-6 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,_rgba(249,115,22,0.12),_transparent_60%)] pointer-events-none" />
-
-      <div className="container mx-auto max-w-4xl relative z-10">
-        {/* Title */}
-        <div className="text-center mb-10">
-          <h1 className="text-5xl sm:text-6xl font-extrabold text-[#212529] tracking-tighter">
-            CSOC 2026
-          </h1>
-          <p className="text-lg text-[#4E4039] mt-3 max-w-2xl mx-auto leading-relaxed">
-            Syllabus &amp; Roadmap across 5 domains — resources shared after each class.
-          </p>
-        </div>
-
-        {/* Tabs */}
-        <div className="sticky top-0 z-20 bg-warm pt-3 pb-3">
-          <div className="flex justify-center flex-wrap gap-1 bg-orange-50/80 backdrop-blur rounded-2xl p-1.5 border border-orange-100">
-            {domains.map((d) => (
-              <button
-                key={d.id}
-                onClick={() => handleTabChange(d.id)}
-                className={`relative flex-shrink-0 px-4 py-2 text-sm font-semibold rounded-xl transition-all duration-300 ${activeTab === d.id
-                    ? "bg-white text-orange-600 shadow-sm"
-                    : "text-gray-600 hover:text-orange-500 hover:bg-white/60"
-                  }`}
-              >
-                {d.label}
-              </button>
-            ))}
+    <div id="resources" className="bg-black py-16 px-4 sm:px-6 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(249,115,22,0.15),_transparent_70%)] opacity-50"></div>
+      <div className="container mx-auto max-w-5xl relative z-10">
+        <h1 className="text-5xl sm:text-6xl font-extrabold text-center text-white mb-5 tracking-tighter animate-fade-in">
+          Resources
+        </h1>
+        <p className="text-lg sm:text-xl text-center text-zinc-300 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in">
+          Embark on a transformative learning journey with expertly curated resources for Web Dev, App Dev, and DSA.
+        </p>
+        <div className="sticky top-0 bg-black pt-4 pb-3 z-20">
+          <div className="flex justify-center space-x-2 sm:space-x-4">
+            <button
+              onClick={() => handleTabChange("webDev")}
+              className={`relative flex-shrink-0 px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-semibold transition-all duration-300 whitespace-nowrap ${
+                activeTab === "webDev"
+                  ? "text-neon sm:scale-110"
+                  : "text-zinc-100 sm:hover:scale-105 hover:text-neon"
+              }`}
+            >
+              Web Development
+              {activeTab === "webDev" && (
+                <span className="absolute bottom-0 left-0 w-full h-1.5 bg-neon rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
+              )}
+            </button>
+            <button
+              onClick={() => handleTabChange("appDev")}
+              className={`relative flex-shrink-0 px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-semibold transition-all duration-300 whitespace-nowrap ${
+                activeTab === "appDev"
+                  ? "text-neon sm:scale-110"
+                  : "text-zinc-100 sm:hover:scale-105 hover:text-neon"
+              }`}
+            >
+              App Development
+              {activeTab === "appDev" && (
+                <span className="absolute bottom-0 left-0 w-full h-1.5 bg-neon rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
+              )}
+            </button>
+            <button
+              onClick={() => handleTabChange("dsa")}
+              className={`relative flex-shrink-0 px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-semibold transition-all duration-300 whitespace-nowrap ${
+                activeTab === "dsa"
+                  ? "text-neon sm:scale-110"
+                  : "text-zinc-100 sm:hover:scale-105 hover:text-neon"
+              }`}
+            >
+              DSA
+              {activeTab === "dsa" && (
+                <span className="absolute bottom-0 left-0 w-full h-1.5 bg-neon rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
+              )}
+            </button>
           </div>
         </div>
 

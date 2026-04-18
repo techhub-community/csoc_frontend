@@ -3,7 +3,7 @@ import { RiFileList3Line } from "react-icons/ri";
 
 function Aboutus() {
   return (
-    <div id="about" className="flex flex-wrap md:flex-row gap-8 flex-col md:p-20 p-6 md:items-center items-center justify-center">
+    <div id="about" className="bg-green-100 flex flex-wrap md:flex-row gap-8 flex-col md:p-20 p-6 md:items-center items-center justify-center">
       <img
         src="about-img.svg"
         alt="Hero Image"
@@ -23,8 +23,8 @@ function Aboutus() {
 
         <div className="flex md:flex-row flex-col mt-4 gap-6">
           <div className="gap-y-3">
-            <RiFileList3Line className="text-5xl text-orange-400" />
-            <h1 className="text-2xl font-semibold text-semidark">
+            <RiFileList3Line className="text-5xl text-neon" />
+            <h1 className="text-2xl font-semibold text-green-800">
               Mentorship Phase
             </h1>
             <p>
@@ -34,8 +34,8 @@ function Aboutus() {
             </p>
           </div>
           <div className="gap-y-3">
-            <LiaCubeSolid className="text-6xl md:text-5xl text-orange-400 " />
-            <h1 className="text-2xl font-semibold text-semidark">Hackathon</h1>
+            <LiaCubeSolid className="text-6xl md:text-5xl text-neon " />
+            <h1 className="text-2xl font-semibold text-green-800">Hackathon</h1>
             <p>
               {" "}
               <span className="font-bold">Phase 2:</span> Project Creation and
