@@ -46,29 +46,29 @@ const ResetPWD = () => {
   return (
     <>
       <NavBar />
-      <div className="p-10 h-[calc(100vh-70px)] flex items-center justify-center bg-gray-100 p-4">
+      <div className="p-10 h-[calc(100vh-70px)] flex items-center justify-center bg-zinc-950 p-4">
         <div className="w-full max-w-md">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
+          <div className="bg-zinc-900 p-6 rounded-lg shadow-lg">
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">Reset-Password Verification Token</label>
+              <label className="block text-zinc-100 text-sm font-bold mb-2">Reset-Password Verification Token</label>
               <div className="flex items-center">
-                <AiOutlineKey className="w-5 h-5 text-gray-500 mr-2" />
+                <AiOutlineKey className="w-5 h-5 text-zinc-400 mr-2" />
                 <input
                   type="text"
                   value={token}
                   readOnly
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3 py-2 border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-neon"
                 />
               </div>
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">Enter your new password</label>
+              <label className="block text-zinc-100 text-sm font-bold mb-2">Enter your new password</label>
               <div className="flex items-center">
-                <AiOutlineLock className="w-5 h-5 text-gray-500 mr-2" />
+                <AiOutlineLock className="w-5 h-5 text-zinc-400 mr-2" />
                 <input
                   type="password"
                   placeholder="New Password"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3 py-2 border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-neon"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                 />
@@ -77,7 +77,7 @@ const ResetPWD = () => {
             <button
               onClick={handleResetPassword}
               disabled={isSubmitting}
-              className={`w-full py-2 px-4 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none ${isSubmitting && 'opacity-50'}`}
+              className={`w-full py-2 px-4 border border-neon text-neon rounded-md hover:bg-neon hover:text-black focus:outline-none ${isSubmitting && 'opacity-50'}`}
             >
               {isSubmitting ? 'Resetting...' : 'Reset Password'}
             </button>

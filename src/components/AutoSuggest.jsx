@@ -59,7 +59,7 @@ const AutoSuggest = ({ suggestions, placeholder, onChange, value, color, readOnl
         type="text"
         readOnly={readOnly}
         placeholder={placeholder}
-        className={`w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 ${color}`}
+        className={`w-full px-3 py-2 border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-neon ${color}`}
         value={value}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
@@ -67,13 +67,13 @@ const AutoSuggest = ({ suggestions, placeholder, onChange, value, color, readOnl
         onFocus={handleFocus}
       />
       {showSuggestions && value && (
-        <ul className="absolute left-0 right-0 mt-1 border border-gray-300 rounded-md shadow-lg bg-white z-10 transform transition-transform duration-300 ease-out hover:scale-105">
+        <ul className="absolute left-0 right-0 mt-1 border border-zinc-700 rounded-md shadow-lg bg-zinc-900 z-10 transform transition-transform duration-300 ease-out hover:scale-105">
           {filteredSuggestions.length > 0 ? (
             filteredSuggestions.map((suggestion, index) => {
               const suggestionClass =
                 index === activeSuggestionIndex
-                  ? "bg-orange-500 text-white"
-                  : "bg-white text-gray-700";
+                  ? "bg-neon text-white"
+                  : "bg-zinc-900 text-zinc-100";
 
               return (
                 <li
@@ -86,7 +86,7 @@ const AutoSuggest = ({ suggestions, placeholder, onChange, value, color, readOnl
               );
             })
           ) : (
-            <li className="px-3 py-2 text-gray-700">No suggestions available</li>
+            <li className="px-3 py-2 text-zinc-100">No suggestions available</li>
           )}
         </ul>
       )}

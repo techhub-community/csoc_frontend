@@ -217,7 +217,7 @@ const resourcesData = {
 const ResourceCard = ({ week, title, project, topics, task, links, isOpen, toggleOpen, index }) => {
   return (
     <div
-      className="relative bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl mb-6 overflow-hidden transform hover:shadow-3xl transition-all duration-700 animate-card-in"
+      className="relative bg-zinc-900/90 backdrop-blur-md rounded-2xl shadow-2xl mb-6 overflow-hidden transform hover:shadow-3xl transition-all duration-700 animate-card-in"
       style={{ animationDelay: `${index * 150}ms` }}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-orange-100/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
@@ -225,15 +225,15 @@ const ResourceCard = ({ week, title, project, topics, task, links, isOpen, toggl
         className="relative flex justify-between items-center p-6 cursor-pointer group"
         onClick={toggleOpen}
       >
-        <h3 className="text-2xl font-extrabold text-gray-900 group-hover:text-orange-600 transition-colors duration-300">
+        <h3 className="text-2xl font-extrabold text-white group-hover:text-neon transition-colors duration-300">
           {title}
         </h3>
         <div className="flex items-center space-x-2">
-          <span className="text-sm text-gray-500">Week {week}</span>
+          <span className="text-sm text-zinc-400">Week {week}</span>
           {isOpen ? (
-            <FaChevronUp className="text-orange-500 transform group-hover:scale-125 transition-transform duration-200" />
+            <FaChevronUp className="text-neon transform group-hover:scale-125 transition-transform duration-200" />
           ) : (
-            <FaChevronDown className="text-orange-500 transform group-hover:scale-125 transition-transform duration-200" />
+            <FaChevronDown className="text-neon transform group-hover:scale-125 transition-transform duration-200" />
           )}
         </div>
       </div>
@@ -242,40 +242,40 @@ const ResourceCard = ({ week, title, project, topics, task, links, isOpen, toggl
           isOpen ? "max-h-[800px] p-6 sm:p-4" : "max-h-0"
         }`}
       >
-        <div className="border-l-2 border-orange-400 pl-4">
-          <p className="text-lg font-semibold text-gray-800 mb-3 tracking-tight">
+        <div className="border-l-2 border-neon pl-4">
+          <p className="text-lg font-semibold text-white mb-3 tracking-tight">
             Project: {project}
           </p>
           <p className="text-gray-600 mb-4 leading-relaxed">
             <span className="font-medium">Task:</span> {task}
           </p>
           <div className="mb-5">
-            <h4 className="text-base font-semibold text-gray-800 mb-2 tracking-wide">
+            <h4 className="text-base font-semibold text-white mb-2 tracking-wide">
               Topics Covered:
             </h4>
             <ul className="space-y-2">
               {topics.map((topic, index) => (
                 <li key={index} className="flex items-start">
-                  <span className="w-2 h-2 bg-orange-400 rounded-full mt-2 mr-3 transform hover:scale-150 transition-transform"></span>
+                  <span className="w-2 h-2 bg-neon rounded-full mt-2 mr-3 transform hover:scale-150 transition-transform"></span>
                   <span className="text-gray-600">{topic}</span>
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <h4 className="text-base font-semibold text-gray-800 mb-2 tracking-wide">
+            <h4 className="text-base font-semibold text-white mb-2 tracking-wide">
               Resources:
             </h4>
             <ul className="space-y-3">
               {links.map((link, index) => (
                 <li key={index} className="flex items-center group">
-                  <span className="w-2 h-2 bg-orange-500 rounded-full mr-3 group-hover:animate-pulse"></span>
+                  <span className="w-2 h-2 bg-neon rounded-full mr-3 group-hover:animate-pulse"></span>
                   <div className="flex items-center space-x-2">
                     <a
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-orange-500 hover:text-orange-700 font-medium group-hover:underline decoration-orange-300 decoration-2 underline-offset-4 transition-all duration-300"
+                      className="text-neon hover:text-neon font-medium group-hover:underline decoration-orange-300 decoration-2 underline-offset-4 transition-all duration-300"
                     >
                       {link.name}
                     </a>
@@ -318,54 +318,54 @@ const Resources = () => {
   };
 
   return (
-    <div id="resources" className="bg-warm py-16 px-4 sm:px-6 relative overflow-hidden">
+    <div id="resources" className="bg-black py-16 px-4 sm:px-6 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(249,115,22,0.15),_transparent_70%)] opacity-50"></div>
       <div className="container mx-auto max-w-5xl relative z-10">
-        <h1 className="text-5xl sm:text-6xl font-extrabold text-center text-[#212529] mb-5 tracking-tighter animate-fade-in">
+        <h1 className="text-5xl sm:text-6xl font-extrabold text-center text-white mb-5 tracking-tighter animate-fade-in">
           Resources
         </h1>
-        <p className="text-lg sm:text-xl text-center text-[#4E4039] mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in">
+        <p className="text-lg sm:text-xl text-center text-zinc-300 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in">
           Embark on a transformative learning journey with expertly curated resources for Web Dev, App Dev, and DSA.
         </p>
-        <div className="sticky top-0 bg-warm pt-4 pb-3 z-20">
+        <div className="sticky top-0 bg-black pt-4 pb-3 z-20">
           <div className="flex justify-center space-x-2 sm:space-x-4">
             <button
               onClick={() => handleTabChange("webDev")}
               className={`relative flex-shrink-0 px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-semibold transition-all duration-300 whitespace-nowrap ${
                 activeTab === "webDev"
-                  ? "text-orange-500 sm:scale-110"
-                  : "text-gray-700 sm:hover:scale-105 hover:text-orange-400"
+                  ? "text-neon sm:scale-110"
+                  : "text-zinc-100 sm:hover:scale-105 hover:text-neon"
               }`}
             >
               Web Development
               {activeTab === "webDev" && (
-                <span className="absolute bottom-0 left-0 w-full h-1.5 bg-orange-500 rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
+                <span className="absolute bottom-0 left-0 w-full h-1.5 bg-neon rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
               )}
             </button>
             <button
               onClick={() => handleTabChange("appDev")}
               className={`relative flex-shrink-0 px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-semibold transition-all duration-300 whitespace-nowrap ${
                 activeTab === "appDev"
-                  ? "text-orange-500 sm:scale-110"
-                  : "text-gray-700 sm:hover:scale-105 hover:text-orange-400"
+                  ? "text-neon sm:scale-110"
+                  : "text-zinc-100 sm:hover:scale-105 hover:text-neon"
               }`}
             >
               App Development
               {activeTab === "appDev" && (
-                <span className="absolute bottom-0 left-0 w-full h-1.5 bg-orange-500 rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
+                <span className="absolute bottom-0 left-0 w-full h-1.5 bg-neon rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
               )}
             </button>
             <button
               onClick={() => handleTabChange("dsa")}
               className={`relative flex-shrink-0 px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-semibold transition-all duration-300 whitespace-nowrap ${
                 activeTab === "dsa"
-                  ? "text-orange-500 sm:scale-110"
-                  : "text-gray-700 sm:hover:scale-105 hover:text-orange-400"
+                  ? "text-neon sm:scale-110"
+                  : "text-zinc-100 sm:hover:scale-105 hover:text-neon"
               }`}
             >
               DSA
               {activeTab === "dsa" && (
-                <span className="absolute bottom-0 left-0 w-full h-1.5 bg-orange-500 rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
+                <span className="absolute bottom-0 left-0 w-full h-1.5 bg-neon rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
               )}
             </button>
           </div>

@@ -4,12 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        warm: "#FEF8F4",
-        coral: "#FF7F50",
-        lightblack: "#4E4039",
-        lightbrown:"#A08F86",
-        darkwarm:"#FCE8DF",
-        semidark: "#796960",
+        neon: "#39ff14",
       },
       keyframes: {
         "bounce-slow-low": {

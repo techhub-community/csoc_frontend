@@ -23,16 +23,16 @@ const Team = () => {
   );
 
   return (
-    <div className="bg-warm mx-auto py-8">
-      <h1 className="text-4xl font-bold text-center">Team</h1>
-      <p className="text-center text-3xl mt-2 mb-8">Collaboration Is Our Strength!</p>
+    <div className="bg-black mx-auto py-8">
+      <h1 className="text-4xl font-bold text-center text-white">Team</h1>
+      <p className="text-center text-3xl mt-2 mb-8 text-zinc-300">Collaboration Is Our Strength!</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {
           paginatedMembers.map((member, index) => (
             <div key={`${member.name}-${index}`} className="text-center">
               <div className="relative w-40 h-40 mx-auto mb-4">
                 { !imageLoaded[(currentPage - 1) * ITEMS_PER_PAGE + index] && (
-                  <div className="absolute inset-0 bg-gray-400 animate-pulse rounded-full"></div>
+                  <div className="absolute inset-0 bg-zinc-700 animate-pulse rounded-full"></div>
                 )}
                 <img
                   loading="lazy"
@@ -42,7 +42,7 @@ const Team = () => {
                   className={`rounded-full object-cover w-40 h-40`}
                 />
               </div>
-              <h2 className="text-xl font-medium">{member.name}</h2>
+              <h2 className="text-xl font-medium text-white">{member.name}</h2>
             </div>
           ))
         }
@@ -52,7 +52,7 @@ const Team = () => {
           Array.from({ length: totalPages }, (_, index) => (
             <button
               key={`b-${index}`}
-              className={`px-4 py-2 rounded ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+              className={`px-4 py-2 rounded ${currentPage === index + 1 ? 'bg-neon text-white' : 'bg-zinc-900 text-zinc-300'}`}
               onClick={() => handlePageChange(index + 1)}
             >
               {index + 1}
