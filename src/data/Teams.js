@@ -1,149 +1,151 @@
 export const teamMembers = [
   {
-    name: "Deepanshu",
-    image: "./image/Deepanshu.jpg",
+    name: "Avinash",
+    image: "./image/Avinash.jpg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
   },
   {
+    name: "Abhay",
+    image: "./image/Abhay.jpeg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  },
+  {
+    name: "Darshan",
+    image: "./image/Darshan.jpeg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  },
+  {
+    name: "Karthik",
+    image: "./image/Karthik.jpg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  },
+  {
+    name: "Shalini",
+    image: "./image/Shalini.jpg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  },
+  {
+    name: "Ayush",
+    image: "./image/AyushOjha.jpg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  },
+  {
+    name: "Ishan",
+    image: "./image/Ishan.jpg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  },
+  {
+    name: "Ayush",
+    image: "./image/AyushKumar.jpg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  },
+  {
+    name: "Divyanshu",
+    image: "./image/Divyanshu.jpeg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  },
+  {
+    name: "Saksham",
+    image: "./image/Saksham.jpg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  },
+  {
+    name: "Pragati",
+    image: "./image/pragati.jpeg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  }, {
+    name: "Aman",
+    image: "./image/arup.jpg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  }, {
+    name: "Aashrith",
+    image: "./image/Aashrith.jpg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  }, {
+    name: "Rumaiza",
+    image: "./image/Rumaiza.jpeg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  }, {
     name: "Nidhi",
     image: "./image/Nidhi.jpg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
-  },
-  {
-    name: "Anurag",
-    image: "./image/Anurag.jpg",
+  }, {
+    name: "Ayush",
+    image: "./image/AyushJha.JPG",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  }, {
+    name: "Nakshatra",
+    image: "./image/Nakshatra.jpg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  }, {
+    name: "Disha",
+    image: "./image/Disha.png",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  }, {
+    name: "Suparn",
+    image: "./image/suparn.jpg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  }, {
+    name: "Supreeth",
+    image: "./image/supreeth.jpg",
+    github: "https://github.com/Tom",
+    linkedin: "https://linkedin.com/in/Tom",
+  }, {
+    name: "Varsha",
+    image: "./image/varsha.jpg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
   },
+  // }, {
+  //   name: "Bharath",
+  //   image: "./image/bharath.jpg",
+  //   github: "https://github.com/Tom",
+  //   linkedin: "https://linkedin.com/in/Tom",
+  // },
+  // {
+  //   name: "Rishabh",
+  //   image: "./image/rishabh.jpg",
+  //   github: "https://github.com/Tom",
+  //   linkedin: "https://linkedin.com/in/Tom",
+  // },
+  // {
+  //   name: "Anurag",
+  //   image: "./image/Anurag.jpg",
+  //   github: "https://github.com/Tom",
+  //   linkedin: "https://linkedin.com/in/Tom",
+  // }, {
   {
     name: "Sanya",
     image: "./image/Sanya.jpg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
-  },
-  {
+  }, {
     name: "Lovish",
     image: "./image/Lovish.jpg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
-  },
-  {
-    name: "Ankur",
-    image: "./image/Ankur.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  },
-  {
-    name: "Varsha",
-    image: "./image/Varsha.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  },
-  {
+  }, {
     name: "Murali",
-    image: "./image/Murali.jpeg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  },
-  {
-    name: "Suparn",
-    image: "./image/Suparn.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  },
-  {
-    name: "Supreeth",
-    image: "./image/Supreeth.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  },
-  {
-    name: "Arvind",
-    image: "./image/arvind.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Arup",
-    image: "./image/arup.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Arunita",
-    image: "./image/arunita.jpeg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Utkarsh",
-    image: "./image/utkarsh.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Sumit",
-    image: "./image/sumit.jpeg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Harsh Rai",
-    image: "./image/harsh.jpeg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Shreya",
-    image: "./image/shreya.jpeg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Om",
-    image: "./image/om.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Nikunj",
-    image: "./image/nikunj.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Apoorva",
-    image: "./image/apoorva.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Ansh",
-    image: "./image/ansh.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Bharath",
-    image: "./image/bharath.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  },
-  {
-    name: "Rishabh",
-    image: "./image/rishabh.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  },
-  {
-    name: "Manyata",
-    image: "./image/Manyata.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Mohammed Sufyan",
-    image: "./image/sufyan.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Mohammed Owais",
-    image: "./image/owais.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Pooja",
-    image: "./image/Pooja.jpeg",
+    image: "./image/murali.jpeg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
   }, {
@@ -159,11 +161,6 @@ export const teamMembers = [
   }, {
     name: "Saurav",
     image: "./image/saurav.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  }, {
-    name: "Nishtha",
-    image: "./image/nishtha.jpg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
   }, {

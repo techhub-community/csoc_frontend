@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaChevronUp, FaChevronDown, FaYoutube } from "react-icons/fa";
 
 const domains = [
   {
@@ -309,7 +310,8 @@ const domains = [
 ];
 
 const WeekCard = ({ weekData, color, isOpen, toggleOpen, index }) => {
-  const hasLinks = weekData.links && weekData.links.length > 0;
+  const { week, title, project, topics, links } = weekData;
+  const hasLinks = links && links.length > 0;
 
   return (
     <div
@@ -349,17 +351,6 @@ const WeekCard = ({ weekData, color, isOpen, toggleOpen, index }) => {
           <p className="text-lg font-semibold text-white mb-3 tracking-tight">
             Project: {project}
           </p>
-          <ul className="space-y-1.5">
-            {weekData.topics.map((topic, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-                <span
-                  className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
-                  style={{ backgroundColor: color.dot }}
-                />
-                {topic}
-              </li>
-            ))}
-          </ul>
 
           {/* Task */}
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mt-4 mb-2">
@@ -373,7 +364,7 @@ const WeekCard = ({ weekData, color, isOpen, toggleOpen, index }) => {
               {topics.map((topic, index) => (
                 <li key={index} className="flex items-start">
                   <span className="w-2 h-2 bg-neon rounded-full mt-2 mr-3 transform hover:scale-150 transition-transform"></span>
-                  <span className="text-gray-600">{topic}</span>
+                  <span className="text-gray-400">{topic}</span>
                 </li>
               ))}
             </ul>
@@ -382,50 +373,53 @@ const WeekCard = ({ weekData, color, isOpen, toggleOpen, index }) => {
             <h4 className="text-base font-semibold text-white mb-2 tracking-wide">
               Resources:
             </h4>
-            <ul className="space-y-3">
-              {links.map((link, index) => (
-                <li key={index} className="flex items-center group">
-                  <span className="w-2 h-2 bg-neon rounded-full mr-3 group-hover:animate-pulse"></span>
-                  <div className="flex items-center space-x-2">
-                    <a
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-neon hover:text-neon font-medium group-hover:underline decoration-orange-300 decoration-2 underline-offset-4 transition-all duration-300"
-                    >
-                      {link.name}
-                    </a>
-                    {link.youtube && (
+            {hasLinks ? (
+              <ul className="space-y-3">
+                {links.map((link, index) => (
+                  <li key={index} className="flex items-center group">
+                    <span className="w-2 h-2 bg-neon rounded-full mr-3 group-hover:animate-pulse"></span>
+                    <div className="flex items-center space-x-2">
                       <a
-                        href={link.youtube}
+                        href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-red-600 hover:text-red-800 transition-colors duration-300"
+                        className="text-neon hover:text-neon font-medium group-hover:underline decoration-orange-300 decoration-2 underline-offset-4 transition-all duration-300"
                       >
-                        <FaYoutube className="text-lg transform hover:scale-125 transition-transform" />
+                        {link.name}
                       </a>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div
-              className="flex items-center gap-2.5 border border-dashed rounded-xl px-4 py-3 text-sm text-gray-500 italic"
-              style={{ borderColor: color.dot + "88" }}
-            >
-              <span
-                className="w-2 h-2 rounded-full flex-shrink-0"
-                style={{ backgroundColor: color.dot, opacity: 0.6 }}
-              />
-              Resources for this week will be shared after the class is conducted.
-            </div>
-          )}
+                      {link.youtube && (
+                        <a
+                          href={link.youtube}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-red-600 hover:text-red-800 transition-colors duration-300"
+                        >
+                          <FaYoutube className="text-lg transform hover:scale-125 transition-transform" />
+                        </a>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div
+                className="flex items-center gap-2.5 border border-dashed rounded-xl px-4 py-3 text-sm text-gray-500 italic"
+                style={{ borderColor: color.dot + "88" }}
+              >
+                <span
+                  className="w-2 h-2 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: color.dot, opacity: 0.6 }}
+                />
+                Resources for this week will be shared after the class is conducted.
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
 };
+
 
 const Resources = () => {
   const [activeTab, setActiveTab] = useState("appDev");

@@ -39,55 +39,42 @@ const cardData = [
 
 const Programs = () => {
   return (
-    <div id="programs" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-          CHOOSE YOUR DOMAIN
-        </h2>
-        <p className="mt-4 text-lg text-gray-600">
-          The CSOC mentorship program is spanned across 5 domains.
-        </p>
-        <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {cardData.map((card, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
-            >
-              {card.icon}
-              <h3 className="mt-4 text-xl font-bold text-gray-900">
-                {card.title}
-              </h3>
-              <p className="mt-4 text-gray-500 leading-relaxed">
-                {card.description}
-              </p>
-    <section>
-      <div className="min-h-[90vh] p-10 bg-zinc-900 flex flex-col text-center items-center justify-center">
-        <div className="flex flex-col items-center justify-center mt-10">
-          <h1 className="text-4xl font-bold text-white ">
+    <section id="programs" className="min-h-[90vh] py-20 bg-zinc-900">
+      <div className="container mx-auto px-4 flex flex-col items-center justify-center">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
             OUR PROGRAMS
           </h1>
-          <p className="text-2xl mt-3 mb-6 text-zinc-300 text-center">
+          <p className="text-xl md:text-2xl mt-4 text-zinc-300">
             Explore The Diverse Range Of Domains We Offer!
           </p>
+          <p className="mt-4 text-lg text-zinc-400">
+            The CSOC mentorship program is spanned across 5 domains.
+          </p>
         </div>
-        {/* cards */}
-        <div className="mt-10 flex md:flex-row flex-col justify-center items-center gap-6">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center items-center">
           {cardData.map((card, index) => (
             <div
               key={index}
-              className="block bg-black max-w-sm p-6 border-2 rounded-lg shadow-xl text-center h-[21rem] w-60 transform transition duration-300 hover:-translate-y-2 hover:shadow-neon/20"
+              className="bg-black p-8 border border-zinc-800 rounded-2xl shadow-xl text-center h-[22rem] w-full max-w-sm transform transition duration-300 hover:-translate-y-2 hover:shadow-neon/20 flex flex-col items-center justify-center"
             >
-              <div className="flex justify-center">{card.icon}</div>
-              <h5 className="mb-6 text-xl font-bold tracking-tight text-white">
+              <div className="flex justify-center mb-6">
+                {card.icon}
+              </div>
+              <h3 className="mb-4 text-2xl font-bold tracking-tight text-white uppercase">
                 {card.title}
-              </h5>
-              <p className="font-normal text-white">{card.description}</p>
+              </h3>
+              <p className="text-zinc-400 leading-relaxed font-medium">
+                {card.description}
+              </p>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
+
 
 export default Programs;
