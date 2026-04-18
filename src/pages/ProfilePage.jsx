@@ -416,7 +416,7 @@ const ProfileSection = () => {
   return (
     <>
       <NavBar />
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4 py-10 space-y-4">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-zinc-950 p-4 py-10 space-y-4">
         <div className="w-full max-w-lg">
           {
             verified === 0 && <div className="flex items-center p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
@@ -428,7 +428,7 @@ const ProfileSection = () => {
             </div>
           }
           {
-            invite && <div className="flex items-center p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg" role="alert">
+            invite && <div className="flex items-center p-4 mb-4 text-sm text-neon bg-neon rounded-lg" role="alert">
               <AiOutlineTeam className="w-5 h-5 mr-3" />
               <div className="flex flex-col w-full">
                 <span className="font-medium">{invite.name} ({invite.email}) has invited you to join their team</span>
@@ -444,12 +444,12 @@ const ProfileSection = () => {
             </div>
           }
           {
-            <div className="p-4 bg-gray-800 text-white rounded-lg shadow-lg flex items-center space-x-4 transform transition-transform duration-300 ease-out">
+            <div className="p-4 bg-zinc-800 text-white rounded-lg shadow-lg flex items-center space-x-4 transform transition-transform duration-300 ease-out">
               <FaCheckCircle className="w-6 h-6 text-green-400 text-center" />
               <div className="flex-1">
                 <p className="text-sm">
                   You are enrolled in 
-                  <span className="inline-block font-bold bg-orange-800 text-white rounded-full px-2 py-1 my-1">
+                  <span className="inline-block font-bold bg-neon text-white rounded-full px-2 py-1 my-1">
                     {progDetailed}
                   </span>
                 </p>
@@ -459,7 +459,7 @@ const ProfileSection = () => {
         </div>
 
         <div className="w-full max-w-lg space-y-4">
-          <div className="bg-white shadow-lg rounded-lg p-6">
+          <div className="bg-zinc-900 shadow-lg rounded-lg p-6">
             <div className="flex items-center mb-4">
               <input
                 type="checkbox"
@@ -467,7 +467,7 @@ const ProfileSection = () => {
                 onChange={(e) => setIsIndividual(e.target.checked)}
                 className="mr-2"
               />
-              <label className="text-gray-700 text-sm font-bold">Participate as Individual</label>
+              <label className="text-zinc-100 text-sm font-bold">Participate as Individual</label>
             </div>
             <h2 className="text-xl font-bold mb-2">Team Settings</h2>
             <div className={`${isIndividual ? 'opacity-50 pointer-events-none' : ''}`}>
@@ -477,7 +477,7 @@ const ProfileSection = () => {
                     type="button"
                     disabled={calling}
                     onClick={createTeam}
-                    className="w-full py-2 px-4 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none"
+                    className="w-full py-2 px-4 border border-neon text-neon rounded-md hover:bg-neon hover:text-black focus:outline-none"
                   >
                     Create Team
                   </button>
@@ -485,7 +485,7 @@ const ProfileSection = () => {
                     type="button"
                     disabled={calling}
                     onClick={() => setTeamOption('join')}
-                    className="w-full py-2 px-4 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none"
+                    className="w-full py-2 px-4 border border-neon text-neon rounded-md hover:bg-neon hover:text-black focus:outline-none"
                   >
                     Join Team
                   </button>
@@ -500,13 +500,13 @@ const ProfileSection = () => {
                         value={teamName}
                         onChange={(e) => setTeamName(e.target.value)}
                         onFocus={handleTeamNameFocus}
-                        className="border-b border-gray-300 focus:border-orange-500 outline-none text-gray-700 text-sm font-bold"
+                        className="border-b border-zinc-700 focus:border-neon outline-none text-zinc-100 text-sm font-bold"
                         placeholder="team name"
                       />
                       {email === team?.l && (
                         <button
                           onClick={updateTeamName}
-                          className={`ml-2 px-2 py-1 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white transition-transform duration-300 ${isTeamNameSet ? 'scale-110' : ''}`}
+                          className={`ml-2 px-2 py-1 border border-neon text-neon rounded-md hover:bg-neon hover:text-black transition-transform duration-300 ${isTeamNameSet ? 'scale-110' : ''}`}
                         >
                           {isTeamNameSet ? <AiOutlineCheck className="w-4 h-4" /> : 'Set'}
                         </button>
@@ -514,10 +514,10 @@ const ProfileSection = () => {
                     </div>
                     {teamCode && (
                       <div className="flex items-center">
-                        <span className="text-gray-700 text-sm font-bold mr-2">{teamCode}</span>
+                        <span className="text-zinc-100 text-sm font-bold mr-2">{teamCode}</span>
                         <button
                           onClick={copyTeamCode}
-                          className={`p-1 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white transition-transform duration-300 ${isCopied ? 'scale-110' : ''}`}
+                          className={`p-1 border border-neon text-neon rounded-md hover:bg-neon hover:text-black transition-transform duration-300 ${isCopied ? 'scale-110' : ''}`}
                         >
                           {isCopied ? <AiOutlineCheck className="w-4 h-4" /> : <AiOutlineCopy className="w-4 h-4" />}
                         </button>
@@ -535,11 +535,11 @@ const ProfileSection = () => {
                               type="email"
                               value={members[index].email}
                               placeholder="Enter member email"
-                              className={`w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 ${members[index].isLeader ? 'bg-sky-200' : ''}`}
+                              className={`w-full px-3 py-2 pl-10 border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-neon ${members[index].isLeader ? 'bg-sky-200' : ''}`}
                             />
-                            <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                            <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                             {members[index].isLeader && (
-                              <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-sm text-gray-500">Leader</span>
+                              <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-sm text-zinc-400">Leader</span>
                             )}
                             {email === team?.l && !members[index].isLeader && (
                               <button
@@ -558,9 +558,9 @@ const ProfileSection = () => {
                               type="text"
                               value=""
                               placeholder="Share team code to add members"
-                              className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-100"
+                              className="w-full px-3 py-2 pl-10 border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-neon bg-zinc-950"
                             />
-                            <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                            <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                           </>
                         )}
                       </div>
@@ -585,13 +585,13 @@ const ProfileSection = () => {
                       value={joinTeamCode}
                       onChange={(e) => setJoinTeamCode(e.target.value)}
                       placeholder="Enter team code"
-                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-neon"
                     />
-                    <AiOutlineTeam className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                    <AiOutlineTeam className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                     <button
                       disabled={calling}
                       onClick={joinTeam}
-                      className="absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none"
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 border border-neon text-neon rounded-md hover:bg-neon hover:text-black focus:outline-none"
                     >
                       Join
                     </button>
@@ -600,7 +600,7 @@ const ProfileSection = () => {
                     type="button"
                     disabled={calling}
                     onClick={() => setTeamOption(null)}
-                    className="w-full py-2 px-4 border border-gray-500 text-gray-500 rounded-md hover:bg-gray-500 hover:text-white focus:outline-none"
+                    className="w-full py-2 px-4 border border-zinc-600 text-zinc-400 rounded-md hover:bg-gray-500 hover:text-white focus:outline-none"
                   >
                     Cancel
                   </button>
@@ -609,78 +609,78 @@ const ProfileSection = () => {
             </div>
           </div>
 
-          <div className="bg-white shadow-lg rounded-lg p-6">
+          <div className="bg-zinc-900 shadow-lg rounded-lg p-6">
             <h2 className="text-xl font-bold mb-2">Update your profile</h2>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">Update Your Name</label>
+              <label className="block text-zinc-100 text-sm font-bold mb-2">Update Your Name</label>
               <div className="relative">
                 <input
                   type="text"
                   value={name}
                   placeholder="Enter your name"
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3 py-2 pl-10 border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-neon"
                 />
-                <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
-                <button disabled={calling} className="absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none">
+                <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
+                <button disabled={calling} className="absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 border border-neon text-neon rounded-md hover:bg-neon hover:text-black focus:outline-none">
                   Update
                 </button>
               </div>
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">Update Your USN</label>
+              <label className="block text-zinc-100 text-sm font-bold mb-2">Update Your USN</label>
               <div className="relative">
                 <input
                   type="text"
                   value={usn}
                   placeholder="1MV2XXXXXX"
                   onChange={(e) => setUsn(e.target.value)}
-                  className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3 py-2 pl-10 border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-neon"
                 />
-                <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
-                <button disabled={calling} className="absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none">
+                <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
+                <button disabled={calling} className="absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 border border-neon text-neon rounded-md hover:bg-neon hover:text-black focus:outline-none">
                   Update
                 </button>
               </div>
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">Specify your skills and techstacks</label>
+              <label className="block text-zinc-100 text-sm font-bold mb-2">Specify your skills and techstacks</label>
               <textarea
                 value={about}
                 placeholder="Enter your skills and techstacks"
                 onChange={(e) => setAbout(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 resize-y"
+                className="w-full px-3 py-2 border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-neon resize-y"
                 rows="5"
               ></textarea>
-              <button disabled={calling} className="mt-2 px-4 py-2 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none">
+              <button disabled={calling} className="mt-2 px-4 py-2 border border-neon text-neon rounded-md hover:bg-neon hover:text-black focus:outline-none">
                 Update
               </button>
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">Old Password</label>
+              <label className="block text-zinc-100 text-sm font-bold mb-2">Old Password</label>
               <div className="relative">
                 <input
                   type="password"
                   value={oldPass}
                   placeholder="Old Password"
                   onChange={(e) => setOldPass(e.target.value)}
-                  className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3 py-2 pl-10 border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-neon"
                 />
-                <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
               </div>
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">New Password</label>
+              <label className="block text-zinc-100 text-sm font-bold mb-2">New Password</label>
               <div className="relative">
                 <input
                   type="password"
                   value={newPass}
                   placeholder="New Password"
                   onChange={(e) => setNewPass(e.target.value)}
-                  className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3 py-2 pl-10 border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-neon"
                 />
-                <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
-                <button disabled={calling} className="absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none">
+                <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
+                <button disabled={calling} className="absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 border border-neon text-neon rounded-md hover:bg-neon hover:text-black focus:outline-none">
                   Update
                 </button>
               </div>

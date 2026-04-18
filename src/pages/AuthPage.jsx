@@ -219,14 +219,14 @@ const AuthPage = () => {
   return (
     <>
       <NavBar />
-      <div className="py-20 flex items-center justify-center bg-gray-100">
+      <div className="py-20 flex items-center justify-center bg-zinc-950">
         <div className="w-full max-w-lg mx-auto p-6">
           <div className="flex justify-center mb-6">
             <button
               ref={loginTab}
               disabled={calling}
               onClick={() => setSelectedForm('login')}
-              className={`py-2 px-4 ${selectedForm === 'login' ? 'bg-orange-500 text-white' : 'bg-white text-gray-700'} rounded-l-lg border border-gray-300 focus:outline-none`}
+              className={`py-2 px-4 ${selectedForm === 'login' ? 'bg-green-600 text-white' : 'bg-zinc-900 text-zinc-100'} rounded-l-lg border border-zinc-700 focus:outline-none`}
             >
               Login
             </button>
@@ -234,13 +234,13 @@ const AuthPage = () => {
               ref={registerTab}
               disabled={calling}
               onClick={() => setSelectedForm('register')}
-              className={`py-2 px-4 ${selectedForm === 'register' ? 'bg-orange-500 text-white' : 'bg-white text-gray-700'} rounded-r-lg border border-gray-300 focus:outline-none`}
+              className={`py-2 px-4 ${selectedForm === 'register' ? 'bg-green-600 text-white' : 'bg-zinc-900 text-zinc-100'} rounded-r-lg border border-zinc-700 focus:outline-none`}
             >
               Register
             </button>
           </div>
           {
-            selectedForm === 'register' && <div className="p-4 bg-yellow-200 text-black rounded-lg shadow-lg flex items-center space-x-4 transform transition-transform duration-300 ease-out">
+            selectedForm === 'register' && <div className="mb-4 p-4 bg-green-100 text-green-900 rounded-lg shadow-lg flex items-center space-x-4 transform transition-transform duration-300 ease-out">
               <div className="flex-1">
                 <p className="text-sm">
                   Data Structures and Algorithms (DSA) is included for all participants registering for this program.
@@ -248,37 +248,37 @@ const AuthPage = () => {
               </div>
             </div>
           }
-          <div className={`bg-white shadow-lg rounded-lg p-6 transform transition-transform duration-500 ${selectedForm === 'login' ? 'scale-105' : 'scale-95'}`}>
+          <div className={`bg-zinc-900 shadow-lg rounded-lg p-6 transform transition-transform duration-500 ${selectedForm === 'login' ? 'scale-105' : 'scale-95'}`}>
             {selectedForm === 'login' ? (
               <div>
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Enter your email</label>
+                  <label className="block text-zinc-100 text-sm font-bold mb-2">Enter your email</label>
                   <div className="relative">
                     <input
                       type="email"
                       placeholder="Email"
                       value={loginData.email}
                       onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
-                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
-                    <AiOutlineMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                    <AiOutlineMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                   </div>
                 </div>
                 <div className="mb-4 relative">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Enter your password</label>
+                  <label className="block text-zinc-100 text-sm font-bold mb-2">Enter your password</label>
                   <div className="relative">
                     <input
                       type={showPassword ? "text" : "password"}
                       placeholder="Password"
                       value={loginData.password}
                       onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
-                      className="w-full px-3 py-2 pl-10 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 pr-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
-                    <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                    <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-400 hover:text-zinc-100 focus:outline-none"
                     >
                       {showPassword ? <AiOutlineEyeInvisible className="w-5 h-5" /> : <AiOutlineEye className="w-5 h-5" />}
                     </button>
@@ -288,7 +288,7 @@ const AuthPage = () => {
                   type="button"
                   disabled={calling}
                   onClick={handleLoginSubmit}
-                  className="w-full py-2 px-4 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none"
+                  className="w-full py-2 px-4 border border-green-500 text-green-500 rounded-md hover:bg-green-600 hover:text-white focus:outline-none"
                 >
                   Login
                 </button>
@@ -297,7 +297,7 @@ const AuthPage = () => {
                     type="button"
                     disabled={calling}
                     onClick={() => setIsForgotPasswordOpen(true)}
-                    className="text-sm text-gray-500 hover:underline"
+                    className="text-sm text-zinc-400 hover:underline"
                   >
                     Forgot your password?
                   </button>
@@ -306,20 +306,20 @@ const AuthPage = () => {
             ) : (
               <div>
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Enter your name</label>
+                  <label className="block text-zinc-100 text-sm font-bold mb-2">Enter your name</label>
                   <div className="relative">
                     <input
                       type="text"
                       placeholder="Name"
                       value={registerData.name}
                       onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })}
-                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
-                    <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                    <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Enter your email</label>
+                  <label className="block text-zinc-100 text-sm font-bold mb-2">Enter your email</label>
                   <div className="relative">
                     <input
                       type="email"
@@ -327,31 +327,31 @@ const AuthPage = () => {
                       readOnly={Boolean(fixedEmail)}
                       value={fixedEmail || registerData.email}
                       onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
-                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
-                    <AiOutlineMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                    <AiOutlineMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Enter your USN</label>
+                  <label className="block text-zinc-100 text-sm font-bold mb-2">Enter your USN</label>
                   <div className="relative">
                     <input
                       type="text"
                       placeholder="1MV2XXXXXX"
                       value={registerData.usn}
                       onChange={(e) => setRegisterData({ ...registerData, usn: e.target.value })}
-                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
-                    <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                    <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Select a program</label>
+                  <label className="block text-zinc-100 text-sm font-bold mb-2">Select a program</label>
                   <div className="relative">
                     <select
                       name="program"
                       disabled={Boolean(fixedEmail)}
-                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                       value={registerData.program}
                       onChange={(e) => setRegisterData({ ...registerData, program: e.target.value })}
                     >
@@ -360,53 +360,53 @@ const AuthPage = () => {
                       <option value="app">App Development</option>
                       <option value="dsa">Data Structures & Algorithm</option>
                     </select>
-                    <CiViewList className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                    <CiViewList className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Enter your WhatsApp contact</label>
+                  <label className="block text-zinc-100 text-sm font-bold mb-2">Enter your WhatsApp contact</label>
                   <div className="relative">
                     <input
                       type="tel"
                       value={registerData.mobile}
                       placeholder="Mobile number"
                       onChange={(e) => setRegisterData({ ...registerData, mobile: e.target.value })}
-                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
-                    <CiMobile3 className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                    <CiMobile3 className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Enter your password</label>
+                  <label className="block text-zinc-100 text-sm font-bold mb-2">Enter your password</label>
                   <div className="relative">
                     <input
                       type="password"
                       placeholder="Password"
                       value={registerData.password}
                       onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
-                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
-                    <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                    <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Confirm your password</label>
+                  <label className="block text-zinc-100 text-sm font-bold mb-2">Confirm your password</label>
                   <div className="relative">
                     <input
                       type="password"
                       value={confPass}
                       placeholder="Confirm Password"
                       onChange={(e) => setConfPass(e.target.value)}
-                      className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
-                    <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                    <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                   </div>
                 </div>
                 <button
                   type="button"
                   disabled={calling}
                   onClick={handleRegisterSubmit}
-                  className="w-full py-2 px-4 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none"
+                  className="w-full py-2 px-4 border border-green-500 text-green-500 rounded-md hover:bg-green-600 hover:text-white focus:outline-none"
                 >
                   Register
                 </button>
@@ -426,28 +426,28 @@ const AuthPage = () => {
                   leaveFrom="opacity-100 transform-[scale(100%)]"
                   leaveTo="opacity-0 transform-[scale(95%)]"
                 >
-                  <DialogPanel className="w-full max-w-md bg-white shadow-lg rounded-2xl p-6 backdrop-blur-2xl">
-                    <DialogTitle as="h2" className="text-lg font-medium leading-6 text-gray-900">
+                  <DialogPanel className="w-full max-w-md bg-zinc-900 shadow-lg rounded-2xl p-6 backdrop-blur-2xl">
+                    <DialogTitle as="h2" className="text-lg font-medium leading-6 text-zinc-100">
                       Forgot your password?
                     </DialogTitle>
                     <div className="mt-2">
-                      <label className="block text-gray-700 text-sm font-bold mb-2">Enter your email address</label>
+                      <label className="block text-zinc-100 text-sm font-bold mb-2">Enter your email address</label>
                       <div className="relative">
                         <input
                           type="email"
                           placeholder="Email"
                           value={forgotEmail}
                           onChange={(e) => setForgotEmail(e.target.value)}
-                          className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                          className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                         />
-                        <AiOutlineMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                        <AiOutlineMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                       </div>
                     </div>
                     <div className="mt-4">
                       <button
                         type="button"
                         disabled={calling}
-                        className="w-full py-2 px-4 border border-orange-500 text-orange-500 rounded-md hover:bg-orange-500 hover:text-white focus:outline-none"
+                        className="w-full py-2 px-4 border border-green-500 text-green-500 rounded-md hover:bg-green-600 hover:text-white focus:outline-none"
                         onClick={handleForgotPWD}
                       >
                         Send Reset Instructions

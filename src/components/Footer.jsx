@@ -12,13 +12,13 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className="bg-warm text-black py-8 px-4">
+      <div className="bg-black text-white py-8 px-4">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 place-items-center">
           <div className="company-name w-fit text-center">
-            <h2 className="text-3xl font-bold text-black mb-2">
+            <h2 className="text-3xl font-bold text-white mb-2">
               {"<CODESHACK>"}
             </h2>
-            <p className="text-orange-800">
+            <p className="text-neon">
               <a href="mailto:codeshackcommunity@gmail.com">
                 codeshackcommunity@gmail.com
               </a>
@@ -29,28 +29,28 @@ const Footer = () => {
               <h2 className="text-xl font-bold mb-2">Useful Links</h2>
               <ul>
                 <li className="mb-1">
-                  <a onClick={() => scroll("/", "hero")} className="cursor-pointer hover:text-orange-400">
-                    <b className="text-orange-500">{"> "}</b>Home
+                  <a onClick={() => scroll("/", "hero")} className="cursor-pointer hover:text-neon">
+                    <b className="text-neon">{"> "}</b>Home
                   </a>
                 </li>
                 <li className="mb-1">
-                  <a onClick={() => scroll("/", "about")} className="cursor-pointer hover:text-orange-400">
-                    <b className="text-orange-500">{"> "}</b>About Us
+                  <a onClick={() => scroll("/", "about")} className="cursor-pointer hover:text-neon">
+                    <b className="text-neon">{"> "}</b>About Us
                   </a>
                 </li>
                 <li className="mb-1">
-                  <a onClick={() => scroll("/", "timeline")} className="cursor-pointer hover:text-orange-400">
-                    <b className="text-orange-500">{"> "}</b>Timeline
+                  <a onClick={() => scroll("/", "timeline")} className="cursor-pointer hover:text-neon">
+                    <b className="text-neon">{"> "}</b>Timeline
                   </a>
                 </li>
                 <li className="mb-1">
-                  <a onClick={() => scroll("/", "faq")} className="cursor-pointer hover:text-orange-400">
-                    <b className="text-orange-500">{"> "}</b>FAQ
+                  <a onClick={() => scroll("/", "faq")} className="cursor-pointer hover:text-neon">
+                    <b className="text-neon">{"> "}</b>FAQ
                   </a>
                 </li>
                 <li className="mb-1">
-                  <a onClick={() => scroll("/", "contact")} className="cursor-pointer hover:text-orange-400">
-                    <b className="text-orange-500">{"> "}</b>Contact
+                  <a onClick={() => scroll("/", "contact")} className="cursor-pointer hover:text-neon">
+                    <b className="text-neon">{"> "}</b>Contact
                   </a>
                 </li>
               </ul>
@@ -66,7 +66,7 @@ const Footer = () => {
                 <li className="mb-1">
                   <a
                     target="_blank" href="https://x.com/_techhub"
-                    className="hover:text-orange-400 flex items-center gap-1"
+                    className="hover:text-neon flex items-center gap-1"
                   >
                     <FaTwitter /> Twitter
                   </a>
@@ -74,7 +74,7 @@ const Footer = () => {
                 <li className="mb-1">
                   <a
                     target="_blank" href="https://www.instagram.com/techhub_community/"
-                    className="hover:text-orange-400 flex items-center gap-1"
+                    className="hover:text-neon flex items-center gap-1"
                   >
                     <RiInstagramFill /> Instagram
                   </a>
@@ -82,7 +82,7 @@ const Footer = () => {
                 <li className="mb-1">
                   <a
                     target="_blank" href="https://www.linkedin.com/company/techhub-community/"
-                    className="hover:text-orange-400 flex items-center gap-1"
+                    className="hover:text-neon flex items-center gap-1"
                   >
                     <FaLinkedin /> LinkedIn
                   </a>
@@ -90,7 +90,7 @@ const Footer = () => {
                 <li className="mb-1">
                   <a
                     target="_blank" href="https://github.com/techhub-community"
-                    className="hover:text-orange-400 flex items-center gap-1"
+                    className="hover:text-neon flex items-center gap-1"
                   >
                     <FaGithub /> GitHub
                   </a>
@@ -98,7 +98,7 @@ const Footer = () => {
                 <li className="mb-1">
                   <a
                     target="_blank" href="https://discord.com/invite/yZt7uuqA"
-                    className="hover:text-orange-400 flex items-center gap-1"
+                    className="hover:text-neon flex items-center gap-1"
                   >
                     <FaDiscord /> Discord
                   </a>
@@ -111,7 +111,7 @@ const Footer = () => {
                 <li className="mb-1">
                   <a
                     target="_blank" href="https://x.com/glugmvit"
-                    className="hover:text-orange-400 flex items-center gap-1 flex-row-reverse"
+                    className="hover:text-neon flex items-center gap-1 flex-row-reverse"
                   >
                     <FaTwitter /> Twitter
                   </a>
@@ -119,7 +119,7 @@ const Footer = () => {
                 <li className="mb-1">
                   <a
                     target="_blank" href="https://www.instagram.com/glugmvit"
-                    className="hover:text-orange-400 flex items-center gap-1 flex-row-reverse"
+                    className="hover:text-neon flex items-center gap-1 flex-row-reverse"
                   >
                     <RiInstagramFill /> Instagram
                   </a>
@@ -127,7 +127,7 @@ const Footer = () => {
                 <li className="mb-1">
                   <a
                     target="_blank" href="https://in.linkedin.com/company/glugmvit"
-                    className="hover:text-orange-400 flex items-center gap-1 flex-row-reverse"
+                    className="hover:text-neon flex items-center gap-1 flex-row-reverse"
                   >
                     <FaLinkedin /> LinkedIn
                   </a>
@@ -135,7 +135,7 @@ const Footer = () => {
                 <li className="mb-1">
                   <a
                     target="_blank" href="https://github.com/glugmvit"
-                    className="hover:text-orange-400 flex items-center gap-1 flex-row-reverse"
+                    className="hover:text-neon flex items-center gap-1 flex-row-reverse"
                   >
                     <FaGithub /> GitHub
                   </a>
@@ -143,7 +143,7 @@ const Footer = () => {
                 <li className="mb-1">
                   <a
                     target="_blank" href="https://discord.com/invite/ugh3bhGd"
-                    className="hover:text-orange-400 flex items-center gap-1 flex-row-reverse"
+                    className="hover:text-neon flex items-center gap-1 flex-row-reverse"
                   >
                     <FaDiscord /> Discord
                   </a>
@@ -152,7 +152,7 @@ const Footer = () => {
             </div>
             <a
               target="_blank" href="https://linktr.ee/CodeShack"
-              className="hover:text-orange-400 border-b-2 border-orange-200 rounded flex items-center font-bold gap-1 mx-auto w-fit mt-3"
+              className="hover:text-neon border-b-2 border-neon rounded flex items-center font-bold gap-1 mx-auto w-fit mt-3"
             >
               <SiLinktree /> CodeShack LinkTree
             </a>
