@@ -1,6 +1,8 @@
 import { IoIosGlobe } from "react-icons/io";
-import { FaLaptopCode } from "react-icons/fa";
 import { TbDeviceMobileCode } from "react-icons/tb";
+import { FaLaptopCode } from "react-icons/fa";
+import { GiArtificialIntelligence } from "react-icons/gi";
+import { MdDesignServices } from "react-icons/md";
 
 const cardData = [
   {
@@ -21,38 +23,49 @@ const cardData = [
     description:
       "Master algorithms and data structures to conquer challenges with precision and confidence.",
   },
+  {
+    icon: <GiArtificialIntelligence className=" text-orange-600 text-5xl mb-2" />,
+    title: "AI / ML",
+    description:
+      "Leverage artificial intelligence and machine learning to build intelligent systems that learn, adapt, and solve real-world problems.",
+  },
+  {
+    icon: <MdDesignServices className=" text-orange-600 text-5xl mb-2" />,
+    title: "UI / UX",
+    description:
+      "Design intuitive and visually appealing user interfaces and experiences that enhance usability and create meaningful interactions.",
+  },
 ];
 
-function Programs() {
+const Programs = () => {
   return (
-    <section>
-      <div className="min-h-[90vh] p-10 bg-white flex flex-col text-center items-center justify-center">
-        <div className="flex flex-col items-center justify-center mt-10">
-          <h1 className="text-4xl font-bold text text-[#212529] ">
-            OUR PROGRAMS
-          </h1>
-          <p className="text-2xl mt-3 mb-6 text-[#4E4039] text-center">
-            Explore The Diverse Range Of Domains We Offer!
-          </p>
-        </div>
-        {/* cards */}
-        <div className="mt-10 flex md:flex-row flex-col justify-center items-center gap-6">
+    <div id="programs" className="py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          CHOOSE YOUR DOMAIN
+        </h2>
+        <p className="mt-4 text-lg text-gray-600">
+          The CSOC mentorship program is spanned across 5 domains.
+        </p>
+        <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {cardData.map((card, index) => (
             <div
               key={index}
-              className="block bg-warm max-w-sm p-6 border-2 rounded-lg shadow-xl text-center h-[21rem] w-60 transform transition duration-300 hover:-translate-y-2 hover:shadow-orange-200"
+              className="flex flex-col items-center p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
             >
-              <div className="flex justify-center">{card.icon}</div>
-              <h5 className="mb-6 text-xl font-bold tracking-tight text-black">
+              {card.icon}
+              <h3 className="mt-4 text-xl font-bold text-gray-900">
                 {card.title}
-              </h5>
-              <p className="font-normal text-black">{card.description}</p>
+              </h3>
+              <p className="mt-4 text-gray-500 leading-relaxed">
+                {card.description}
+              </p>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
-}
+};
 
 export default Programs;
