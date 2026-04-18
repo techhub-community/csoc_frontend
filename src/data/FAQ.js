@@ -9,7 +9,7 @@ export const faqs = [
   },
   {
     question: 'Which domains will be covered in CSOC?',
-    answer: 'There are three domains: App Development, Web Development, and Data Structures and Algorithms (DSA). DSA is compulsory for all participants registering for this program.',
+    answer: 'There are five domains: App Development, Web Development, Data Structures and Algorithms (DSA), AI/ML, and UI/UX. DSA is compulsory for all participants registering for this program.',
   },
   {
     question: 'What is the fee for this program?',

@@ -45,6 +45,7 @@ function App() {
         setData(data.name, data.email, data.about, data.props, data.verified, data.usn);
       } catch (error) {
         console.error("Error fetching session data:", error);
+        setIsAuthenticated(false);
       }
     };
 
