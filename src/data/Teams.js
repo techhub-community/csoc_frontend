@@ -49,7 +49,7 @@ export const teamMembers = [
   },
   {
     name: "Divyanshu",
-    image: "/Divyanshu.jpeg",
+    image: "/divyanshu2.jpeg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
   },
