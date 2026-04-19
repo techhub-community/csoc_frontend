@@ -456,49 +456,26 @@ const Resources = () => {
           Resources
         </h1>
         <p className="text-lg sm:text-xl text-center text-zinc-300 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in">
-          Embark on a transformative learning journey with expertly curated resources for Web Dev, App Dev, and DSA.
+          Embark on a transformative learning journey with expertly curated resources for Web Dev, App Dev, DSA, AI/ML, and UI/UX.
         </p>
         <div className="sticky top-0 bg-black pt-4 pb-3 z-20">
-          <div className="flex justify-center space-x-2 sm:space-x-4">
-            <button
-              onClick={() => handleTabChange("webDev")}
-              className={`relative flex-shrink-0 px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-semibold transition-all duration-300 whitespace-nowrap ${
-                activeTab === "webDev"
-                  ? "text-neon sm:scale-110"
-                  : "text-zinc-100 sm:hover:scale-105 hover:text-neon"
-              }`}
-            >
-              Web Development
-              {activeTab === "webDev" && (
-                <span className="absolute bottom-0 left-0 w-full h-1.5 bg-neon rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
-              )}
-            </button>
-            <button
-              onClick={() => handleTabChange("appDev")}
-              className={`relative flex-shrink-0 px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-semibold transition-all duration-300 whitespace-nowrap ${
-                activeTab === "appDev"
-                  ? "text-neon sm:scale-110"
-                  : "text-zinc-100 sm:hover:scale-105 hover:text-neon"
-              }`}
-            >
-              App Development
-              {activeTab === "appDev" && (
-                <span className="absolute bottom-0 left-0 w-full h-1.5 bg-neon rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
-              )}
-            </button>
-            <button
-              onClick={() => handleTabChange("dsa")}
-              className={`relative flex-shrink-0 px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-semibold transition-all duration-300 whitespace-nowrap ${
-                activeTab === "dsa"
-                  ? "text-neon sm:scale-110"
-                  : "text-zinc-100 sm:hover:scale-105 hover:text-neon"
-              }`}
-            >
-              DSA
-              {activeTab === "dsa" && (
-                <span className="absolute bottom-0 left-0 w-full h-1.5 bg-neon rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
-              )}
-            </button>
+          <div className="flex justify-center flex-wrap gap-2 sm:gap-4">
+            {domains.map((domain) => (
+              <button
+                key={domain.id}
+                onClick={() => handleTabChange(domain.id)}
+                className={`relative flex-shrink-0 px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-semibold transition-all duration-300 whitespace-nowrap ${
+                  activeTab === domain.id
+                    ? "text-neon sm:scale-110"
+                    : "text-zinc-100 sm:hover:scale-105 hover:text-neon"
+                }`}
+              >
+                {domain.label}
+                {activeTab === domain.id && (
+                  <span className="absolute bottom-0 left-0 w-full h-1.5 bg-neon rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
+                )}
+              </button>
+            ))}
           </div>
         </div>
 

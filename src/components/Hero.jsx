@@ -2,7 +2,7 @@ function Hero() {
   return (
     <div id="hero" className="bg-black max-h-screen md:mt-0 md:h-screen md:p-20 p-6 d:pt-20 pt-0 flex md:flex-row flex-col-reverse md:items-center items-start">
       <div className="md:p-4 pb-12">
-        <h1 className="font-bold md:text-5xl text-4xl text-lightblack ">
+        <h1 className="font-bold md:text-5xl text-4xl text-neon">
           CodeShack Summer of Code 2026
         </h1>
         <p className=" md:text-xl text-lg mt-4 text-zinc-400">
@@ -11,11 +11,11 @@ function Hero() {
         </p>
       </div>
 
-      <div className="md:pl-10 pl-0 mt-14 ">
+      <div className="md:pl-10 pl-0 mt-14">
         <img
           src="/hero-img.svg"
           alt="Hero Image"
-          className="h-[400px] w-[800px] animate-bounce-slow-low"
+          className="w-full max-w-[800px] h-auto object-contain animate-bounce-slow-low"
         />
       </div>
     </div>
