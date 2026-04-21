@@ -9,8 +9,30 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import { Navigate } from "react-router-dom";
 import ResetPWD from "./pages/ResetPWD";
 import LoadingScreen from "./pages/LoadingPage";
-import QuizPage from "./pages/QuizPage";
-import AssignmentsPage from "./pages/AssignmentsPage";
+import MentorDashboard from "./pages/mentor/MentorDashboard";
+import MentorQuizzes from "./pages/mentor/MentorQuizzes";
+import MentorQuizCreate from "./pages/mentor/MentorQuizCreate";
+import MentorQuizResults from "./pages/mentor/MentorQuizResults";
+import MentorAssignments from "./pages/mentor/MentorAssignments";
+import MentorAssignmentCreate from "./pages/mentor/MentorAssignmentCreate";
+import MentorAssignmentSubmissions from "./pages/mentor/MentorAssignmentSubmissions";
+
+import MenteeDashboard from "./pages/mentee/MenteeDashboard";
+import MenteeQuizzes from "./pages/mentee/MenteeQuizzes";
+import MenteeQuizAttempt from "./pages/mentee/MenteeQuizAttempt";
+import MenteeQuizResult from "./pages/mentee/MenteeQuizResult";
+import MenteeAssignments from "./pages/mentee/MenteeAssignments";
+import MenteeAssignmentSubmit from "./pages/mentee/MenteeAssignmentSubmit";
+
+const ProtectedRoute = ({ element, requiredRole }) => {
+  const { loading, isAuthenticated, role } = useAuthStore();
+  if (loading) return <LoadingScreen />;
+  if (!isAuthenticated) return <Navigate to="/auth" />;
+  if (requiredRole && role !== requiredRole) {
+    return <Navigate to={`/${role}/dashboard`} />; 
+  }
+  return element;
+};
 
 function App() {
   const [token, ] = useLocalStorage("token", null);
@@ -61,14 +83,25 @@ function App() {
         <Route path="/">
           <Route index element={<LandingPage />} />
           <Route path="/auth" element={loading ? <LoadingScreen />
-            : isAuthenticated ? <Navigate to="/profile" /> : <AuthPage />} />
-          <Route path="/profile" element={loading ? <LoadingScreen />
-            : !isAuthenticated ? <Navigate to="/auth" /> : <ProfileSection />} />
-          <Route path="/quiz" element={loading ? <LoadingScreen />
-            : !isAuthenticated ? <Navigate to="/auth" /> : <QuizPage />} />
-          <Route path="/assignments" element={loading ? <LoadingScreen />
-            : !isAuthenticated ? <Navigate to="/auth" /> : <AssignmentsPage />} />
-          <Route path="/reset-password" element={isAuthenticated ? <Navigate to="/" /> : <ResetPWD />} />
+            : isAuthenticated ? <Navigate to={`/${useAuthStore.getState().role}/dashboard`} /> : <AuthPage />} />
+          <Route path="/profile" element={<ProtectedRoute element={<ProfileSection />} />} />
+          
+          <Route path="/mentor/dashboard" element={<ProtectedRoute requiredRole="mentor" element={<MentorDashboard />} />} />
+          <Route path="/mentor/quizzes" element={<ProtectedRoute requiredRole="mentor" element={<MentorQuizzes />} />} />
+          <Route path="/mentor/quizzes/create" element={<ProtectedRoute requiredRole="mentor" element={<MentorQuizCreate />} />} />
+          <Route path="/mentor/quizzes/:quizId/results" element={<ProtectedRoute requiredRole="mentor" element={<MentorQuizResults />} />} />
+          <Route path="/mentor/assignments" element={<ProtectedRoute requiredRole="mentor" element={<MentorAssignments />} />} />
+          <Route path="/mentor/assignments/create" element={<ProtectedRoute requiredRole="mentor" element={<MentorAssignmentCreate />} />} />
+          <Route path="/mentor/assignments/:assignmentId/submissions" element={<ProtectedRoute requiredRole="mentor" element={<MentorAssignmentSubmissions />} />} />
+
+          <Route path="/mentee/dashboard" element={<ProtectedRoute requiredRole="mentee" element={<MenteeDashboard />} />} />
+          <Route path="/mentee/quizzes" element={<ProtectedRoute requiredRole="mentee" element={<MenteeQuizzes />} />} />
+          <Route path="/mentee/quizzes/:quizId/attempt" element={<ProtectedRoute requiredRole="mentee" element={<MenteeQuizAttempt />} />} />
+          <Route path="/mentee/quizzes/:quizId/result" element={<ProtectedRoute requiredRole="mentee" element={<MenteeQuizResult />} />} />
+          <Route path="/mentee/assignments" element={<ProtectedRoute requiredRole="mentee" element={<MenteeAssignments />} />} />
+          <Route path="/mentee/assignments/:assignmentId/submit" element={<ProtectedRoute requiredRole="mentee" element={<MenteeAssignmentSubmit />} />} />
+
+          <Route path="/reset-password" element={isAuthenticated ? <Navigate to={`/${useAuthStore.getState().role}/dashboard`} /> : <ResetPWD />} />
         </Route>
       </Routes>
     </BrowserRouter>

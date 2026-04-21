@@ -9,7 +9,7 @@ import useSmoothScroll from "../hooks/useSmoothScroll";
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, role } = useAuthStore();
   const scroll = useSmoothScroll();
 
   useEffect(() => {
@@ -69,13 +69,19 @@ const NavBar = () => {
               {isAuthenticated ? (
                 <>
                   <Link
-                    to="/assignments"
+                    to={`/${role || 'mentee'}/dashboard`}
+                    className="text-zinc-300 hover:text-neon text-sm font-medium transition-colors"
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    to={`/${role || 'mentee'}/assignments`}
                     className="text-zinc-300 hover:text-neon text-sm font-medium transition-colors"
                   >
                     Assignments
                   </Link>
                   <Link
-                    to="/quiz"
+                    to={`/${role || 'mentee'}/quizzes`}
                     className="text-zinc-300 hover:text-neon text-sm font-medium transition-colors"
                   >
                     Quizzes
@@ -142,14 +148,21 @@ const NavBar = () => {
             {isAuthenticated ? (
               <>
                 <Link
-                  to="/assignments"
+                  to={`/${role || 'mentee'}/dashboard`}
+                  onClick={() => setIsOpen(false)}
+                  className="text-lg font-medium text-zinc-300 hover:text-neon transition-colors"
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  to={`/${role || 'mentee'}/assignments`}
                   onClick={() => setIsOpen(false)}
                   className="text-lg font-medium text-zinc-300 hover:text-neon transition-colors"
                 >
                   Assignments
                 </Link>
                 <Link
-                  to="/quiz"
+                  to={`/${role || 'mentee'}/quizzes`}
                   onClick={() => setIsOpen(false)}
                   className="text-lg font-medium text-zinc-300 hover:text-neon transition-colors"
                 >
