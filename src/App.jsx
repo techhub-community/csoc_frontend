@@ -9,10 +9,12 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import { Navigate } from "react-router-dom";
 import ResetPWD from "./pages/ResetPWD";
 import LoadingScreen from "./pages/LoadingPage";
+import QuizPage from "./pages/QuizPage";
+import AssignmentsPage from "./pages/AssignmentsPage";
 
 function App() {
   const [token, ] = useLocalStorage("token", null);
-  const { loading, setTeam, isAuthenticated, setIsAuthenticated, setPendings, setData, setInvite, setType, setProgram, setSuggestions } = useAuthStore();
+  const { loading, setRole, setTeam, isAuthenticated, setIsAuthenticated, setPendings, setData, setInvite, setType, setProgram, setSuggestions } = useAuthStore();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,6 +38,7 @@ function App() {
         }
 
         setType(data.type);
+        setRole(data.role || "mentee");
         setTeam(data.team);
         setInvite(data.invite);
         setProgram(data.program);
@@ -61,6 +64,10 @@ function App() {
             : isAuthenticated ? <Navigate to="/profile" /> : <AuthPage />} />
           <Route path="/profile" element={loading ? <LoadingScreen />
             : !isAuthenticated ? <Navigate to="/auth" /> : <ProfileSection />} />
+          <Route path="/quiz" element={loading ? <LoadingScreen />
+            : !isAuthenticated ? <Navigate to="/auth" /> : <QuizPage />} />
+          <Route path="/assignments" element={loading ? <LoadingScreen />
+            : !isAuthenticated ? <Navigate to="/auth" /> : <AssignmentsPage />} />
           <Route path="/reset-password" element={isAuthenticated ? <Navigate to="/" /> : <ResetPWD />} />
         </Route>
       </Routes>

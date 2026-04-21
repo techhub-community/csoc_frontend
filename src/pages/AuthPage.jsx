@@ -27,7 +27,7 @@ const AuthPage = () => {
   
   const navigate = useNavigate();
   const [, setToken] = useLocalStorage("token", null);
-  const { setIsAuthenticated, setData, setInvite, setType, setTeam, setPendings, setProgram, setSuggestions } = useAuthStore();
+  const { setIsAuthenticated, setData, setInvite, setType, setTeam, setPendings, setProgram, setSuggestions, setRole } = useAuthStore();
 
   const [loginData, setLoginData] = useState({
     password: '',
@@ -40,7 +40,8 @@ const AuthPage = () => {
     mobile: '',
     email: '',
     name: '',
-    usn: ''
+    usn: '',
+    role: 'mentee'
   });
 
   useEffect(() => {
@@ -103,8 +104,9 @@ const AuthPage = () => {
         email: ''
       });
 
-      const { name, props, about, verified, token, invite, type, team, pendings, program, suggestions, usn } = data;
+      const { name, props, about, verified, token, invite, type, team, pendings, program, suggestions, usn, role } = data;
       setData(name, loginData.email, about, props, verified, usn);
+      setRole(role || "mentee");
       setSuggestions(suggestions);
       setIsAuthenticated(true);
       setPendings(pendings);
@@ -162,7 +164,8 @@ const AuthPage = () => {
         mobile: '',
         email: '',
         name: '',
-        usn: ''
+        usn: '',
+        role: 'mentee'
       });
 
       alert(data.message);
@@ -240,7 +243,7 @@ const AuthPage = () => {
             </button>
           </div>
           {
-            selectedForm === 'register' && <div className="mb-4 p-4 bg-green-100 text-green-900 rounded-lg shadow-lg flex items-center space-x-4 transform transition-transform duration-300 ease-out">
+            selectedForm === 'register' && registerData.role === 'mentee' && <div className="mb-4 p-4 bg-green-100 text-green-900 rounded-lg shadow-lg flex items-center space-x-4 transform transition-transform duration-300 ease-out">
               <div className="flex-1">
                 <p className="text-sm">
                   Data Structures and Algorithms (DSA) is included for all participants registering for this program.
@@ -332,6 +335,7 @@ const AuthPage = () => {
                     <AiOutlineMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                   </div>
                 </div>
+                {registerData.role === 'mentee' && (
                 <div className="mb-4">
                   <label className="block text-zinc-100 text-sm font-bold mb-2">Enter your USN</label>
                   <div className="relative">
@@ -345,6 +349,7 @@ const AuthPage = () => {
                     <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                   </div>
                 </div>
+                )}
                 <div className="mb-4">
                   <label className="block text-zinc-100 text-sm font-bold mb-2">Select a program</label>
                   <div className="relative">
@@ -359,6 +364,24 @@ const AuthPage = () => {
                       <option value="web">Web Development</option>
                       <option value="app">App Development</option>
                       <option value="dsa">Data Structures & Algorithm</option>
+                      <option value="aiml">AI & Machine Learning</option>
+                      <option value="uiux">UI/UX Design</option>
+                    </select>
+                    <CiViewList className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <label className="block text-zinc-100 text-sm font-bold mb-2">Register as</label>
+                  <div className="relative">
+                    <select
+                      name="role"
+                      disabled={Boolean(fixedEmail)}
+                      className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                      value={registerData.role}
+                      onChange={(e) => setRegisterData({ ...registerData, role: e.target.value })}
+                    >
+                      <option value="mentee">Mentee</option>
+                      <option value="mentor">Mentor</option>
                     </select>
                     <CiViewList className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                   </div>

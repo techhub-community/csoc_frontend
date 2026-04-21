@@ -69,6 +69,18 @@ const NavBar = () => {
               {isAuthenticated ? (
                 <>
                   <Link
+                    to="/assignments"
+                    className="text-zinc-300 hover:text-neon text-sm font-medium transition-colors"
+                  >
+                    Assignments
+                  </Link>
+                  <Link
+                    to="/quiz"
+                    className="text-zinc-300 hover:text-neon text-sm font-medium transition-colors"
+                  >
+                    Quizzes
+                  </Link>
+                  <Link
                     to="/profile"
                     className="text-zinc-300 hover:text-neon text-sm font-medium transition-colors"
                   >
@@ -129,6 +141,20 @@ const NavBar = () => {
           <div className="pt-4 mt-2 border-t border-zinc-800 flex flex-col space-y-4">
             {isAuthenticated ? (
               <>
+                <Link
+                  to="/assignments"
+                  onClick={() => setIsOpen(false)}
+                  className="text-lg font-medium text-zinc-300 hover:text-neon transition-colors"
+                >
+                  Assignments
+                </Link>
+                <Link
+                  to="/quiz"
+                  onClick={() => setIsOpen(false)}
+                  className="text-lg font-medium text-zinc-300 hover:text-neon transition-colors"
+                >
+                  Quizzes
+                </Link>
                 <Link
                   to="/profile"
                   onClick={() => setIsOpen(false)}
