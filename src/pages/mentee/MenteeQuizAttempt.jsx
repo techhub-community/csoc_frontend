@@ -19,10 +19,23 @@ const MenteeQuizAttempt = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
+        // 1. Start the quiz first
+        const startRes = await fetch(`${baseUrl}/quiz/${quizId}/start`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token })
+        });
+        
+        const startData = await startRes.json();
+        if (!startRes.ok && startData.error !== 'Already started') {
+          throw new Error(startData.error || "Failed to start quiz");
+        }
+
+        // 2. Fetch the questions
         const res = await fetch(`${baseUrl}/quiz/${quizId}/questions?token=${token}`);
         if (!res.ok) throw new Error("Failed to load quiz questions");
         const data = await res.json();
-        setQuestions(data);
+        setQuestions(data.questions); // The backend returns { title, questions }
       } catch (err) {
         setError(err.message);
       } finally {

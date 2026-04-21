@@ -13,25 +13,51 @@ const MentorAssignmentSubmissions = () => {
   const [error, setError] = useState("");
   const [token] = useLocalStorage("token", null);
 
+  const fetchSubmissions = async () => {
+    try {
+      const res = await fetch(`${baseUrl}/assignment/${assignmentId}/submissions?token=${token}`);
+      if (!res.ok) throw new Error("Failed to load submissions");
+      const data = await res.json();
+      setSubmissions(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchSubmissions = async () => {
-      try {
-        const res = await fetch(`${baseUrl}/assignment/${assignmentId}/submissions?token=${token}`);
-        if (!res.ok) throw new Error("Failed to load submissions");
-        const data = await res.json();
-        setSubmissions(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchSubmissions();
+    if (token) fetchSubmissions();
   }, [assignmentId, token]);
 
-  const handleGradeSubmit = (e, submissionId) => {
+  const handleGradeSubmit = async (e, submissionId) => {
     e.preventDefault();
-    alert(`Grade submitted for submission ${submissionId}. Requires backend API update to persist.`);
+    const formData = new FormData(e.target);
+    const grade = formData.get('grade');
+    const remarks = formData.get('remarks');
+
+    if (!grade && !remarks) {
+      alert("Please provide a grade or remark");
+      return;
+    }
+
+    try {
+      const res = await fetch(`${baseUrl}/assignment/${assignmentId}/submissions/${submissionId}/grade`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, grade, remarks })
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to submit grade");
+
+      alert("Grade saved successfully!");
+      // Refresh submissions to show new grades
+      fetchSubmissions();
+      e.target.reset();
+    } catch (err) {
+      alert("Error saving grade: " + err.message);
+    }
   };
 
   return (
@@ -82,39 +108,54 @@ const MentorAssignmentSubmissions = () => {
                       </span>
                     </div>
 
-                    <div className="space-y-4 mb-6">
-                      {sub.github_link && (
-                        <div>
-                          <p className="text-sm text-zinc-400 font-semibold mb-1">Submission Link:</p>
-                          <a href={sub.github_link} target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300 break-all text-sm">
-                            {sub.github_link}
-                          </a>
+                    <div className="space-y-4 mb-6 text-sm bg-zinc-950 border border-zinc-800 p-4 rounded-lg">
+                      <div className="flex gap-4">
+                        <div className="font-bold text-zinc-300 w-24">Link:</div>
+                        <div className="flex-1">
+                          {sub.github_link ? (
+                            <a href={sub.github_link} target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300 break-all">
+                              {sub.github_link}
+                            </a>
+                          ) : <span className="text-zinc-600 italic">None provided</span>}
                         </div>
-                      )}
-                      
-                      {sub.text_answer && (
-                        <div>
-                          <p className="text-sm text-zinc-400 font-semibold mb-1">Text Response:</p>
-                          <div className="bg-zinc-950 border border-zinc-800 p-3 rounded text-sm text-zinc-300 whitespace-pre-wrap">
-                            {sub.text_answer}
-                          </div>
+                      </div>
+                      <div className="flex gap-4">
+                        <div className="font-bold text-zinc-300 w-24">Text:</div>
+                        <div className="flex-1 text-zinc-400 whitespace-pre-wrap">
+                          {sub.text_answer ? sub.text_answer : <span className="text-zinc-600 italic">None provided</span>}
                         </div>
-                      )}
+                      </div>
+                      <div className="flex gap-4">
+                        <div className="font-bold text-zinc-300 w-24 text-green-500">Cur. Grade:</div>
+                        <div className="flex-1 text-zinc-300 font-bold">
+                          {sub.grade ? <span className="text-neon">{sub.grade}</span> : <span className="text-zinc-600 italic">Not graded</span>}
+                        </div>
+                      </div>
+                      <div className="flex gap-4">
+                        <div className="font-bold text-zinc-300 w-24 text-green-500">Remarks:</div>
+                        <div className="flex-1 text-zinc-400">
+                          {sub.remarks ? sub.remarks : <span className="text-zinc-600 italic">None</span>}
+                        </div>
+                      </div>
                     </div>
 
                     <form className="border-t border-zinc-800 pt-4" onSubmit={(e) => handleGradeSubmit(e, sub.submission_id)}>
-                      <h4 className="text-sm font-bold text-white mb-3">Grade & Feedback</h4>
+                      <h4 className="text-sm font-bold text-white mb-3">Update Grade & Feedback</h4>
                       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                         <div className="md:col-span-1">
                           <input 
+                            name="grade"
                             type="text" 
+                            defaultValue={sub.grade || ""}
                             placeholder="Grade (e.g., A, 95/100)" 
                             className="w-full px-3 py-2 bg-zinc-800 text-white border border-zinc-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-sm"
                           />
                         </div>
                         <div className="md:col-span-2">
                           <input 
+                            name="remarks"
                             type="text" 
+                            defaultValue={sub.remarks || ""}
                             placeholder="Remarks / Feedback..." 
                             className="w-full px-3 py-2 bg-zinc-800 text-white border border-zinc-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-sm"
                           />
@@ -122,9 +163,9 @@ const MentorAssignmentSubmissions = () => {
                         <div className="md:col-span-1">
                           <button 
                             type="submit" 
-                            className="w-full bg-neon text-zinc-950 font-bold py-2 rounded hover:bg-green-400 transition-colors"
+                            className="w-full bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white font-bold py-2 rounded transition-colors"
                           >
-                            Save Grade
+                            Save Updates
                           </button>
                         </div>
                       </div>

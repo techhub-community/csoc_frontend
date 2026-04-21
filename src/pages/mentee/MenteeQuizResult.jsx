@@ -1,53 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { baseUrl } from '../../data/consts';
 import { useParams, Link } from 'react-router-dom';
 import { IoArrowBack } from 'react-icons/io5';
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai';
 
 const MenteeQuizResult = () => {
   const { quizId } = useParams();
+  const [token] = useLocalStorage("token", null);
   const [loading, setLoading] = useState(true);
   const [resultData, setResultData] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    // Simulate an API call to fetch quiz results since backend endpoint is pending
-    const loadDummyData = () => {
-      setTimeout(() => {
-        setResultData({
-          total_score: 8,
-          max_score: 10,
-          questions: [
-            {
-              question_id: 1,
-              question_text: "What does HTML stand for?",
-              option_a: "Hyper Text Markup Language",
-              option_b: "High Text Markup Language",
-              option_c: "Hyper Tabular Markup Language",
-              option_d: "None of these",
-              selected_option: "a",
-              correct_option: "a",
-              is_correct: true
-            },
-            {
-              question_id: 2,
-              question_text: "Which property is used to change the background color in CSS?",
-              option_a: "color",
-              option_b: "bgcolor",
-              option_c: "background-color",
-              option_d: "bg-color",
-              selected_option: "b",
-              correct_option: "c",
-              is_correct: false
-            }
-          ]
-        });
+    const fetchResult = async () => {
+      try {
+        const res = await fetch(`${baseUrl}/quiz/${quizId}/result?token=${token}`);
+        if (!res.ok) {
+          const data = await res.json();
+          throw new Error(data.error || "Failed to fetch quiz result");
+        }
+        const data = await res.json();
+        setResultData(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
         setLoading(false);
-      }, 1000);
+      }
     };
 
-    loadDummyData();
-  }, [quizId]);
+    if (token) fetchResult();
+  }, [quizId, token]);
 
   if (loading) {
     return (

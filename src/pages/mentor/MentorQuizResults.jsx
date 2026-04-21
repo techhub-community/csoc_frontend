@@ -1,35 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { baseUrl } from '../../data/consts';
 import { useParams, Link } from 'react-router-dom';
 import { IoArrowBack } from 'react-icons/io5';
 
 const MentorQuizResults = () => {
   const { quizId } = useParams();
+  const [token] = useLocalStorage("token", null);
   const [loading, setLoading] = useState(true);
   const [results, setResults] = useState([]);
+  const [error, setError] = useState("");
+  // Backend doesn't return quiz details in standard attempts endpoint, so we fetch quiz list to get max score and title
   const [quizDetails, setQuizDetails] = useState({ title: 'Loading...', total_questions: 0 });
 
   useEffect(() => {
-    // Simulate an API call to fetch quiz results since backend endpoint is pending
-    const loadDummyData = () => {
-      setTimeout(() => {
-        setQuizDetails({
-          title: 'Advanced Web Development Quiz',
-          total_questions: 10
-        });
-        
-        setResults([
-          { attempt_id: 1, mentee_name: 'Alice Smith', mentee_email: 'alice@example.com', total_score: 8, submitted_at: new Date().toISOString() },
-          { attempt_id: 2, mentee_name: 'Bob Jones', mentee_email: 'bob@example.com', total_score: 10, submitted_at: new Date().toISOString() },
-          { attempt_id: 3, mentee_name: 'Charlie Doe', mentee_email: 'charlie@example.com', total_score: 4, submitted_at: new Date().toISOString() },
+    const fetchAttemptsAndQuiz = async () => {
+      try {
+        const [attemptsRes, quizzesRes] = await Promise.all([
+          fetch(`${baseUrl}/quiz/${quizId}/attempts?token=${token}`),
+          fetch(`${baseUrl}/quiz/list?token=${token}`)
         ]);
-        setLoading(false);
-      }, 1000);
-    };
 
-    loadDummyData();
-  }, [quizId]);
+        if (!attemptsRes.ok) throw new Error("Failed to load attempts");
+        const attemptsData = await attemptsRes.json();
+        setResults(attemptsData);
+
+        if (quizzesRes.ok) {
+          const quizzes = await quizzesRes.json();
+          const targetQuiz = quizzes.find(q => q.quiz_id === Number(quizId));
+          if (targetQuiz) {
+            setQuizDetails({
+              title: targetQuiz.title,
+              total_questions: targetQuiz.question_count // which maps to max_score roughly if marks=1
+            });
+          }
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (token) fetchAttemptsAndQuiz();
+  }, [quizId, token]);
 
   return (
     <>
