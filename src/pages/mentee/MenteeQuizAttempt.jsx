@@ -19,16 +19,16 @@ const MenteeQuizAttempt = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        // 1. Start the quiz first
+        // 1. Start the quiz (creates the attempt row; ok if already started)
         const startRes = await fetch(`${baseUrl}/quiz/${quizId}/start`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ token })
         });
-        
         const startData = await startRes.json();
-        if (!startRes.ok && startData.error !== 'Already started') {
-          throw new Error(startData.error || "Failed to start quiz");
+        // 201 = freshly started, 200 = already started — both are fine
+        if (!startRes.ok && startData.message !== 'Already started') {
+          throw new Error(startData.error || 'Failed to start quiz');
         }
 
         // 2. Fetch the questions
@@ -63,13 +63,15 @@ const MenteeQuizAttempt = () => {
     setError("");
 
     try {
-      // API expects questions: [{question_id, selected_option}]
+      // Backend expects answers as an object: { "question_id": "selected_option" }
+      const answersMap = {};
+      Object.entries(answers).forEach(([qId, opt]) => {
+        answersMap[qId] = opt;
+      });
+
       const payload = {
         token,
-        answers: Object.entries(answers).map(([qId, opt]) => ({
-          question_id: parseInt(qId),
-          selected_option: opt
-        }))
+        answers: answersMap
       };
 
       const res = await fetch(`${baseUrl}/quiz/${quizId}/submit`, {
