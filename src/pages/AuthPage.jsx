@@ -41,6 +41,7 @@ const AuthPage = () => {
     email: '',
     name: '',
     usn: '',
+    mentor_key: '',
     role: 'mentee'
   });
 
@@ -127,6 +128,11 @@ const AuthPage = () => {
   async function handleRegisterSubmit() {
     if (calling) return;
 
+    if (registerData.role === 'mentor' && !registerData.mentor_key) {
+      alert('Mentor Access Key is required');
+      return;
+    }
+
     if (registerData.password !== confPass) {
       alert('Passwords do not match');
       return;
@@ -165,6 +171,7 @@ const AuthPage = () => {
         email: '',
         name: '',
         usn: '',
+        mentor_key: '',
         role: 'mentee'
       });
 
@@ -335,7 +342,7 @@ const AuthPage = () => {
                     <AiOutlineMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                   </div>
                 </div>
-                {registerData.role === 'mentee' && (
+                {registerData.role === 'mentee' ? (
                 <div className="mb-4">
                   <label className="block text-zinc-100 text-sm font-bold mb-2">Enter your USN</label>
                   <div className="relative">
@@ -347,6 +354,20 @@ const AuthPage = () => {
                       className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
                     <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
+                  </div>
+                </div>
+                ) : (
+                <div className="mb-4">
+                  <label className="block text-zinc-100 text-sm font-bold mb-2">Mentor Access Key</label>
+                  <div className="relative">
+                    <input
+                      type="password"
+                      placeholder="Enter Mentor Secret Key"
+                      value={registerData.mentor_key}
+                      onChange={(e) => setRegisterData({ ...registerData, mentor_key: e.target.value })}
+                      className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                    />
+                    <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
                   </div>
                 </div>
                 )}
