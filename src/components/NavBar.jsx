@@ -52,7 +52,7 @@ const NavBar = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-1 lg:space-x-4">
+          <div className="hidden lg:flex items-center space-x-1 xl:space-x-4">
             {navLinks.map((link) => (
               <a
                 key={link.id}
@@ -106,7 +106,7 @@ const NavBar = () => {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               className="text-zinc-300 hover:text-neon transition-colors p-2 focus:outline-none"
               onClick={() => setIsOpen(!isOpen)}
@@ -120,7 +120,7 @@ const NavBar = () => {
 
       {/* Mobile Nav Dropdown */}
       <div 
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
           isOpen ? "max-h-[500px] opacity-100 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-xl mt-3" : "max-h-0 opacity-0"
         }`}
       >
