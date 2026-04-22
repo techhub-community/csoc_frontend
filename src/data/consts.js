@@ -3,4 +3,4 @@ export const baseUrl = window.location.protocol === "https:"
 
 export const programLabels = { web: "Web Development", app: "App Development", dsa: "Data Structures & Algorithms", aiml: "AI & Machine Learning", uiux: "UI/UX Design" };
 
-export const isMaintenanceMode = true; // Global maintenance toggle
+export const isMaintenanceMode = false; // Global maintenance toggle
