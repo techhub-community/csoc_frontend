@@ -117,7 +117,11 @@ const AuthPage = () => {
       setTeam(team);
       setType(type);
 
-      navigate('/profile');
+      if ((role || "mentee") === "mentee") {
+        navigate('/mentee/welcome');
+      } else {
+        navigate('/profile');
+      }
     } catch (error) {
       console.error("Error logging in:", error);
     } finally {

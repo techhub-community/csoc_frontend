@@ -23,6 +23,7 @@ import MenteeQuizAttempt from "./pages/mentee/MenteeQuizAttempt";
 import MenteeQuizResult from "./pages/mentee/MenteeQuizResult";
 import MenteeAssignments from "./pages/mentee/MenteeAssignments";
 import MenteeAssignmentSubmit from "./pages/mentee/MenteeAssignmentSubmit";
+import MenteeWelcome from "./pages/mentee/MenteeWelcome";
 
 const ProtectedRoute = ({ element, requiredRole }) => {
   const { loading, isAuthenticated, role } = useAuthStore();
@@ -100,6 +101,7 @@ function App() {
           <Route path="/mentee/quizzes/:quizId/result" element={<ProtectedRoute requiredRole="mentee" element={<MenteeQuizResult />} />} />
           <Route path="/mentee/assignments" element={<ProtectedRoute requiredRole="mentee" element={<MenteeAssignments />} />} />
           <Route path="/mentee/assignments/:assignmentId/submit" element={<ProtectedRoute requiredRole="mentee" element={<MenteeAssignmentSubmit />} />} />
+          <Route path="/mentee/welcome" element={<ProtectedRoute requiredRole="mentee" element={<MenteeWelcome />} />} />
 
           <Route path="/reset-password" element={isAuthenticated ? <Navigate to={`/${useAuthStore.getState().role}/dashboard`} /> : <ResetPWD />} />
         </Route>
