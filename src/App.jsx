@@ -84,7 +84,7 @@ function App() {
         <Route path="/">
           <Route index element={<LandingPage />} />
           <Route path="/auth" element={loading ? <LoadingScreen />
-            : isAuthenticated ? <Navigate to={`/${useAuthStore.getState().role}/dashboard`} /> : <AuthPage />} />
+            : isAuthenticated ? <Navigate to={(useAuthStore.getState().role || "mentee") === "mentee" ? "/mentee/welcome" : `/${useAuthStore.getState().role}/dashboard`} /> : <AuthPage />} />
           <Route path="/profile" element={<ProtectedRoute element={<ProfileSection />} />} />
           
           <Route path="/mentor/dashboard" element={<ProtectedRoute requiredRole="mentor" element={<MentorDashboard />} />} />
