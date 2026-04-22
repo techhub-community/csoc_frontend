@@ -40,8 +40,10 @@ const MentorQuizzes = () => {
 
     try {
       // Trying standard delete endpoint based on list endpoint
-      const res = await fetch(`${baseUrl}/quiz/delete?token=${token}&quiz_id=${quizId}`, {
+      const res = await fetch(`${baseUrl}/quiz/${quizId}`, {
         method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token }),
       });
       
       if (!res.ok) {
