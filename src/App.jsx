@@ -2,8 +2,8 @@ import AuthPage from "./pages/AuthPage";
 import LandingPage from "./pages/LandingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProfileSection from "./pages/ProfilePage";
-import { useEffect } from "react";
-import { baseUrl } from "./data/consts"
+import { useEffect, useState } from "react";
+import { baseUrl, isMaintenanceMode } from "./data/consts"
 import useAuthStore from "./hooks/useAuthStore";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { Navigate } from "react-router-dom";
@@ -37,8 +37,7 @@ const ProtectedRoute = ({ element, requiredRole }) => {
 };
 
 function App() {
-  const isMaintenanceMode = true; // Set to true to enable maintenance page
-  const hasDevAccess = localStorage.getItem("dev_access") === "7019210110";
+  const [hasDevAccess, setHasDevAccess] = useState(false);
   const [token,] = useLocalStorage("token", null);
   const { loading, setRole, setTeam, isAuthenticated, setIsAuthenticated, setPendings, setData, setInvite, setType, setProgram, setSuggestions } = useAuthStore();
 
@@ -82,7 +81,7 @@ function App() {
   }, []);
 
   if (isMaintenanceMode && !hasDevAccess) {
-    return <Maintenance />;
+    return <Maintenance onDevAccess={() => setHasDevAccess(true)} />;
   }
 
   return (
