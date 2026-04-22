@@ -38,6 +38,7 @@ const ProtectedRoute = ({ element, requiredRole }) => {
 
 function App() {
   const isMaintenanceMode = true; // Set to true to enable maintenance page
+  const hasDevAccess = localStorage.getItem("dev_access") === "7019210110";
   const [token, ] = useLocalStorage("token", null);
   const { loading, setRole, setTeam, isAuthenticated, setIsAuthenticated, setPendings, setData, setInvite, setType, setProgram, setSuggestions } = useAuthStore();
 
@@ -80,8 +81,8 @@ function App() {
     fetchData().then();
   }, []);
 
-  if (isMaintenanceMode) {
-    return <Maintenance whatsappLink="https://chat.whatsapp.com/ExVf89jR1L5H2J8W6Y9Z3a" />;
+  if (isMaintenanceMode && !hasDevAccess) {
+    return <Maintenance />;
   }
 
   return (

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaScrewdriverWrench, FaWhatsapp, FaPlay, FaRotateRight } from 'react-icons/fa6';
+import { FaScrewdriverWrench, FaWhatsapp, FaPlay, FaRotateRight, FaTerminal } from 'react-icons/fa6';
 
 const Maintenance = () => {
-    const whatsappLink = "https://chat.whatsapp.com/FqBUxIT8kuT7s46Qx31OTP?mode=gi_t";
+    const whatsappLink = "https://chat.whatsapp.com/--sanitized-S228802--?mode=gi_t&lang=en";
     const [gameStarted, setGameStarted] = useState(false);
     const [gameOver, setGameOver] = useState(false);
     const [score, setScore] = useState(0);
@@ -139,6 +139,16 @@ const Maintenance = () => {
         });
     };
 
+    const handleDevAccess = () => {
+        const key = prompt("Please enter the developer access key:");
+        if (key === "7019210110") {
+            localStorage.setItem("dev_access", "7019210110");
+            window.location.reload();
+        } else if (key !== null) {
+            alert("Invalid dev key!");
+        }
+    };
+
     useEffect(() => {
         if (gameStarted && !gameOver) {
             requestRef.current = requestAnimationFrame(update);
@@ -247,6 +257,15 @@ const Maintenance = () => {
                     <div className="w-2 h-2 rounded-full bg-primary-500/50"></div>
                 </div>
             </div>
+
+            {/* Developer Access Button */}
+            <button 
+                onClick={handleDevAccess}
+                className="fixed bottom-8 right-8 w-14 h-14 bg-zinc-900 border-2 border-neon/50 text-neon rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-xl z-[9999] shadow-[0_0_20px_rgba(57,255,20,0.2)] animate-pulse hover:animate-none hover:scale-110"
+                title="Dev Access"
+            >
+                <FaTerminal size={24} />
+            </button>
 
             {/* Custom Styles */}
             <style dangerouslySetInnerHTML={{ __html: `
