@@ -6,7 +6,14 @@ const Maintenance = ({ onDevAccess }) => {
     const [gameStarted, setGameStarted] = useState(false);
     const [gameOver, setGameOver] = useState(false);
     const [score, setScore] = useState(0);
-    const [highScore, setHighScore] = useState(localStorage.getItem('dinoHighScore') || 0);
+    const [highScore, setHighScore] = useState(() => {
+        try {
+            return localStorage.getItem('dinoHighScore') || 0;
+        } catch (error) {
+            console.warn('Error reading dinoHighScore from localStorage:', error);
+            return 0;
+        }
+    });
     
     const canvasRef = useRef(null);
     const requestRef = useRef();
@@ -99,7 +106,11 @@ const Maintenance = ({ onDevAccess }) => {
                 setGameOver(true);
                 if (score > highScore) {
                     setHighScore(score);
-                    localStorage.setItem('dinoHighScore', score);
+                    try {
+                        localStorage.setItem('dinoHighScore', score);
+                    } catch (error) {
+                        console.warn('Error setting dinoHighScore to localStorage:', error);
+                    }
                 }
             }
             if (obstacles[i].x + obstacles[i].width < 0) {
