@@ -24,6 +24,9 @@ import MenteeQuizResult from "./pages/mentee/MenteeQuizResult";
 import MenteeAssignments from "./pages/mentee/MenteeAssignments";
 import MenteeAssignmentSubmit from "./pages/mentee/MenteeAssignmentSubmit";
 import MenteeWelcome from "./pages/mentee/MenteeWelcome";
+import MaintenancePage from "./pages/MaintenancePage";
+
+const IS_MAINTENANCE_MODE = true;
 
 const ProtectedRoute = ({ element, requiredRole }) => {
   const { loading, isAuthenticated, role } = useAuthStore();
@@ -78,7 +81,9 @@ function App() {
     fetchData().then();
   }, []);
 
-  return (
+  return IS_MAINTENANCE_MODE ? (
+    <MaintenancePage />
+  ) : (
     <BrowserRouter>
       <Routes>
         <Route path="/">
