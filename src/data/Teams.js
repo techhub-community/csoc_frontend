@@ -75,7 +75,7 @@ export const teamMembers = [
     linkedin: "https://linkedin.com/in/Tom",
   }, {
     name: "Nidhi",
-    image: "/image/Nidhi.jpg",
+    image: "Nidhi.jpg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
   }, {
