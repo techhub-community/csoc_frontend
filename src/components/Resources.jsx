@@ -464,11 +464,10 @@ const Resources = () => {
               <button
                 key={domain.id}
                 onClick={() => handleTabChange(domain.id)}
-                className={`relative flex-shrink-0 px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-semibold transition-all duration-300 whitespace-nowrap ${
-                  activeTab === domain.id
+                className={`relative flex-shrink-0 px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-semibold transition-all duration-300 whitespace-nowrap ${activeTab === domain.id
                     ? "text-neon sm:scale-110"
                     : "text-zinc-100 sm:hover:scale-105 hover:text-neon"
-                }`}
+                  }`}
               >
                 {domain.label}
                 {activeTab === domain.id && (
@@ -495,8 +494,8 @@ const Resources = () => {
         {/* Week cards */}
         <div
           className={`transition-all duration-250 ${isTransitioning
-              ? "opacity-0 translate-y-3"
-              : "opacity-100 translate-y-0"
+            ? "opacity-0 translate-y-3"
+            : "opacity-100 translate-y-0"
             }`}
         >
           {activeDomain.weeks.map((weekData, index) => (

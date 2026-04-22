@@ -36,11 +36,10 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled
           ? "bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800 shadow-lg py-3"
           : "bg-zinc-950/0 py-5"
-      }`}
+        }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex justify-between items-center">
@@ -125,10 +124,9 @@ const NavBar = () => {
       </div>
 
       {/* Mobile Nav Dropdown */}
-      <div 
-        className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-[500px] opacity-100 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-xl mt-3" : "max-h-0 opacity-0"
-        }`}
+      <div
+        className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[500px] opacity-100 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-xl mt-3" : "max-h-0 opacity-0"
+          }`}
       >
         <div className="flex flex-col px-6 py-4 space-y-4">
           {navLinks.map((link) => (
@@ -143,7 +141,7 @@ const NavBar = () => {
               {link.name}
             </a>
           ))}
-          
+
           <div className="pt-4 mt-2 border-t border-zinc-800 flex flex-col space-y-4">
             {isAuthenticated ? (
               <>

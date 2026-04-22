@@ -24,22 +24,22 @@ import MenteeQuizResult from "./pages/mentee/MenteeQuizResult";
 import MenteeAssignments from "./pages/mentee/MenteeAssignments";
 import MenteeAssignmentSubmit from "./pages/mentee/MenteeAssignmentSubmit";
 import MenteeWelcome from "./pages/mentee/MenteeWelcome";
-import MaintenancePage from "./pages/MaintenancePage";
-
-const IS_MAINTENANCE_MODE = true;
+import Maintenance from "./pages/Maintenance";
 
 const ProtectedRoute = ({ element, requiredRole }) => {
   const { loading, isAuthenticated, role } = useAuthStore();
   if (loading) return <LoadingScreen />;
   if (!isAuthenticated) return <Navigate to="/auth" />;
   if (requiredRole && role !== requiredRole) {
-    return <Navigate to={`/${role}/dashboard`} />; 
+    return <Navigate to={`/${role}/dashboard`} />;
   }
   return element;
 };
 
 function App() {
-  const [token, ] = useLocalStorage("token", null);
+  const isMaintenanceMode = true; // Set to true to enable maintenance page
+  const hasDevAccess = localStorage.getItem("dev_access") === "7019210110";
+  const [token,] = useLocalStorage("token", null);
   const { loading, setRole, setTeam, isAuthenticated, setIsAuthenticated, setPendings, setData, setInvite, setType, setProgram, setSuggestions } = useAuthStore();
 
   useEffect(() => {
@@ -81,9 +81,11 @@ function App() {
     fetchData().then();
   }, []);
 
-  return IS_MAINTENANCE_MODE ? (
-    <MaintenancePage />
-  ) : (
+  if (isMaintenanceMode && !hasDevAccess) {
+    return <Maintenance />;
+  }
+
+  return (
     <BrowserRouter>
       <Routes>
         <Route path="/">
@@ -91,7 +93,7 @@ function App() {
           <Route path="/auth" element={loading ? <LoadingScreen />
             : isAuthenticated ? <Navigate to={(useAuthStore.getState().role || "mentee") === "mentee" ? "/mentee/welcome" : `/${useAuthStore.getState().role}/dashboard`} /> : <AuthPage />} />
           <Route path="/profile" element={<ProtectedRoute element={<ProfileSection />} />} />
-          
+
           <Route path="/mentor/dashboard" element={<ProtectedRoute requiredRole="mentor" element={<MentorDashboard />} />} />
           <Route path="/mentor/quizzes" element={<ProtectedRoute requiredRole="mentor" element={<MentorQuizzes />} />} />
           <Route path="/mentor/quizzes/create" element={<ProtectedRoute requiredRole="mentor" element={<MentorQuizCreate />} />} />
