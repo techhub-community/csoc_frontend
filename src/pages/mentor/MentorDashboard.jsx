@@ -7,6 +7,7 @@ import { baseUrl } from '../../data/consts';
 import { Link } from 'react-router-dom';
 import { CiCirclePlus } from 'react-icons/ci';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
+import UpcomingSessions from '../../components/UpcomingSessions';
 
 const MentorDashboard = () => {
   const [quizzes, setQuizzes] = useState([]);
@@ -109,6 +110,10 @@ const MentorDashboard = () => {
                 </Link>
               </div>
             </div>
+
+          <div className="mb-8">
+            <UpcomingSessions />
+          </div>
           </div>
 
           {!loading && (

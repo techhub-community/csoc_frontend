@@ -6,6 +6,7 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import { baseUrl } from '../../data/consts';
 import { Link } from 'react-router-dom';
 import { AiOutlineCheckCircle, AiOutlineClockCircle } from 'react-icons/ai';
+import UpcomingSessions from '../../components/UpcomingSessions';
 
 const MenteeDashboard = () => {
   const [quizzes, setQuizzes] = useState([]);
@@ -97,6 +98,10 @@ const MenteeDashboard = () => {
                 </Link>
               </div>
             </div>
+          </div>
+
+          <div className="mb-8">
+            <UpcomingSessions />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
