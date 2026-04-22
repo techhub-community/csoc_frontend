@@ -33,6 +33,28 @@ const MentorQuizzes = () => {
     alert("Active toggle triggered for quiz " + id + ". Requires backend API update.");
   };
 
+  const handleDeleteQuiz = async (quizId) => {
+    if (!window.confirm("Are you sure you want to delete this quiz? This action cannot be undone.")) {
+      return;
+    }
+
+    try {
+      // Trying standard delete endpoint based on list endpoint
+      const res = await fetch(`${baseUrl}/quiz/delete?token=${token}&quiz_id=${quizId}`, {
+        method: 'DELETE',
+      });
+      
+      if (!res.ok) {
+        throw new Error("Failed to delete quiz");
+      }
+      
+      setQuizzes(quizzes.filter((quiz) => quiz.quiz_id !== quizId));
+      alert("Quiz deleted successfully");
+    } catch (err) {
+      alert("Error deleting quiz: " + err.message);
+    }
+  };
+
   return (
     <>
       <NavBar />
@@ -87,12 +109,20 @@ const MentorQuizzes = () => {
                     >
                       Toggle Active
                     </button>
-                    <Link 
-                      to={`/mentor/quizzes/${quiz.quiz_id}/results`}
-                      className="bg-zinc-800 hover:bg-zinc-700 text-white text-sm px-4 py-2 rounded transition-colors"
-                    >
-                      View Results
-                    </Link>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => handleDeleteQuiz(quiz.quiz_id)}
+                        className="bg-red-900/30 text-red-500 hover:bg-red-900/60 text-sm px-4 py-2 rounded transition-colors"
+                      >
+                        Delete
+                      </button>
+                      <Link 
+                        to={`/mentor/quizzes/${quiz.quiz_id}/results`}
+                        className="bg-zinc-800 hover:bg-zinc-700 text-white text-sm px-4 py-2 rounded transition-colors"
+                      >
+                        View Results
+                      </Link>
+                    </div>
                   </div>
                 </div>
               ))}
