@@ -36,12 +36,6 @@ export const teamMembers = [
     linkedin: "https://linkedin.com/in/Tom",
   },
   {
-    name: "Ishan",
-    image: "/Ishan.jpg",
-    github: "https://github.com/Tom",
-    linkedin: "https://linkedin.com/in/Tom",
-  },
-  {
     name: "Ayush",
     image: "/AyushKumar.jpg",
     github: "https://github.com/Tom",
@@ -61,12 +55,12 @@ export const teamMembers = [
   },
   {
     name: "Pragati",
-    image: "/Pragati.jpeg",
+    image: "/bsp.jpeg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
   }, {
     name: "Aman",
-    image: "/Arup.jpg",
+    image: "/Aman.jpeg",
     github: "https://github.com/Tom",
     linkedin: "https://linkedin.com/in/Tom",
   }, {
