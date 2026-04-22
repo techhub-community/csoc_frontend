@@ -13,6 +13,7 @@ const MenteeQuizzes = () => {
   const [activeTab, setActiveTab] = useState('available');
 
   useEffect(() => {
+    if (!token) return;
     const fetchQuizzes = async () => {
       try {
         const res = await fetch(`${baseUrl}/quiz/list?token=${token}`);
@@ -25,7 +26,7 @@ const MenteeQuizzes = () => {
         setLoading(false);
       }
     };
-    if (token) fetchQuizzes();
+    fetchQuizzes();
   }, [token]);
 
   const displayedQuizzes = quizzes.filter(q => activeTab === 'available' ? !q.attempted : q.attempted);
