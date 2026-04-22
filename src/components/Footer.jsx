@@ -12,14 +12,14 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className="bg-black text-white py-8 px-4">
+      <div className="bg-black text-white py-16 px-4">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 place-items-center">
           <div className="company-name w-fit text-center">
-            <h2 className="text-3xl font-bold text-white mb-2">
-              {"<CODESHACK>"}
+            <h2 className="text-3xl font-black text-neon mb-2">
+              {"<CODESHACK/>"}
             </h2>
-            <p className="text-neon">
-              <a href="mailto:codeshackcommunity@gmail.com">
+            <p className="text-zinc-400">
+              <a href="mailto:codeshackcommunity@gmail.com" className="hover:text-neon transition-colors">
                 codeshackcommunity@gmail.com
               </a>
             </p>
@@ -28,29 +28,29 @@ const Footer = () => {
             <div className="useful-links w-fit">
               <h2 className="text-xl font-bold mb-2">Useful Links</h2>
               <ul>
-                <li className="mb-1">
-                  <a onClick={() => scroll("/", "hero")} className="cursor-pointer hover:text-neon">
-                    <b className="text-neon">{"> "}</b>Home
+                <li className="mb-2">
+                  <a onClick={() => scroll("/", "hero")} className="cursor-pointer text-zinc-400 hover:text-neon transition-colors">
+                    Home
                   </a>
                 </li>
-                <li className="mb-1">
-                  <a onClick={() => scroll("/", "about")} className="cursor-pointer hover:text-neon">
-                    <b className="text-neon">{"> "}</b>About Us
+                <li className="mb-2">
+                  <a onClick={() => scroll("/", "about")} className="cursor-pointer text-zinc-400 hover:text-neon transition-colors">
+                    About Us
                   </a>
                 </li>
-                <li className="mb-1">
-                  <a onClick={() => scroll("/", "timeline")} className="cursor-pointer hover:text-neon">
-                    <b className="text-neon">{"> "}</b>Timeline
+                <li className="mb-2">
+                  <a onClick={() => scroll("/", "timeline")} className="cursor-pointer text-zinc-400 hover:text-neon transition-colors">
+                    Timeline
                   </a>
                 </li>
-                <li className="mb-1">
-                  <a onClick={() => scroll("/", "faq")} className="cursor-pointer hover:text-neon">
-                    <b className="text-neon">{"> "}</b>FAQ
+                <li className="mb-2">
+                  <a onClick={() => scroll("/", "faq")} className="cursor-pointer text-zinc-400 hover:text-neon transition-colors">
+                    FAQ
                   </a>
                 </li>
-                <li className="mb-1">
-                  <a onClick={() => scroll("/", "contact")} className="cursor-pointer hover:text-neon">
-                    <b className="text-neon">{"> "}</b>Contact
+                <li className="mb-2">
+                  <a onClick={() => scroll("/", "contact")} className="cursor-pointer text-zinc-400 hover:text-neon transition-colors">
+                    Contact
                   </a>
                 </li>
               </ul>
@@ -66,7 +66,7 @@ const Footer = () => {
                 <li className="mb-1">
                   <a
                     target="_blank" href="https://x.com/_techhub"
-                    className="hover:text-neon flex items-center gap-1"
+                    className="text-zinc-400 hover:text-neon flex items-center gap-1 transition-colors"
                   >
                     <FaTwitter /> Twitter
                   </a>
@@ -111,7 +111,7 @@ const Footer = () => {
                 <li className="mb-1">
                   <a
                     target="_blank" href="https://x.com/glugmvit"
-                    className="hover:text-neon flex items-center gap-1 flex-row-reverse"
+                    className="text-zinc-400 hover:text-neon flex items-center gap-1 flex-row-reverse transition-colors"
                   >
                     <FaTwitter /> Twitter
                   </a>
@@ -152,7 +152,7 @@ const Footer = () => {
             </div>
             <a
               target="_blank" href="https://linktr.ee/CodeShack"
-              className="hover:text-neon border-b-2 border-neon rounded flex items-center font-bold gap-1 mx-auto w-fit mt-3"
+              className="text-neon hover:text-green-400 border-b-2 border-neon font-bold flex items-center gap-2 mx-auto w-fit mt-6 transition-all"
             >
               <SiLinktree /> CodeShack LinkTree
             </a>

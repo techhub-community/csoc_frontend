@@ -24,6 +24,7 @@ import MenteeQuizResult from "./pages/mentee/MenteeQuizResult";
 import MenteeAssignments from "./pages/mentee/MenteeAssignments";
 import MenteeAssignmentSubmit from "./pages/mentee/MenteeAssignmentSubmit";
 import MenteeWelcome from "./pages/mentee/MenteeWelcome";
+import Maintenance from "./pages/Maintenance";
 
 const ProtectedRoute = ({ element, requiredRole }) => {
   const { loading, isAuthenticated, role } = useAuthStore();
@@ -36,6 +37,7 @@ const ProtectedRoute = ({ element, requiredRole }) => {
 };
 
 function App() {
+  const isMaintenanceMode = true; // Set to true to enable maintenance page
   const [token, ] = useLocalStorage("token", null);
   const { loading, setRole, setTeam, isAuthenticated, setIsAuthenticated, setPendings, setData, setInvite, setType, setProgram, setSuggestions } = useAuthStore();
 
@@ -77,6 +79,10 @@ function App() {
 
     fetchData().then();
   }, []);
+
+  if (isMaintenanceMode) {
+    return <Maintenance whatsappLink="https://chat.whatsapp.com/ExVf89jR1L5H2J8W6Y9Z3a" />;
+  }
 
   return (
     <BrowserRouter>

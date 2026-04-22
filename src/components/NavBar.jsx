@@ -39,7 +39,7 @@ const NavBar = () => {
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
           ? "bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800 shadow-lg py-3"
-          : "bg-zinc-950/0 py-5"
+          : "bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">

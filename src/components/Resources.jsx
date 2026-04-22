@@ -315,7 +315,7 @@ const WeekCard = ({ weekData, color, isOpen, toggleOpen, index }) => {
 
   return (
     <div
-      className="relative bg-zinc-900/90 backdrop-blur-md rounded-2xl shadow-2xl mb-6 overflow-hidden transform hover:shadow-3xl transition-all duration-700 animate-card-in"
+      className="relative bg-zinc-950 border border-zinc-800 rounded-2xl shadow-xl mb-6 overflow-hidden transform hover:shadow-neon/20 transition-all duration-700 animate-card-in"
       style={{ animationDelay: `${index * 150}ms` }}
     >
       {/* Header */}
@@ -364,7 +364,7 @@ const WeekCard = ({ weekData, color, isOpen, toggleOpen, index }) => {
               {topics.map((topic, index) => (
                 <li key={index} className="flex items-start">
                   <span className="w-2 h-2 bg-neon rounded-full mt-2 mr-3 transform hover:scale-150 transition-transform"></span>
-                  <span className="text-gray-400">{topic}</span>
+                  <span className="text-zinc-400">{topic}</span>
                 </li>
               ))}
             </ul>
@@ -455,10 +455,10 @@ const Resources = () => {
         <h1 className="text-5xl sm:text-6xl font-extrabold text-center text-white mb-5 tracking-tighter animate-fade-in">
           Resources
         </h1>
-        <p className="text-lg sm:text-xl text-center text-zinc-300 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in">
+        <p className="text-lg sm:text-xl text-center text-zinc-400 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in">
           Embark on a transformative learning journey with expertly curated resources for Web Dev, App Dev, DSA, AI/ML, and UI/UX.
         </p>
-        <div className="sticky top-0 bg-black pt-4 pb-3 z-20">
+        <div className="sticky top-0 bg-black/80 backdrop-blur-md pt-4 pb-3 z-20">
           <div className="flex justify-center flex-wrap gap-2 sm:gap-4">
             {domains.map((domain) => (
               <button
@@ -467,12 +467,12 @@ const Resources = () => {
                 className={`relative flex-shrink-0 px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-semibold transition-all duration-300 whitespace-nowrap ${
                   activeTab === domain.id
                     ? "text-neon sm:scale-110"
-                    : "text-zinc-100 sm:hover:scale-105 hover:text-neon"
+                    : "text-zinc-400 sm:hover:scale-105 hover:text-neon"
                 }`}
               >
                 {domain.label}
                 {activeTab === domain.id && (
-                  <span className="absolute bottom-0 left-0 w-full h-1.5 bg-neon rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
+                   <span className="absolute bottom-0 left-0 w-full h-1.5 bg-neon rounded-full transform scale-x-100 transition-transform duration-300 animate-slide-in"></span>
                 )}
               </button>
             ))}

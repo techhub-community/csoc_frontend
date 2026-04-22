@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply bg-black text-zinc-300;
+  }
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

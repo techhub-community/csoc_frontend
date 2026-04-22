@@ -31,9 +31,9 @@ const Gallery = () => {
   return (
     <section
       id="gallery"
-      className="flex justify-center align-middle sliders-container h-[80vh] bg-green-100"
+      className="flex justify-center align-middle sliders-container h-[80vh] bg-black"
     >
-      <h1 className="text-4xl font-bold py-10 text-center">Gallery</h1>{" "}
+      <h1 className="text-4xl font-bold py-10 text-center text-white">Gallery</h1>{" "}
       {sliders.map((slider) => (
         <Slider
           key={slider.id}

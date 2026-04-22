@@ -4,15 +4,15 @@ export default function Timeline() {
   return (
     <>
       <div id="timeline" className="bg-black">
-        <div className="container px-10 py-10 mx-auto z-1 relative">
-          <h1 className="text-4xl font-bold py-10 text-center text-white">Timeline</h1>
-          <ol className="relative border-s border-gray-200 dark:border-gray-700">
+        <div className="container px-10 py-20 mx-auto z-1 relative">
+          <h1 className="text-4xl font-bold py-10 text-center text-white tracking-tight">Timeline</h1>
+          <ol className="relative border-s border-zinc-800">
             {timelineData.map((data, index) => {
               return (
                 <li key={`${data.title}-${index}`} className="mb-10 relative">
-                  <span className="absolute flex items-center justify-center w-6 h-6 bg-neon rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-neon">
+                  <span className="absolute flex items-center justify-center w-6 h-6 bg-neon rounded-full -left-3 ring-8 ring-zinc-900">
                     <svg
-                      className="w-2.5 h-2.5 text-neon dark:text-neon"
+                      className="w-2.5 h-2.5 text-zinc-950"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
@@ -25,13 +25,13 @@ export default function Timeline() {
                       ></path>
                     </svg>
                   </span>
-                  <h3 className="flex items-center mb-4 ml-8 text-lg font-bold text-white">
+                  <h3 className="flex items-center mb-1 ml-8 text-xl font-bold text-white tracking-tight">
                     {data.title}
                   </h3>
-                  <time className="block ml-10 mb-2 text-sm font-normal leading-none text-gray-400 dark:text-zinc-400">
+                  <time className="block ml-10 mb-2 text-sm font-semibold uppercase tracking-wider text-neon">
                     {data.date}
                   </time>
-                  <p className="mb-4 text-base ml-10 font-normal text-zinc-400 dark:text-gray-400">
+                  <p className="mb-4 text-base ml-10 font-normal text-zinc-400">
                     {data.details}
                   </p>
                 </li>

@@ -43,11 +43,11 @@ img {
 }
 .sliders-container::before {
   left: 0;
-  background-image: linear-gradient(to right, #fab07b, transparent);
+  background-image: linear-gradient(to right, #000, transparent);
 }
 .sliders-container::after {
   right: 0;
-  background-image: linear-gradient(to left, #fab07b, transparent);
+  background-image: linear-gradient(to left, #000, transparent);
 }
 
 .slider {
