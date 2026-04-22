@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaScrewdriverWrench, FaWhatsapp, FaPlay, FaRotateRight, FaTerminal } from 'react-icons/fa6';
 
-const Maintenance = () => {
+const Maintenance = ({ onDevAccess }) => {
     const whatsappLink = "https://chat.whatsapp.com/--sanitized-S228802--?mode=gi_t&lang=en";
     const [gameStarted, setGameStarted] = useState(false);
     const [gameOver, setGameOver] = useState(false);
@@ -142,8 +142,7 @@ const Maintenance = () => {
     const handleDevAccess = () => {
         const key = prompt("Please enter the developer access key:");
         if (key === "7019210110") {
-            localStorage.setItem("dev_access", "7019210110");
-            window.location.reload();
+            onDevAccess();
         } else if (key !== null) {
             alert("Invalid dev key!");
         }
