@@ -100,7 +100,7 @@ const MentorQuizzes = () => {
                     </span>
                   </div>
                   <div className="text-sm text-zinc-400 mb-4 flex-grow">
-                    <p>Created: {new Date(quiz.created_at).toLocaleDateString()}</p>
+                    <p>Created: {new Date(quiz.created_at * 1000).toLocaleDateString()}</p>
                     <p>{quiz.question_count} questions</p>
                     <p className="mt-2 text-neon text-xs">Mentees attempted: ?</p>
                   </div>
