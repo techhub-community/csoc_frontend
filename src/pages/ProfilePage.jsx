@@ -419,15 +419,6 @@ const ProfileSection = () => {
       <div className="min-h-screen flex flex-col items-center bg-zinc-950 p-4 pt-32 pb-10 space-y-6">
         <div className="w-full max-w-lg">
           {
-            verified === 0 && <div className="flex items-center p-4 mb-4 text-sm text-red-400 bg-red-900/20 border border-red-500/30 rounded-lg shadow-lg" role="alert">
-              <AiOutlineWarning className="w-5 h-5 mr-3" />
-              <div>
-                <span className="font-medium">Verify your account by confirming the email sent to your inbox.</span>
-                <p className="mt-1 opacity-75 italic">Check your spam folder also.</p>
-              </div>
-            </div>
-          }
-          {
             invite && <div className="flex items-center p-4 mb-4 text-sm text-neon bg-neon rounded-lg" role="alert">
               <AiOutlineTeam className="w-5 h-5 mr-3" />
               <div className="flex flex-col w-full">
