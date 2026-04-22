@@ -4,7 +4,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 import { AiOutlineWarning, AiOutlineLock, AiOutlineCheck, AiOutlineClose, AiOutlineUser, AiOutlineTeam, AiOutlineCopy } from 'react-icons/ai';
 import useAuthStore from "../hooks/useAuthStore";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { baseUrl } from '../data/consts';
+import { baseUrl, programLabels } from '../data/consts';
 import { useState } from 'react';
 import AutoSuggest from '../components/AutoSuggest';
 
@@ -22,9 +22,7 @@ const ProfileSection = () => {
   const [isCopied, setIsCopied] = useState(false);
   const { name, setName, about, setAbout, type, invite, team, pendings, email, verified, program, suggestions, usn, setUsn, setTeam } = useAuthStore(); 
 
-  const progDetailed = program === "web"
-    ? "Web Development" : program === "app"
-      ? "App Development" : "Data Structures & Algorithm";
+  const progDetailed = programLabels[program] || "Unknown Program";
   
   let t1, t2, t3;
 
