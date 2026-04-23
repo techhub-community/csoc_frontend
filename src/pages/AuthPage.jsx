@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineMail,AiOutlineUser, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { FaWhatsapp } from 'react-icons/fa6';
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { Transition, TransitionChild } from '@headlessui/react';
 import NavBar from "../components/NavBar";
@@ -23,8 +24,10 @@ const AuthPage = () => {
   const [forgotEmail, setForgotEmail] = useState('');
   const [selectedForm, setSelectedForm] = useState('login');
   const [isOpen, setIsForgotPasswordOpen] = useState(false);
+  const [isWhatsAppOpen, setIsWhatsAppOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   
+  const whatsappLink = "https://chat.whatsapp.com/--sanitized-S228802--?mode=gi_t&lang=en";
   const navigate = useNavigate();
   const [, setToken] = useLocalStorage("token", null);
   const { setIsAuthenticated, setData, setInvite, setType, setTeam, setPendings, setProgram, setSuggestions, setRole } = useAuthStore();
@@ -179,7 +182,7 @@ const AuthPage = () => {
         role: 'mentee'
       });
 
-      alert(data.message);
+      setIsWhatsAppOpen(true);
       loginTab.current?.click();
     } catch (error) {
       console.error("Error registering:", error);
@@ -499,6 +502,55 @@ const AuthPage = () => {
                         onClick={handleForgotPWD}
                       >
                         Send Reset Instructions
+                      </button>
+                    </div>
+                  </DialogPanel>
+                </TransitionChild>
+              </div>
+            </div>
+          </Dialog>
+        </Transition>
+
+        <Transition appear show={isWhatsAppOpen}>
+          <Dialog as="div" className="relative z-50 focus:outline-none" onClose={() => setIsWhatsAppOpen(false)}>
+            <div className="fixed inset-0 z-50 w-screen bg-black/80 backdrop-blur-md overflow-y-auto">
+              <div className="flex min-h-full items-center justify-center p-4">
+                <TransitionChild
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <DialogPanel className="w-full max-w-md bg-zinc-900 border border-zinc-800 shadow-2xl rounded-3xl p-8 text-center">
+                    <div className="flex justify-center mb-6">
+                      <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center border-2 border-green-500/20">
+                        <FaWhatsapp className="text-4xl text-green-500 animate-pulse" />
+                      </div>
+                    </div>
+                    <DialogTitle as="h2" className="text-2xl font-bold text-white mb-2">
+                      Registration Successful! 🎉
+                    </DialogTitle>
+                    <p className="text-zinc-400 mb-8 leading-relaxed">
+                      Welcome to the community! Join our WhatsApp group to stay updated with program announcements, session links, and to connect with other participants.
+                    </p>
+                    <div className="space-y-4">
+                      <a
+                        href={whatsappLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-3 w-full py-4 bg-green-600 hover:bg-green-500 text-white font-bold rounded-2xl transition-all duration-300 shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.5)] transform hover:-translate-y-1"
+                      >
+                        <FaWhatsapp size={24} />
+                        Join WhatsApp Community
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => setIsWhatsAppOpen(false)}
+                        className="w-full py-3 text-zinc-500 hover:text-zinc-300 font-medium transition-colors"
+                      >
+                        Maybe Later
                       </button>
                     </div>
                   </DialogPanel>
