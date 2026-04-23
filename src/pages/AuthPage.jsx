@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AiOutlineMail,AiOutlineUser, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { AiOutlineMail, AiOutlineUser, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { FaWhatsapp } from 'react-icons/fa6';
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { Transition, TransitionChild } from '@headlessui/react';
@@ -26,7 +26,7 @@ const AuthPage = () => {
   const [isOpen, setIsForgotPasswordOpen] = useState(false);
   const [isWhatsAppOpen, setIsWhatsAppOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  
+
   const whatsappLink = "https://chat.whatsapp.com/--sanitized-S228802--?mode=gi_t&lang=en";
   const navigate = useNavigate();
   const [, setToken] = useLocalStorage("token", null);
@@ -54,9 +54,9 @@ const AuthPage = () => {
     const prg = params.get("program");
     const optTok = params.get('opt');
     const em = params.get("email");
-    
+
     if (optTok) setOpt(optTok);
-    
+
     if (em) {
       setFixedEmail(em);
       setRegisterData(prevState => ({
@@ -86,7 +86,7 @@ const AuthPage = () => {
 
     try {
       setCalling(true);
-      
+
       const res = await fetch(`${baseUrl}/login`, {
         method: 'POST',
         headers: {
@@ -350,33 +350,33 @@ const AuthPage = () => {
                   </div>
                 </div>
                 {registerData.role === 'mentee' ? (
-                <div className="mb-4">
-                  <label className="block text-zinc-100 text-sm font-bold mb-2">Enter your USN</label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="1MV2XXXXXX"
-                      value={registerData.usn}
-                      onChange={(e) => setRegisterData({ ...registerData, usn: e.target.value })}
-                      className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-                    />
-                    <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
+                  <div className="mb-4">
+                    <label className="block text-zinc-100 text-sm font-bold mb-2">Enter your USN</label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        placeholder="1MV2XXXXXX"
+                        value={registerData.usn}
+                        onChange={(e) => setRegisterData({ ...registerData, usn: e.target.value })}
+                        className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                      />
+                      <AiOutlineUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
+                    </div>
                   </div>
-                </div>
                 ) : (
-                <div className="mb-4">
-                  <label className="block text-zinc-100 text-sm font-bold mb-2">Mentor Access Key</label>
-                  <div className="relative">
-                    <input
-                      type="password"
-                      placeholder="Enter Mentor Secret Key"
-                      value={registerData.mentor_key}
-                      onChange={(e) => setRegisterData({ ...registerData, mentor_key: e.target.value })}
-                      className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-                    />
-                    <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
+                  <div className="mb-4">
+                    <label className="block text-zinc-100 text-sm font-bold mb-2">Mentor Access Key</label>
+                    <div className="relative">
+                      <input
+                        type="password"
+                        placeholder="Enter Mentor Secret Key"
+                        value={registerData.mentor_key}
+                        onChange={(e) => setRegisterData({ ...registerData, mentor_key: e.target.value })}
+                        className="w-full px-3 py-2 pl-10 bg-zinc-800 text-white border border-zinc-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                      />
+                      <AiOutlineLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
+                    </div>
                   </div>
-                </div>
                 )}
                 <div className="mb-4">
                   <label className="block text-zinc-100 text-sm font-bold mb-2">Select a program</label>
@@ -408,7 +408,7 @@ const AuthPage = () => {
                       value={registerData.role}
                       onChange={(e) => setRegisterData({ ...registerData, role: e.target.value })}
                     >
-                      <option value="mentee">Mentee</option>
+                      <option value="mentee">Student</option>
                       <option value="mentor">Mentor</option>
                     </select>
                     <CiViewList className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5" />
