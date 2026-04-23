@@ -70,7 +70,7 @@ const MentorAssignments = () => {
                   <div className="text-sm text-zinc-400 mb-4 flex-grow space-y-1">
                     <p className="line-clamp-2">{assign.description}</p>
                     <p className="mt-2 text-neon text-xs">Due Date: Not Set</p>
-                    <p className="text-zinc-500 text-xs mt-2">Created: {new Date(assign.created_at).toLocaleDateString()}</p>
+                    <p className="text-zinc-500 text-xs mt-2">Created: {new Date(assign.created_at * 1000).toLocaleDateString()}</p>
                   </div>
                   <div className="flex justify-end border-t border-zinc-800 pt-4">
                     <Link 

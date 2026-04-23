@@ -101,7 +101,7 @@ const MentorQuizResults = () => {
                           </span>
                         </td>
                         <td className="p-4 text-zinc-400 text-sm">
-                          {new Date(result.submitted_at).toLocaleDateString()} {new Date(result.submitted_at).toLocaleTimeString()}
+                          {new Date(result.submitted_at * 1000).toLocaleDateString()} {new Date(result.submitted_at * 1000).toLocaleTimeString()}
                         </td>
                         <td className="p-4">
                           <button 

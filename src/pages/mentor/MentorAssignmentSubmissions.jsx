@@ -104,7 +104,7 @@ const MentorAssignmentSubmissions = () => {
                         <p className="text-sm text-zinc-400">{sub.user_email}</p>
                       </div>
                       <span className="text-xs text-zinc-500 bg-zinc-800 px-2 py-1 rounded">
-                        {new Date(sub.submitted_at).toLocaleDateString()} {new Date(sub.submitted_at).toLocaleTimeString()}
+                        {new Date(sub.submitted_at * 1000).toLocaleDateString()} {new Date(sub.submitted_at * 1000).toLocaleTimeString()}
                       </span>
                     </div>
 
