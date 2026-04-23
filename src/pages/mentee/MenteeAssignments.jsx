@@ -59,18 +59,26 @@ const MenteeAssignments = () => {
                   </div>
                   <div className="text-sm text-zinc-400 mb-4 flex-grow space-y-2">
                     <p className="line-clamp-3">{assign.description}</p>
-                    <div className="mt-4 p-2 bg-zinc-950 rounded border border-zinc-800 text-xs">
-                      <span className="text-zinc-500">Mentee API doesn't return submitted state yet. Assuming Pending.</span>
+                    <div className={`mt-4 p-2 rounded border text-xs font-semibold ${assign.submitted ? 'bg-green-900/20 border-green-500/30 text-green-400' : 'bg-zinc-950 border-zinc-800 text-zinc-500'}`}>
+                      {assign.submitted ? '✓ Submitted' : 'Pending Submission'}
                     </div>
                   </div>
                   <div className="flex justify-between gap-2 border-t border-zinc-800 pt-4">
-                    <span className="text-xs text-zinc-500 self-end">Due: Not set</span>
-                    <Link 
-                      to={`/mentee/assignments/${assign.assignment_id}/submit`}
-                      className="bg-neon text-zinc-950 font-bold text-sm px-4 py-2 rounded hover:bg-green-400 transition-colors"
-                    >
-                      Submit Work
-                    </Link>
+                    <span className="text-xs text-zinc-500 self-end">
+                      {assign.due_date ? `Due: ${new Date(assign.due_date * 1000).toLocaleDateString()}` : 'Due: Not set'}
+                    </span>
+                    {assign.submitted ? (
+                      <span className="bg-zinc-700 text-zinc-400 font-bold text-sm px-4 py-2 rounded cursor-not-allowed">
+                        Submitted
+                      </span>
+                    ) : (
+                      <Link
+                        to={`/mentee/assignments/${assign.assignment_id}/submit`}
+                        className="bg-neon text-zinc-950 font-bold text-sm px-4 py-2 rounded hover:bg-green-400 transition-colors"
+                      >
+                        Submit Work
+                      </Link>
+                    )}
                   </div>
                 </div>
               ))}
