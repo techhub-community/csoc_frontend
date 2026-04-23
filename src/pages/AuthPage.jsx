@@ -530,7 +530,7 @@ const AuthPage = () => {
                       </div>
                     </div>
                     <DialogTitle as="h2" className="text-2xl font-bold text-white mb-2">
-                      Registration Successful! 🎉
+                      Registration Successful!
                     </DialogTitle>
                     <p className="text-zinc-400 mb-8 leading-relaxed">
                       Welcome to the community! Join our WhatsApp group to stay updated with program announcements, session links, and to connect with other participants.
