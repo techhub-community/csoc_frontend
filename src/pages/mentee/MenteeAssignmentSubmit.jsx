@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import useLocalStorage from '../../hooks/useLocalStorage';
@@ -11,11 +11,27 @@ const MenteeAssignmentSubmit = () => {
   const navigate = useNavigate();
   const [token] = useLocalStorage("token", null);
   
+  const [assignment, setAssignment] = useState(null);
   const [submissionLink, setSubmissionLink] = useState('');
   const [submissionText, setSubmissionText] = useState('');
   
   const [calling, setCalling] = useState(false);
   const [error, setError] = useState("");
+
+  // Fetch the assignment details to display title, description, and due date
+  useEffect(() => {
+    if (!token) return;
+    const fetchDetails = async () => {
+      try {
+        const res = await fetch(`${baseUrl}/assignment/list?token=${token}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        const found = data.find(a => String(a.assignment_id) === String(assignmentId));
+        if (found) setAssignment(found);
+      } catch (_) {}
+    };
+    fetchDetails();
+  }, [token, assignmentId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,6 +69,10 @@ const MenteeAssignmentSubmit = () => {
     }
   };
 
+  const formattedDueDate = assignment?.due_date
+    ? new Date(assignment.due_date * 1000).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
+    : null;
+
   return (
     <>
       <NavBar />
@@ -63,9 +83,30 @@ const MenteeAssignmentSubmit = () => {
           </Link>
 
           <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500 mb-2">
-            Submit Assignment
+            {assignment ? assignment.title : `Assignment #${assignmentId}`}
           </h1>
-          <p className="text-zinc-400 mb-8">Assignment ID: {assignmentId}</p>
+
+          {/* Assignment meta info */}
+          <div className="flex flex-wrap items-center gap-4 mb-6 text-sm">
+            {formattedDueDate ? (
+              <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-yellow-900/30 border border-yellow-500/40 text-yellow-400 font-semibold">
+                📅 Due: {formattedDueDate}
+              </span>
+            ) : (
+              <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-800 border border-zinc-700 text-zinc-500 text-xs">
+                No due date set
+              </span>
+            )}
+            {assignment?.domain && (
+              <span className="px-3 py-1 rounded-full bg-zinc-800 border border-zinc-700 text-zinc-400 uppercase text-xs font-bold tracking-wider">
+                {assignment.domain}
+              </span>
+            )}
+          </div>
+
+          {assignment?.description && (
+            <p className="text-zinc-400 mb-8 leading-relaxed">{assignment.description}</p>
+          )}
           
           {error && (
             <div className="p-4 mb-6 text-sm text-red-400 bg-red-900/20 border border-red-500/30 rounded-lg shadow-lg">
@@ -75,7 +116,7 @@ const MenteeAssignmentSubmit = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6 bg-zinc-900 border border-zinc-800 p-8 rounded-xl shadow-lg">
             <div className="p-4 bg-zinc-950 border border-zinc-800 rounded-lg text-sm text-zinc-400 mb-6">
-              <span className="text-neon font-bold">Instructions:</span> Provide a link to your work (e.g. GitHub repository, Google Doc) OR write your response directly in the text box below. You can also provide both.
+              <span className="text-neon font-bold">Instructions:</span> Provide a link to your work (e.g. GitHub repository, Google Doc) and/or write your response directly in the text box below.
             </div>
 
             <div>
@@ -118,3 +159,4 @@ const MenteeAssignmentSubmit = () => {
 };
 
 export default MenteeAssignmentSubmit;
+
