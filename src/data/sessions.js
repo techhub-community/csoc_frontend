@@ -8,6 +8,7 @@ export const sessionsData = [
     mentor: "Avinash Singh Pal | Abhay Kumar",
     platform: "Google Meet",
     meetLink: "https://meet.google.com/psi-ednb-myg",
+    resourcesLink: "https://canva.link/mtet8ecqtukmuv1",
     status: "Completed"
   },
   {
@@ -19,6 +20,7 @@ export const sessionsData = [
     mentor: "Nidhi Singh",
     platform: "Google Meet",
     meetLink: "",
+    resourcesLink: "",
     status: "Upcoming"
   },
   {
@@ -30,8 +32,8 @@ export const sessionsData = [
     mentor: "Karthik Reddy | Pragathi",
     platform: "Google Meet",
     meetLink: "",
+    resourcesLink: "",
     status: "Upcoming"
-  
   },
   {
     id: 4,
@@ -42,8 +44,8 @@ export const sessionsData = [
     mentor: "Abhay | Shalini | Saksham",
     platform: "Google Meet",
     meetLink: "",
+    resourcesLink: "",
     status: "Upcoming"
-  
   },
   {
     id: 5,
@@ -54,7 +56,7 @@ export const sessionsData = [
     mentor: "Aman | Aashrith",
     platform: "Google Meet",
     meetLink: "",
+    resourcesLink: "",
     status: "Upcoming"
-  
   }
 ];

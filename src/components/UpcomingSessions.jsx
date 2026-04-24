@@ -40,18 +40,24 @@ const SessionCard = ({ session, completed = false }) => (
 
         <div className="mt-4 flex items-center justify-between">
           <span className="text-xs text-zinc-500 font-medium">Mentor: {session.mentor}</span>
-          {session.meetLink && (
+          {!completed && session.meetLink && (
             <a
               href={session.meetLink}
               target="_blank"
               rel="noopener noreferrer"
-              className={`text-xs font-bold px-3 py-1.5 rounded-lg hover:scale-105 active:scale-95 transition-transform inline-block ${
-                completed
-                  ? 'bg-zinc-700 text-zinc-300'
-                  : 'bg-neon text-black'
-              }`}
+              className="text-xs bg-neon text-black font-bold px-3 py-1.5 rounded-lg hover:scale-105 active:scale-95 transition-transform inline-block"
             >
-              {completed ? 'Recording' : 'Join Link'}
+              Join Link
+            </a>
+          )}
+          {completed && session.resourcesLink && (
+            <a
+              href={session.resourcesLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs bg-zinc-700 text-zinc-200 font-bold px-3 py-1.5 rounded-lg hover:scale-105 active:scale-95 transition-transform inline-block"
+            >
+              Resources
             </a>
           )}
         </div>
