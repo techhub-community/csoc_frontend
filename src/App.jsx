@@ -23,7 +23,7 @@ import MenteeQuizAttempt from "./pages/mentee/MenteeQuizAttempt";
 import MenteeQuizResult from "./pages/mentee/MenteeQuizResult";
 import MenteeAssignments from "./pages/mentee/MenteeAssignments";
 import MenteeAssignmentSubmit from "./pages/mentee/MenteeAssignmentSubmit";
-import MenteeWelcome from "./pages/mentee/MenteeWelcome";
+
 import Maintenance from "./pages/Maintenance";
 
 const ProtectedRoute = ({ element, requiredRole }) => {
@@ -90,7 +90,7 @@ function App() {
         <Route path="/">
           <Route index element={<LandingPage />} />
           <Route path="/auth" element={loading ? <LoadingScreen />
-            : isAuthenticated ? <Navigate to={(useAuthStore.getState().role || "mentee") === "mentee" ? "/mentee/welcome" : `/${useAuthStore.getState().role}/dashboard`} /> : <AuthPage />} />
+            : isAuthenticated ? <Navigate to={`/${useAuthStore.getState().role || "mentee"}/dashboard`} /> : <AuthPage />} />
           <Route path="/profile" element={<ProtectedRoute element={<ProfileSection />} />} />
 
           <Route path="/mentor/dashboard" element={<ProtectedRoute requiredRole="mentor" element={<MentorDashboard />} />} />
@@ -107,7 +107,7 @@ function App() {
           <Route path="/mentee/quizzes/:quizId/result" element={<ProtectedRoute requiredRole="mentee" element={<MenteeQuizResult />} />} />
           <Route path="/mentee/assignments" element={<ProtectedRoute requiredRole="mentee" element={<MenteeAssignments />} />} />
           <Route path="/mentee/assignments/:assignmentId/submit" element={<ProtectedRoute requiredRole="mentee" element={<MenteeAssignmentSubmit />} />} />
-          <Route path="/mentee/welcome" element={<ProtectedRoute requiredRole="mentee" element={<MenteeWelcome />} />} />
+
 
           <Route path="/reset-password" element={isAuthenticated ? <Navigate to={`/${useAuthStore.getState().role}/dashboard`} /> : <ResetPWD />} />
         </Route>
