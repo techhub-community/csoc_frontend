@@ -7,6 +7,7 @@ export const sessionsData = [
     time: "09:00 PM",
     mentor: "Avinash Singh Pal | Abhay Kumar",
     platform: "Google Meet",
+    meetLink: "https://meet.google.com/psi-ednb-myg",
     status: "Upcoming"
   }
 ];

@@ -41,9 +41,16 @@ const UpcomingSessions = () => {
                   
                   <div className="mt-4 flex items-center justify-between">
                     <span className="text-xs text-zinc-500 font-medium">Mentor: {session.mentor}</span>
-                    {/* <button className="text-xs bg-neon text-black font-bold px-3 py-1.5 rounded-lg hover:scale-105 active:scale-95 transition-transform">
-                      Join Link
-                    </button> */}
+                    {session.meetLink && (
+                      <a
+                        href={session.meetLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs bg-neon text-black font-bold px-3 py-1.5 rounded-lg hover:scale-105 active:scale-95 transition-transform inline-block"
+                      >
+                        Join Link
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
