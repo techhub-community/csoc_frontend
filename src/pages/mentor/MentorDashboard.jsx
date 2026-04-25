@@ -7,7 +7,165 @@ import { baseUrl } from '../../data/consts';
 import { Link } from 'react-router-dom';
 import { CiCirclePlus } from 'react-icons/ci';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
+import { HiUserGroup } from 'react-icons/hi2';
+import { MdOutlineBarChart } from 'react-icons/md';
 import UpcomingSessions from '../../components/UpcomingSessions';
+
+const DOMAIN_LABELS = {
+  web:  'Web Development',
+  app:  'App Development',
+  dsa:  'DSA / CP',
+  aiml: 'AI / ML',
+  uiux: 'UI / UX',
+};
+
+const DOMAIN_ORDER = ['web', 'app', 'dsa', 'aiml', 'uiux'];
+
+// ─── Mentee Registrations Widget ────────────────────────────────────────────
+
+const RegistrationSkeleton = () => (
+  <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-lg animate-pulse mb-8">
+    <div className="h-5 w-48 bg-zinc-800 rounded mb-6" />
+    {/* highlight card skeleton */}
+    <div className="h-24 bg-zinc-800 rounded-xl mb-6" />
+    {/* domain rows */}
+    <div className="space-y-3">
+      {[...Array(5)].map((_, i) => (
+        <div key={i} className="flex items-center gap-3">
+          <div className="h-4 w-28 bg-zinc-800 rounded" />
+          <div className="flex-1 h-2 bg-zinc-800 rounded-full" />
+          <div className="h-4 w-8 bg-zinc-800 rounded" />
+        </div>
+      ))}
+    </div>
+    <div className="mt-4 h-4 w-36 bg-zinc-800 rounded" />
+  </div>
+);
+
+const MenteeRegistrations = ({ token }) => {
+  const [stats, setStats] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (!token) return;
+    const fetchStats = async () => {
+      try {
+        const res = await fetch(`${baseUrl}/mentor/dashboard?token=${token}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        setStats(data);
+      } catch (err) {
+        setError('Could not load mentee registration data.');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchStats();
+  }, [token]);
+
+  if (loading) return <RegistrationSkeleton />;
+
+  if (error) {
+    return (
+      <div className="p-4 mb-8 text-sm text-amber-400 bg-amber-900/20 border border-amber-500/30 rounded-xl flex items-center gap-3">
+        <MdOutlineBarChart size={20} className="shrink-0" />
+        {error}
+      </div>
+    );
+  }
+
+  if (!stats) return null;
+
+  const { mentor_domain, my_domain_count, domain_counts, total_mentees } = stats;
+  const myLabel = DOMAIN_LABELS[mentor_domain] ?? mentor_domain;
+
+  return (
+    <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-lg mb-8 relative overflow-hidden">
+      {/* subtle bg icon */}
+      <div className="absolute top-0 right-0 p-6 opacity-5 pointer-events-none select-none">
+        <HiUserGroup size={100} className="text-neon" />
+      </div>
+
+      <h2 className="text-lg font-bold text-zinc-200 mb-5 flex items-center gap-2">
+        <HiUserGroup className="text-neon" size={20} />
+        Mentee Registrations
+      </h2>
+
+      {/* ── Highlight Card ── */}
+      <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-4
+                      bg-gradient-to-br from-zinc-950 to-zinc-900
+                      border border-neon/30 rounded-xl px-6 py-5 mb-6
+                      shadow-[0_0_24px_rgba(57,255,20,0.07)]">
+        <div>
+          <p className="text-zinc-400 text-xs uppercase tracking-widest mb-1 font-semibold">
+            Mentees in your domain
+          </p>
+          <p className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-400">
+            {myLabel}
+          </p>
+        </div>
+        <div className="text-right">
+          <span className="text-6xl font-black text-white leading-none">
+            {my_domain_count}
+          </span>
+          <p className="text-zinc-500 text-xs mt-1">registered</p>
+        </div>
+        {/* glow line */}
+        <div className="absolute bottom-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-neon/40 to-transparent" />
+      </div>
+
+      {/* ── Domain Breakdown ── */}
+      <div className="space-y-3">
+        {DOMAIN_ORDER.map((key) => {
+          const count  = domain_counts[key] ?? 0;
+          const pct    = total_mentees > 0 ? (count / total_mentees) * 100 : 0;
+          const isOwn  = key === mentor_domain;
+
+          return (
+            <div
+              key={key}
+              className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors
+                ${isOwn ? 'bg-neon/5 border border-neon/20' : 'border border-transparent hover:bg-zinc-800/40'}`}
+            >
+              {/* domain label */}
+              <span className={`w-36 text-sm font-semibold shrink-0
+                ${isOwn ? 'text-neon' : 'text-zinc-400'}`}>
+                {DOMAIN_LABELS[key]}
+              </span>
+
+              {/* progress bar */}
+              <div className="flex-1 h-2 bg-zinc-800 rounded-full overflow-hidden">
+                <div
+                  className={`h-full rounded-full transition-all duration-700
+                    ${isOwn
+                      ? 'bg-gradient-to-r from-neon to-green-400 shadow-[0_0_6px_rgba(57,255,20,0.5)]'
+                      : 'bg-zinc-600'}`}
+                  style={{ width: `${pct}%` }}
+                />
+              </div>
+
+              {/* count */}
+              <span className={`w-8 text-right text-sm font-bold shrink-0
+                ${isOwn ? 'text-neon' : 'text-zinc-300'}`}>
+                {count}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* ── Total ── */}
+      <div className="mt-5 pt-4 border-t border-zinc-800 flex justify-between items-center">
+        <span className="text-zinc-500 text-sm">Total mentees across all domains</span>
+        <span className="text-white font-black text-xl">{total_mentees}</span>
+      </div>
+    </div>
+  );
+};
+
+// ─── Main Dashboard ─────────────────────────────────────────────────────────
 
 const MentorDashboard = () => {
   const [quizzes, setQuizzes] = useState([]);
@@ -77,6 +235,9 @@ const MentorDashboard = () => {
               {error}
             </div>
           )}
+
+          {/* ── Mentee Registrations ── */}
+          <MenteeRegistrations token={token} />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {/* Overview Card 1 */}
