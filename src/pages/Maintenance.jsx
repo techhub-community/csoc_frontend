@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FaScrewdriverWrench, FaWhatsapp, FaPlay, FaRotateRight, FaTerminal } from 'react-icons/fa6';
 
 const Maintenance = ({ onDevAccess }) => {
-    const whatsappLink = "https://chat.whatsapp.com/--sanitized-S228802--?mode=gi_t&lang=en";
+    const whatsappLink = "https://chat.whatsapp.com/FqBUxIT8kuT7s46Qx31OTP?mode=gi_t";
     const [gameStarted, setGameStarted] = useState(false);
     const [gameOver, setGameOver] = useState(false);
     const [score, setScore] = useState(0);

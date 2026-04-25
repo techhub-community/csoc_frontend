@@ -27,7 +27,7 @@ const AuthPage = () => {
   const [isWhatsAppOpen, setIsWhatsAppOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const whatsappLink = "https://chat.whatsapp.com/--sanitized-S228802--?mode=gi_t&lang=en";
+  const whatsappLink = "https://chat.whatsapp.com/FqBUxIT8kuT7s46Qx31OTP?mode=gi_t";
   const navigate = useNavigate();
   const [, setToken] = useLocalStorage("token", null);
   const { setIsAuthenticated, setData, setInvite, setType, setTeam, setPendings, setProgram, setSuggestions, setRole } = useAuthStore();
