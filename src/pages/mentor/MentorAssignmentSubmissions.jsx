@@ -63,20 +63,20 @@ const MentorAssignmentSubmissions = () => {
   return (
     <>
       <NavBar />
-      <div className="min-h-screen pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
+      <div className="min-h-screen pt-24 sm:pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
         <div className="w-full max-w-5xl p-4">
           <Link to="/mentor/assignments" className="flex items-center text-zinc-400 hover:text-white mb-6 w-fit transition-colors">
             <IoArrowBack className="mr-2" /> Back to Assignments
           </Link>
 
-          <div className="mb-8 items-center flex justify-between">
+          <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-white mb-2">Assignment Submissions</h1>
-              <p className="text-zinc-400">ID: {assignmentId}</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Assignment Submissions</h1>
+              <p className="text-zinc-400 text-sm">ID: {assignmentId}</p>
             </div>
-            <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
-              <p className="text-zinc-300">
-                <strong className="text-neon">{submissions.length}</strong> Total Submissions
+            <div className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 shrink-0">
+              <p className="text-zinc-300 text-sm">
+                <strong className="text-neon text-lg">{submissions.length}</strong> Total Submissions
               </p>
             </div>
           </div>
@@ -108,31 +108,31 @@ const MentorAssignmentSubmissions = () => {
                       </span>
                     </div>
 
-                    <div className="space-y-4 mb-6 text-sm bg-zinc-950 border border-zinc-800 p-4 rounded-lg">
-                      <div className="flex gap-4">
-                        <div className="font-bold text-zinc-300 w-24">Link:</div>
-                        <div className="flex-1">
+                    <div className="space-y-3 mb-6 text-sm bg-zinc-950 border border-zinc-800 p-4 rounded-lg">
+                      <div className="flex flex-col sm:flex-row gap-1 sm:gap-4">
+                        <div className="font-bold text-zinc-300 sm:w-24 shrink-0">Link:</div>
+                        <div className="flex-1 break-all">
                           {sub.github_link ? (
-                            <a href={sub.github_link} target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300 break-all">
+                            <a href={sub.github_link} target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300">
                               {sub.github_link}
                             </a>
                           ) : <span className="text-zinc-600 italic">None provided</span>}
                         </div>
                       </div>
-                      <div className="flex gap-4">
-                        <div className="font-bold text-zinc-300 w-24">Text:</div>
+                      <div className="flex flex-col sm:flex-row gap-1 sm:gap-4">
+                        <div className="font-bold text-zinc-300 sm:w-24 shrink-0">Text:</div>
                         <div className="flex-1 text-zinc-400 whitespace-pre-wrap">
                           {sub.text_answer ? sub.text_answer : <span className="text-zinc-600 italic">None provided</span>}
                         </div>
                       </div>
-                      <div className="flex gap-4">
-                        <div className="font-bold text-zinc-300 w-24 text-green-500">Cur. Grade:</div>
+                      <div className="flex flex-col sm:flex-row gap-1 sm:gap-4">
+                        <div className="font-bold text-zinc-300 sm:w-24 text-green-500 shrink-0">Cur. Grade:</div>
                         <div className="flex-1 text-zinc-300 font-bold">
                           {sub.grade ? <span className="text-neon">{sub.grade}</span> : <span className="text-zinc-600 italic">Not graded</span>}
                         </div>
                       </div>
-                      <div className="flex gap-4">
-                        <div className="font-bold text-zinc-300 w-24 text-green-500">Remarks:</div>
+                      <div className="flex flex-col sm:flex-row gap-1 sm:gap-4">
+                        <div className="font-bold text-zinc-300 sm:w-24 text-green-500 shrink-0">Remarks:</div>
                         <div className="flex-1 text-zinc-400">
                           {sub.remarks ? sub.remarks : <span className="text-zinc-600 italic">None</span>}
                         </div>
@@ -140,9 +140,9 @@ const MentorAssignmentSubmissions = () => {
                     </div>
 
                     <form className="border-t border-zinc-800 pt-4" onSubmit={(e) => handleGradeSubmit(e, sub.submission_id)}>
-                      <h4 className="text-sm font-bold text-white mb-3">Update Grade & Feedback</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <div className="md:col-span-1">
+                      <h4 className="text-sm font-bold text-white mb-3">Update Grade &amp; Feedback</h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                        <div className="sm:col-span-1">
                           <input 
                             name="grade"
                             type="text" 
@@ -151,7 +151,7 @@ const MentorAssignmentSubmissions = () => {
                             className="w-full px-3 py-2 bg-zinc-800 text-white border border-zinc-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-sm"
                           />
                         </div>
-                        <div className="md:col-span-2">
+                        <div className="sm:col-span-2">
                           <input 
                             name="remarks"
                             type="text" 
@@ -160,7 +160,7 @@ const MentorAssignmentSubmissions = () => {
                             className="w-full px-3 py-2 bg-zinc-800 text-white border border-zinc-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-sm"
                           />
                         </div>
-                        <div className="md:col-span-1">
+                        <div className="sm:col-span-1">
                           <button 
                             type="submit" 
                             className="w-full bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white font-bold py-2 rounded transition-colors"

@@ -60,19 +60,17 @@ const MentorQuizzes = () => {
   return (
     <>
       <NavBar />
-      <div className="min-h-screen pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
+      <div className="min-h-screen pt-24 sm:pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
         <div className="w-full max-w-5xl p-4">
-          <div className="flex justify-between items-end mb-8">
-            <div>
-              <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500">
-                Your Quizzes
-              </h1>
-            </div>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500">
+              Your Quizzes
+            </h1>
             <Link 
               to="/mentor/quizzes/create"
-              className="flex items-center gap-2 bg-neon hover:bg-green-400 text-zinc-950 px-4 py-2 rounded-lg font-bold transition-all shadow-[0_0_10px_rgba(57,255,20,0.2)]"
+              className="flex items-center gap-2 bg-neon hover:bg-green-400 text-zinc-950 px-4 py-2 rounded-lg font-bold transition-all shadow-[0_0_10px_rgba(57,255,20,0.2)] text-sm self-start sm:self-auto"
             >
-              <CiCirclePlus size={20} className="font-bold"/> Create Quiz
+              <CiCirclePlus size={18} className="font-bold"/> Create Quiz
             </Link>
           </div>
 
@@ -104,23 +102,23 @@ const MentorQuizzes = () => {
                     <p>{quiz.question_count} questions</p>
                     <p className="mt-2 text-neon text-xs">Mentees attempted: ?</p>
                   </div>
-                  <div className="flex justify-between gap-2 border-t border-zinc-800 pt-4">
+                  <div className="flex flex-wrap justify-between gap-2 border-t border-zinc-800 pt-4">
                     <button 
                       onClick={() => toggleActive(quiz.quiz_id)}
-                      className="text-sm text-zinc-400 hover:text-white transition-colors"
+                      className="text-sm text-zinc-400 hover:text-white transition-colors self-center"
                     >
                       Toggle Active
                     </button>
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <button
                         onClick={() => handleDeleteQuiz(quiz.quiz_id)}
-                        className="bg-red-900/30 text-red-500 hover:bg-red-900/60 text-sm px-4 py-2 rounded transition-colors"
+                        className="bg-red-900/30 text-red-500 hover:bg-red-900/60 text-sm px-3 py-2 rounded transition-colors"
                       >
                         Delete
                       </button>
                       <Link 
                         to={`/mentor/quizzes/${quiz.quiz_id}/results`}
-                        className="bg-zinc-800 hover:bg-zinc-700 text-white text-sm px-4 py-2 rounded transition-colors"
+                        className="bg-zinc-800 hover:bg-zinc-700 text-white text-sm px-3 py-2 rounded transition-colors"
                       >
                         View Results
                       </Link>

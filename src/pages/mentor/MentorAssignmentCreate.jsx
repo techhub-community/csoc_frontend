@@ -62,9 +62,9 @@ const MentorAssignmentCreate = () => {
   return (
     <>
       <NavBar />
-      <div className="min-h-screen pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
+      <div className="min-h-screen pt-24 sm:pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
         <div className="w-full max-w-3xl p-4">
-          <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500 mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500 mb-8">
             Create New Assignment
           </h1>
           
@@ -74,7 +74,7 @@ const MentorAssignmentCreate = () => {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6 bg-zinc-900 border border-zinc-800 p-8 rounded-xl shadow-lg">
+          <form onSubmit={handleSubmit} className="space-y-6 bg-zinc-900 border border-zinc-800 p-5 sm:p-8 rounded-xl shadow-lg">
             <div>
               <label className="block text-zinc-100 text-sm font-bold mb-2">Assignment Title *</label>
               <input

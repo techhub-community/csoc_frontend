@@ -76,13 +76,13 @@ const MenteeAssignmentSubmit = () => {
   return (
     <>
       <NavBar />
-      <div className="min-h-screen pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
+      <div className="min-h-screen pt-24 sm:pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
         <div className="w-full max-w-3xl p-4">
           <Link to="/mentee/assignments" className="flex items-center text-zinc-400 hover:text-white mb-6 w-fit transition-colors">
             <IoArrowBack className="mr-2" /> Back to Assignments
           </Link>
 
-          <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500 mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500 mb-2">
             {assignment ? assignment.title : `Assignment #${assignmentId}`}
           </h1>
 
@@ -114,7 +114,7 @@ const MenteeAssignmentSubmit = () => {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6 bg-zinc-900 border border-zinc-800 p-8 rounded-xl shadow-lg">
+          <form onSubmit={handleSubmit} className="space-y-6 bg-zinc-900 border border-zinc-800 p-5 sm:p-8 rounded-xl shadow-lg">
             <div className="p-4 bg-zinc-950 border border-zinc-800 rounded-lg text-sm text-zinc-400 mb-6">
               <span className="text-neon font-bold">Instructions:</span> Provide a link to your work (e.g. GitHub repository, Google Doc) and/or write your response directly in the text box below.
             </div>

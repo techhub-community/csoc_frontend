@@ -30,10 +30,10 @@ const MenteeAssignments = () => {
   return (
     <>
       <NavBar />
-      <div className="min-h-screen pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
+      <div className="min-h-screen pt-24 sm:pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
         <div className="w-full max-w-5xl p-4">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500">
+            <h1 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500">
               Your Assignments
             </h1>
           </div>

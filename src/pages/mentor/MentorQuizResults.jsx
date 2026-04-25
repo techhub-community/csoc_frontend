@@ -49,15 +49,15 @@ const MentorQuizResults = () => {
   return (
     <>
       <NavBar />
-      <div className="min-h-screen pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
+      <div className="min-h-screen pt-24 sm:pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
         <div className="w-full max-w-5xl p-4">
           <Link to="/mentor/quizzes" className="flex items-center text-zinc-400 hover:text-white mb-6 w-fit transition-colors">
             <IoArrowBack className="mr-2" /> Back to Quizzes
           </Link>
 
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-white">{quizDetails.title}</h1>
-            <p className="text-zinc-400 mt-2">ID: {quizId} • {quizDetails.total_questions} Questions</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white">{quizDetails.title}</h1>
+            <p className="text-zinc-400 mt-2 text-sm">ID: {quizId} • {quizDetails.total_questions} Questions</p>
           </div>
 
           <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-lg mb-8">
@@ -72,11 +72,11 @@ const MentorQuizResults = () => {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-zinc-800 border-b border-zinc-700">
-                    <th className="p-4 font-semibold text-zinc-300">Mentee Name</th>
-                    <th className="p-4 font-semibold text-zinc-300">Email</th>
-                    <th className="p-4 font-semibold text-zinc-300">Score</th>
-                    <th className="p-4 font-semibold text-zinc-300">Submitted At</th>
-                    <th className="p-4 font-semibold text-zinc-300">Actions</th>
+                    <th className="p-3 sm:p-4 font-semibold text-zinc-300 text-sm">Mentee Name</th>
+                    <th className="p-3 sm:p-4 font-semibold text-zinc-300 text-sm hidden sm:table-cell">Email</th>
+                    <th className="p-3 sm:p-4 font-semibold text-zinc-300 text-sm">Score</th>
+                    <th className="p-3 sm:p-4 font-semibold text-zinc-300 text-sm hidden md:table-cell">Submitted At</th>
+                    <th className="p-3 sm:p-4 font-semibold text-zinc-300 text-sm">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -91,19 +91,19 @@ const MentorQuizResults = () => {
                   ) : (
                     results.map((result) => (
                       <tr key={result.attempt_id} className="border-b border-zinc-800 hover:bg-zinc-800/50 transition-colors">
-                        <td className="p-4 font-medium text-white">{result.mentee_name}</td>
-                        <td className="p-4 text-zinc-400 text-sm">{result.mentee_email}</td>
-                        <td className="p-4">
+                        <td className="p-3 sm:p-4 font-medium text-white text-sm">{result.mentee_name}</td>
+                        <td className="p-3 sm:p-4 text-zinc-400 text-sm hidden sm:table-cell">{result.mentee_email}</td>
+                        <td className="p-3 sm:p-4">
                           <span className={`px-2 py-1 rounded text-xs font-bold ${
                             result.total_score >= quizDetails.total_questions / 2 ? 'bg-green-900/30 text-green-400' : 'bg-red-900/30 text-red-400'
                           }`}>
                             {result.total_score} / {quizDetails.total_questions}
                           </span>
                         </td>
-                        <td className="p-4 text-zinc-400 text-sm">
+                        <td className="p-3 sm:p-4 text-zinc-400 text-sm hidden md:table-cell">
                           {new Date(result.submitted_at * 1000).toLocaleDateString()} {new Date(result.submitted_at * 1000).toLocaleTimeString()}
                         </td>
-                        <td className="p-4">
+                        <td className="p-3 sm:p-4">
                           <button 
                             className="bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white px-3 py-1 rounded text-sm transition-colors"
                             onClick={() => alert(`View details for ${result.mentee_name} - Requires backend API detail endpoint`)}

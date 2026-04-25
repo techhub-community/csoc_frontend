@@ -105,13 +105,13 @@ const MenteeQuizAttempt = () => {
   return (
     <>
       <NavBar />
-      <div className="min-h-screen pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
+      <div className="min-h-screen pt-24 sm:pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
         <div className="w-full max-w-4xl p-4">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500">
+            <h1 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500">
               Quiz Attempt
             </h1>
-            <p className="text-zinc-400 mt-2">Answer all questions before submitting.</p>
+            <p className="text-zinc-400 mt-2 text-sm sm:text-base">Answer all questions before submitting.</p>
           </div>
 
           {error && (
@@ -127,7 +127,7 @@ const MenteeQuizAttempt = () => {
                   <span className="text-zinc-500 mr-2">{index + 1}.</span> 
                   {q.question_text}
                 </h3>
-                <div className="space-y-3 pl-6">
+                <div className="space-y-3 pl-0 sm:pl-6">
                   {['a', 'b', 'c', 'd'].map(opt => (
                     <label 
                       key={opt} 
@@ -144,9 +144,9 @@ const MenteeQuizAttempt = () => {
                           value={opt}
                           checked={answers[q.question_id] === opt}
                           onChange={() => handleOptionSelect(q.question_id, opt)}
-                          className="w-4 h-4 text-green-500 bg-zinc-800 border-zinc-700 focus:ring-green-500 focus:ring-2"
+                          className="w-4 h-4 text-green-500 bg-zinc-800 border-zinc-700 focus:ring-green-500 focus:ring-2 shrink-0"
                         />
-                        <span className="font-semibold uppercase w-6 text-zinc-500">{opt})</span>
+                        <span className="font-semibold uppercase w-6 text-zinc-500 shrink-0">{opt})</span>
                         <span>{q[`option_${opt}`]}</span>
                       </div>
                     </label>

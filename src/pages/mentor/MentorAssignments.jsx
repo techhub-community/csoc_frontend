@@ -31,19 +31,17 @@ const MentorAssignments = () => {
   return (
     <>
       <NavBar />
-      <div className="min-h-screen pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
+      <div className="min-h-screen pt-24 sm:pt-32 pb-10 bg-zinc-950 text-white flex justify-center">
         <div className="w-full max-w-5xl p-4">
-          <div className="flex justify-between items-end mb-8">
-            <div>
-              <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500">
-                Your Assignments
-              </h1>
-            </div>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500">
+              Your Assignments
+            </h1>
             <Link 
               to="/mentor/assignments/create"
-              className="flex items-center gap-2 bg-neon hover:bg-green-400 text-zinc-950 px-4 py-2 rounded-lg font-bold transition-all shadow-[0_0_10px_rgba(57,255,20,0.2)]"
+              className="flex items-center gap-2 bg-neon hover:bg-green-400 text-zinc-950 px-4 py-2 rounded-lg font-bold transition-all shadow-[0_0_10px_rgba(57,255,20,0.2)] text-sm self-start sm:self-auto"
             >
-              <CiCirclePlus size={20} className="font-bold"/> Create Assignment
+              <CiCirclePlus size={18} className="font-bold"/> Create Assignment
             </Link>
           </div>
 
